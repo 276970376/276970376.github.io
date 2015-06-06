@@ -1,0 +1,368 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title></title>
+<script type="text/javascript">
+//缩放比例
+if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+	var version = parseFloat(RegExp.$1);
+	if(version>2.3){
+		var phoneScale = parseInt(window.screen.width)/640;
+		document.write('<meta name="viewport" content="width=640, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+	}else{
+		document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+	}
+}else{
+	document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+</script>
+<link rel="stylesheet" href="http://tuniu.digitalwe.cn/css/skin.css" />
+<meta name="format-detection" content="telephone=no" />
+</head>
+<body>
+	<!--加载中 start-->
+	<div class="page hidden" id="loading">
+		<div class="loading auto-x auto-y">
+			<div class="loadings"></div>
+			<div id="percent">0%</div>
+		</div>
+	</div>
+	<!--加载中 start-->
+	<!--分屏动画 start-->
+	<div class="page hidden" id="mySwiper">
+		<!--第一屏  start-->
+		<div class="swiper-slide">
+			<div class="bg no-full-bottom"><img loadsrc="http://tuniu.digitalwe.cn/images/bg-1.jpg" /></div>
+			<div class="logo natural"><img loadsrc="http://tuniu.digitalwe.cn/images/logo.png" /></div>
+			<div class="liuxing natural"><img loadsrc="http://tuniu.digitalwe.cn/images/liuxing.png" /></div>
+			<div class="title natural">
+				<div class="page"><img loadsrc="http://tuniu.digitalwe.cn/images/title-1.png" /></div>
+				<div class="page"><img loadsrc="http://tuniu.digitalwe.cn/images/title-2.png" /></div>
+				<div class="page"><img loadsrc="http://tuniu.digitalwe.cn/images/title-3.png" /></div>
+				<div class="plan"><img loadsrc="http://tuniu.digitalwe.cn/images/plan.png" /></div>
+			</div>
+			<div class="star page no-full-bottom"><img loadsrc="http://tuniu.digitalwe.cn/images/star.png" /></div>
+			<div class="niu natural"><img loadsrc="http://tuniu.digitalwe.cn/images/niu.png" /></div>
+		</div>
+		<!--第一屏 end-->
+		<!--第二屏  start-->
+		<div class="swiper-slide">
+			<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/bg-2.jpg" /></div>
+			<div class="bom natural"><img loadsrc="http://tuniu.digitalwe.cn/images/bom.png" /></div>
+			<div class="bom-title natural"><img loadsrc="http://tuniu.digitalwe.cn/images/bom-title.png" /></div>
+			<div class="data-1">
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/data-1.png" /></div>
+				<div class="data" id="data-1">370000</div>
+			</div>
+			<div class="human">
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/human.png" /></div>
+				<div class="page human-11"><img loadsrc="http://tuniu.digitalwe.cn/images/human-11.png" /></div>
+				<div class="page human-10"><img loadsrc="http://tuniu.digitalwe.cn/images/human-10.png" /></div>
+				<div class="page human-9"><img loadsrc="http://tuniu.digitalwe.cn/images/human-9.png" /></div>
+				<div class="page human-8"><img loadsrc="http://tuniu.digitalwe.cn/images/human-8.png" /></div>
+				<div class="page human-7"><img loadsrc="http://tuniu.digitalwe.cn/images/human-7.png" /></div>
+				<div class="page human-6"><img loadsrc="http://tuniu.digitalwe.cn/images/human-6.png" /></div>
+				<div class="page human-5"><img loadsrc="http://tuniu.digitalwe.cn/images/human-5.png" /></div>
+				<div class="page human-4"><img loadsrc="http://tuniu.digitalwe.cn/images/human-4.png" /></div>
+				<div class="page human-3"><img loadsrc="http://tuniu.digitalwe.cn/images/human-3.png" /></div>
+				<div class="page human-2"><img loadsrc="http://tuniu.digitalwe.cn/images/human-2.png" /></div>
+				<div class="page human-1"><img loadsrc="http://tuniu.digitalwe.cn/images/human-1.png" /></div>
+			</div>
+		</div>
+		<!--第二屏 end-->
+		<!--第三屏  start-->
+		<div class="swiper-slide">
+			<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/bg-3.jpg" /></div>
+			<div class="bom natural"><img loadsrc="http://tuniu.digitalwe.cn/images/bom-1.png" /></div>
+			<div class="data-2">
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/data-2.png" /></div>
+				<div class="data" id="data-2">1095</div>
+				<div class="data" id="data-3">180000000</div>
+				<div class="data" id="data-4">4492</div>
+			</div>
+			<div class="map">
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/map.png" /></div>
+				<ul class="point page">
+					<li class="p-1"><img loadsrc="http://tuniu.digitalwe.cn/images/point.png" /></li>
+					<li class="p-2"><img loadsrc="http://tuniu.digitalwe.cn/images/point.png" /></li>
+					<li class="p-3"><img loadsrc="http://tuniu.digitalwe.cn/images/point.png" /></li>
+					<li class="p-4"><img loadsrc="http://tuniu.digitalwe.cn/images/point.png" /></li>
+					<li class="p-5"><img loadsrc="http://tuniu.digitalwe.cn/images/point.png" /></li>
+					<li class="p-6"><img loadsrc="http://tuniu.digitalwe.cn/images/point.png" /></li>
+					<li class="p-7"><img loadsrc="http://tuniu.digitalwe.cn/images/point.png" /></li>
+					<li class="p-8"><img loadsrc="http://tuniu.digitalwe.cn/images/point.png" /></li>
+					<li class="p-9"><img loadsrc="http://tuniu.digitalwe.cn/images/point.png" /></li>
+					<li class="p-10"><img loadsrc="http://tuniu.digitalwe.cn/images/point.png" /></li>
+					<li class="p-11"><img loadsrc="http://tuniu.digitalwe.cn/images/point.png" /></li>
+					<li class="p-12"><img loadsrc="http://tuniu.digitalwe.cn/images/point.png" /></li>
+				</ul>
+				<div class="line">
+					<div class="line-plan natural"><img loadsrc="http://tuniu.digitalwe.cn/images/line-plan.png" /></div>
+				</div>
+				<div class="lines hack"><img loadsrc="http://tuniu.digitalwe.cn/images/lines.png" /></div>
+			</div>
+		</div>
+		<!--第三屏 end-->
+		<!--第四屏  start-->
+		<div class="swiper-slide">
+			<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/bg-4.jpg" /></div>
+			<div class="bom natural"><img loadsrc="http://tuniu.digitalwe.cn/images/bom-2.png" /></div>
+			<div class="data-3">
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/data-3.png" /></div>
+				<div class="data" id="data-5">7</div>
+			</div>
+			<div class="city natural">
+				<div class="city-1"><img loadsrc="http://tuniu.digitalwe.cn/images/city-1.png" /></div>
+				<div class="city-2"><img loadsrc="http://tuniu.digitalwe.cn/images/city-2.png" /></div>
+				<div class="city-3"><img loadsrc="http://tuniu.digitalwe.cn/images/city-3.png" /></div>
+				<div class="city-point-1"><img loadsrc="http://tuniu.digitalwe.cn/images/point.png" /></div>
+				<div class="city-point-2"><img loadsrc="http://tuniu.digitalwe.cn/images/point.png" /></div>
+				<div class="city-point-3"><img loadsrc="http://tuniu.digitalwe.cn/images/point.png" /></div>
+				<div class="gx"><img loadsrc="http://tuniu.digitalwe.cn/images/gx.png" /></div>
+				<div class="page">
+					<div class="stars-1"><img loadsrc="http://tuniu.digitalwe.cn/images/stars.png" /></div>
+					<div class="stars-2"><img loadsrc="http://tuniu.digitalwe.cn/images/stars.png" /></div>
+					<div class="stars-3"><img loadsrc="http://tuniu.digitalwe.cn/images/stars.png" /></div>
+					<div class="stars-4"><img loadsrc="http://tuniu.digitalwe.cn/images/stars.png" /></div>
+				</div>
+			</div>
+		</div>
+		<!--第四屏 end-->
+		<!--第五屏  start-->
+		<div class="swiper-slide">
+			<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/bg-5.jpg" /></div>
+			<div class="bom natural"><img loadsrc="http://tuniu.digitalwe.cn/images/bom-3.png" /></div>
+			<div class="mudi"><img loadsrc="http://tuniu.digitalwe.cn/images/mudi.png" /></div>
+			<div class="cloud-1"><img loadsrc="http://tuniu.digitalwe.cn/images/cloud.png" /></div>
+			<div class="cloud-2"><img loadsrc="http://tuniu.digitalwe.cn/images/cloud.png" /></div>
+			<div class="cloud-3"><img loadsrc="http://tuniu.digitalwe.cn/images/cloud.png" /></div>
+			<div class="cloud-4"><img loadsrc="http://tuniu.digitalwe.cn/images/cloud.png" /></div>
+			<div class="beifang">
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/beifang.png" /></div>
+				<div class="sun"><img loadsrc="http://tuniu.digitalwe.cn/images/sun.png" /></div>
+				<div class="beifang-text natural"><img loadsrc="http://tuniu.digitalwe.cn/images/beifang-text.png" /></div>
+			</div>
+			<div class="nanfang">
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/nanfang.png" /></div>
+				<div class="nanfang-text natural"><img loadsrc="http://tuniu.digitalwe.cn/images/nanfang-text.png" /></div>
+			</div>
+		</div>
+		<!--第五屏 end-->
+		<!--第六屏  start-->
+		<div class="swiper-slide">
+			<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/bg-6.jpg" /></div>
+			<div class="bom natural"><img loadsrc="http://tuniu.digitalwe.cn/images/bom-4.png" /></div>
+			<div class="data-4">
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/data-4.png" /></div>
+				<div class="data" id="data-6">2930</div>
+			</div>
+			<div class="ren">
+				<div class="cricle"></div>
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/ren.png" /></div>
+				<div class="canvas">
+					<canvas id="mycanvas"></canvas>
+					<div class="data-5">
+						<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/data-5.png" /></div>
+						<div class="data" id="data-7">73</div>
+					</div>
+				</div>
+			</div>
+			<div class="man natural"><img loadsrc="http://tuniu.digitalwe.cn/images/man.png" /></div>
+			<div class="woman natural"><img loadsrc="http://tuniu.digitalwe.cn/images/woman.png" /></div>
+		</div>
+		<!--第六屏 end-->
+		<!--第七屏  start-->
+		<div class="swiper-slide">
+			<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/bg-7.jpg" /></div>
+			<div class="bom natural"><img loadsrc="http://tuniu.digitalwe.cn/images/bom-5.png" /></div>
+			<div class="data-6">
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/data-6.png" /></div>
+				<div class="data" id="data-8">7</div>
+				<div class="data" id="data-9">168</div>
+				<div class="data" id="data-10">10080</div>
+			</div>
+			<div class="zui auto-x natural"><img loadsrc="http://tuniu.digitalwe.cn/images/zui.png" /></div>
+			<div class="xiao auto-x natural">
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/xiao.png" /></div>
+				<div class="xiao-1"><img loadsrc="http://tuniu.digitalwe.cn/images/xiao-1.png" /></div>
+				<div class="xiao-2"><img loadsrc="http://tuniu.digitalwe.cn/images/xiao-2.png" /></div>
+				<div class="xiao-3"><img loadsrc="http://tuniu.digitalwe.cn/images/xiao-3.png" /></div>
+			</div>
+		</div>
+		<!--第七屏 end-->
+		<!--第八屏  start-->
+		<div class="swiper-slide">
+			<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/bg-8.jpg" /></div>
+			<div class="bom natural"><img loadsrc="http://tuniu.digitalwe.cn/images/bom-6.png" /></div>
+			<div class="fast"><img loadsrc="http://tuniu.digitalwe.cn/images/fast.png" /></div>
+			<div class="pad">
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/pad.png" /></div>
+				<div class="hand natural"><img loadsrc="http://tuniu.digitalwe.cn/images/hand.png" /></div>
+			</div>
+			<div class="data-7">
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/data-7.png" /></div>
+				<div class="data" id="data-11">4</div>
+				<div class="data" id="data-12">50</div>
+				<div class="data" id="data-13">7500</div>
+				<div class="data" id="data-14">10</div>
+			</div>
+			<div class="fei natural">
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/fei.png" /></div>
+				<div class="feizhao"><img loadsrc="http://tuniu.digitalwe.cn/images/feizhao.png" /></div>
+			</div>
+		</div>
+		<!--第八屏 end-->
+		<!--第九屏  start-->
+		<div class="swiper-slide">
+			<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/bg-9.jpg" /></div>
+			<div class="bom natural"><img loadsrc="http://tuniu.digitalwe.cn/images/bom-7.png" /></div>
+			<div class="data-8">
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/data-8.png" /></div>
+				<div class="data" id="data-15">105260</div>
+				<div class="data" id="data-16">62250</div>
+				<div class="data" id="data-17">43010</div>
+			</div>
+			<div class="where">
+				<div class="page shijie">
+					<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/shijie.png" /></div>
+					<div class="qizi"><img loadsrc="http://tuniu.digitalwe.cn/images/qizi.png" /></div>
+				</div>
+				<div class="page zhongguo">
+					<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/zhongguo.png" /></div>
+					<div class="qizi"><img loadsrc="http://tuniu.digitalwe.cn/images/qizi.png" /></div>
+				</div>
+				<div class="where-line hack"><img loadsrc="http://tuniu.digitalwe.cn/images/where-line.png" /></div>
+				<div class="data" id="data-18">62250</div>
+				<div class="data" id="data-19">43010</div>
+			</div>
+		</div>
+		<!--第九屏 end-->
+		<!--第十屏  start-->
+		<div class="swiper-slide">
+			<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/bg-10.jpg" /></div>
+			<div class="bom natural"><img loadsrc="http://tuniu.digitalwe.cn/images/bom-8.png" /></div>
+			<div class="data-9">
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/data-9.png" /></div>
+			</div>
+			<div class="shatan auto-x">
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/shatan.png" /></div>
+				<div class="sun"><img loadsrc="http://tuniu.digitalwe.cn/images/sun.png" /></div>
+				<div class="ship natural"><img loadsrc="http://tuniu.digitalwe.cn/images/ship.png" /></div>
+				<div class="yu auto-x auto-y"><img loadsrc="http://tuniu.digitalwe.cn/images/yu.png" /></div>
+			</div>
+			<div class="data-10">
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/data-10.png" /></div>
+				<div class="data" id="data-20">6</div>
+				<div class="data" id="data-21">1</div>
+			</div>
+		</div>
+		<!--第十屏 end-->
+		<!--第十一屏  start-->
+		<div class="swiper-slide">
+			<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/bg-11.jpg" /></div>
+			<div class="data-11">
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/data-11.png" /></div>
+				<div class="data" id="data-22">7</div>
+				<div class="data" id="data-23">7</div>
+			</div>
+			<div class="page star-1 no-full-center"><img loadsrc="http://tuniu.digitalwe.cn/images/star-1.png" /></div>
+			<div class="page star-2 no-full-center"><img loadsrc="http://tuniu.digitalwe.cn/images/star-2.png" /></div>
+			<div class="earth auto-x">
+				<div class="bg"><img loadsrc="http://tuniu.digitalwe.cn/images/earth.png" /></div>
+				<div class="page wu-1"><img loadsrc="http://tuniu.digitalwe.cn/images/wu-1.png" /></div>
+				<div class="page wu-2"><img loadsrc="http://tuniu.digitalwe.cn/images/wu-2.png" /></div>
+				<div class="page wu-3"><img loadsrc="http://tuniu.digitalwe.cn/images/wu-3.png" /></div>
+				<div class="page wu-4"><img loadsrc="http://tuniu.digitalwe.cn/images/wu-4.png" /></div>
+				<div class="page wu-5"><img loadsrc="http://tuniu.digitalwe.cn/images/wu-5.png" /></div>
+				<div class="page wu-6"><img loadsrc="http://tuniu.digitalwe.cn/images/wu-6.png" /></div>
+				<div class="page wu-7"><img loadsrc="http://tuniu.digitalwe.cn/images/wu-7.png" /></div>
+				<div class="page wu-8"><img loadsrc="http://tuniu.digitalwe.cn/images/wu-8.png" /></div>
+				<div class="page wu-9"><img loadsrc="http://tuniu.digitalwe.cn/images/wu-9.png" /></div>
+				<div class="page wu-10"><img loadsrc="http://tuniu.digitalwe.cn/images/wu-10.png" /></div>
+				<div class="che auto-x"><img loadsrc="http://tuniu.digitalwe.cn/images/che.png" /></div>
+			</div>
+			<div class="yue auto-x natural"><img loadsrc="http://tuniu.digitalwe.cn/images/yue.png" /></div>
+		</div>
+		<!--第十一屏 end-->
+		<!--第十二屏  start-->
+		<div class="swiper-slide">
+			<div class="bg no-full-center"><img loadsrc="http://tuniu.digitalwe.cn/images/bg-12.jpg" /></div>
+			<div class="guiji auto-x">
+				<div class="guiji-1 natural"><img loadsrc="http://tuniu.digitalwe.cn/images/guiji-2.png" /></div>
+				<div class="guiji-2 natural"><img loadsrc="http://tuniu.digitalwe.cn/images/guiji-1.png" /></div>
+			</div>
+			<div class="jingcai natural"><img loadsrc="http://tuniu.digitalwe.cn/images/jingcai.png" /></div>
+			<div class="last-title natural auto-x">
+				<div class="last-title-1"><img loadsrc="http://tuniu.digitalwe.cn/images/last-title-1.png" /></div>
+				<div class="last-title-2"><img loadsrc="http://tuniu.digitalwe.cn/images/last-title-2.png" /></div>
+			</div>
+			<a href="http://mp.weixin.qq.com/s?__biz=MzA3OTE2MDkzNg==&mid=203905274&idx=1&sn=c3edb6370c76c53767fcf282d7e0d028&scene=1&from=singlemessage&isappinstalled=0#rd" class="link auto-x"><img loadsrc="http://tuniu.digitalwe.cn/images/link.png" /></a>
+		</div>
+		<!--第十二屏 end-->
+	</div>
+	<!--分屏动画 end-->
+	<!--提示翻屏 start-->
+	<div class="page-tip"><div class="ups"></div></div>
+	<!--提示翻屏 end-->
+	<!--音乐 start-->
+	<div id="music">
+		<div class="music play"></div>
+		<span>开启</span>
+		<div class="musics">
+		</div>
+		<audio src="http://tuniu.digitalwe.cn/js/bg.mp3" loop="loop" autoplay="autoplay" id="bgmusic"></audio>
+	</div>
+	<!--音乐 end-->
+	<script type="text/javascript" src="http://tuniu.digitalwe.cn/js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="http://tuniu.digitalwe.cn/js/jquery.transit.js"></script>
+	<script type="text/javascript" src="http://tuniu.digitalwe.cn/js/swiper.js"></script>
+</body>
+</html>
+
+<script type="text/javascript" src="http://tuniu.digitalwe.cn/js/fxapi.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+$(function(){
+	var url = encodeURIComponent(window.location.href.split('#')[0]);
+	$.ajax({
+		type: "get",
+		dataType:'jsonp',  
+		jsonpCallback:'callback',
+		url:"http://www.digitalwe.cn/deg/getinformation/GETJSSDK/GETQYDYJSSDK.php?url="+url+"&callback=?",
+		data:{}, 
+		success:function(result){			
+			callback(result);
+		},
+		error:function(){  
+			alert('fail');  
+		}  
+	});
+	 
+	 function callback(result){  
+		wx.config($.parseJSON(result)); 
+	    wx.ready(function(){
+			var ShareTimeline= "【HTML5场景应用】和世界有个约会";//朋友圈标题 
+	        var shareTitle = "【HTML5场景应用】和世界有个约会";//朋友标题
+	        var descContent = "还在用安装app的方式玩游戏？你out啦！你的浏览器就是你的游戏机，收藏『最游戏』手游频道到你的手机，随时随地开玩吧！";//朋友描述 
+			var lineLink = 'http://game.zuishenghuo.net/h5/tn.html';//链接
+			var imgUrl = 'http://game.zuishenghuo.net/h5/images/common/mainLogo.png';//图标				
+			fx(shareTitle,ShareTimeline,descContent,lineLink,imgUrl);
+			wx.hideMenuItems({menuList: ['menuItem:copyUrl','menuItem:openWithSafari','menuItem:share:email','menuItem:openWithQQBrowser']});
+			//wx.hideOptionMenu();
+	
+	    });  
+	    wx.error(function(res){
+		//alert(res);
+	    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+		});
+	}
+});
+</script> 
+ <script type="text/javascript">
+    /*20:3 创建于 2015-04-12*/
+    var cpro_id = "u2041272";
+</script>
+
+	 
+ 
