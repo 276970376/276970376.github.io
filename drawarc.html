@@ -1,0 +1,31 @@
+<body><canvas></canvas></body>
+<script>
+c=document.body.children[0];
+a=c.getContext("2d");
+s=20,
+m=[];
+for(i=0;i<3;m[i++]={x:Math.random(),y:Math.random(),dx:Math.random()*.03,dy:Math.random()*.03,m:Math.random()*.5});
+setInterval(
+function()
+{
+w=280,
+h=480,
+c.width=w,
+c.height=h;
+for(i=0;i<3;)
+	{g=m[i++],g.x+=g.dx,g.y+=g.dy;if(g.x>1||g.x<0)g.dx=-g.dx;if(g.y>1||g.y<0)g.dy=-g.dy}
+	for(x=0;x<=w;x+=s)
+		for(y=0;y<=h;y+=s)
+		{
+		I=0;
+		for(i=0;i<3;)
+		g=m[i++],
+		X=x-g.x*w,
+		Y=y-g.y*h,
+		d=Math.sqrt(X*X+Y*Y)/(h+w),
+		I+=d?Math.min(g.m/(d*d*20),2):2;
+		a.beginPath(),
+		a.arc(x+.5,y+.5,Math.min(I,9)*s*.5,0,7,0),
+		a.fill()}
+		},50)
+</script>
