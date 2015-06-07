@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<title>JS1k: Micro Sketchpad (1024 bytes)</title>
+<script type="text/javascript">
+
+function inter()
+{
+	Q=Math.random;
+	C=Math.cos;S=Math.sin;
+	H=0;
+	w=window;
+	d=document.getElementById("c");
+	c=d.getContext("2d");
+	c.fillRect(0,0,d.width=w.innerWidth*2,d.height=w.innerHeight*2);
+	c.globalCompositeOperation="lighter";
+	c.lineWidth=0.5;
+	var in1,in2;
+
+	setTimeout(
+			function ()
+			{
+			c.font="210px Arial";
+			n=360;
+			while(n--)
+			{
+				c.globalAlpha=n/1500;
+				c.strokeStyle="hsl("+(n+110%360)+",99%,50%)";
+				x=-n*C(n/360);
+				y=250-S(n/360*2)*n/2.5;
+				in1=document.getElementById("in1").value;
+				in2=document.getElementById("in2").value;
+				c.strokeText(in1,x+230,y+70);
+				c.strokeText(in2,x+380,y+255)
+			}
+		c.globalAlpha=0.4},0);
+
+		d.onmousedown=function(e)
+		{
+			function f(e,m)
+			{
+				X=e.pageX;
+				Y=e.pageY;
+				if(m=='down')
+				{
+					var a,b,A=X,B=Y,R=Q()*99,r=Q()*99,d=Q()*99,t=0;
+					time=setInterval(function()
+					{
+						i=10;
+						while(i--)
+							{
+							c.beginPath();
+							q=(R/r-1)*t;
+							x=(R-r)*C(t)+d*C(q)+(A+(X-A)*(i/10))+(r-R);
+							y=(R-r)*S(t)-d*S(q)+(B+(Y-B)*(i/10));
+							if(a){c.moveTo(a,b);c.lineTo(x,y)}
+							c.strokeStyle="hsl("+(H%360)+",99%,50%)";
+							c.stroke();
+							t+=360*Math.PI/180*2;a=x;b=y;
+							}
+						H++;
+						A=X;
+						B=Y;
+					},5)
+				}
+				else if(m=='up'){clearTimeout(time)}
+			}
+			
+			f(e,'down');
+			d.onmousemove=function(e){f(e,'move')}
+			d.onmouseup=function(e){f(e,'up')}
+		}
+		
+}
+
+</script>
+<style>
+body{margin:0}
+div{padding:1px 5px;background:#FFFFFF;position:absolute;z-index:2;color:#555;font-family:arial}
+a{color:#ccf}
+a:hover{color:red}
+</style>
+</head>
+<body>
+<div>
+请在输入框输入文字！敲回车确认！
+<input id=in1 onchange="inter()" value="hello!">
+</input>
+<input id=in2 onchange="inter()" value="王朝阳">
+</input>
+</div>
+<canvas id="c"></canvas>
+<script>
+inter();
+</script>
+</body>
+</html>
