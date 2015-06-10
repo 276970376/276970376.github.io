@@ -8,8 +8,8 @@ for(i=0;i<3;m[i++]={x:Math.random(),y:Math.random(),dx:Math.random()*.03,dy:Math
 setInterval(
 function()
 {
-w=280,
-h=480,
+w=1360,
+h=600,
 c.width=w,
 c.height=h;
 for(i=0;i<3;)
@@ -26,6 +26,7 @@ for(i=0;i<3;)
 		I+=d?Math.min(g.m/(d*d*20),2):2;
 		a.beginPath(),
 		a.arc(x+.5,y+.5,Math.min(I,9)*s*.5,0,7,0),
+		a.fillStyle="#"+i*3+i+i*3+i+"ff";
 		a.fill()}
 		},50)
 </script>
