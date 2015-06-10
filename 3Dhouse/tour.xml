@@ -366,7 +366,7 @@
 	<action name="showpic">
 		<!-- creates a new hotspot and fly it out -->
 		if(hotspot[get(pic)] === null,
-			txtadd(picfilename,'%CURRENTXML%/graphics/pic_',get(pic),'.jpg');
+			txtadd(picfilename,'graphics/pic_',get(pic),'.jpg');
 			addhotspot(get(pic));
 			getcenter(hsath,hsatv);
 			copy(hotspot[get(pic)].ath, hsath);
