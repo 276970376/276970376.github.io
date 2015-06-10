@@ -1,0 +1,176 @@
+<krpano>
+	<!-- dragable layers/plugins example -->
+
+
+	<!-- use a grid preview pano as background -->
+	<preview type="grid(cube,16,16,512,0xCCCCCC,0xF6F6F6,0x999999);" details="16" />
+
+	<!-- view settings -->
+	<view hlookat="0" vlookat="0" fovtype="VFOV" fov="100" fovmin="60" fovmax="150" />
+
+
+
+	
+	
+	<!-- a special action for dragging the text only vertically with a certain range -->
+	<action name="draglayer_text">
+		if(%1 != dragging,
+			copy(drag_currenty, y);
+			copy(drag_stagey, mouse.stagey);
+			draglayer_text(dragging,%2);
+		  ,
+			if(pressed,
+				sub(dy, mouse.stagey, drag_stagey);
+				add(y1, drag_currenty, dy);
+				add(y2, y1, pixelheight);
+				sub(y2, %2);
+				if(y1 GT 0, set(y1,0));
+				if(y2 LT 0, sub(y1,y2));
+				copy(y,y1);
+				delayedcall(0, draglayer_text(dragging,%2) );
+			  );
+		  );
+	</action>
+
+	<action name="picture_resize">
+
+	div(aspect, layer[%1].imagewidth, layer[%1].imageheight);
+	mul(new_width, layer[get(layer[%1].parent)].width, 1);
+	div(new_height, new_width, aspect);
+	mul(max_height, layer[get(layer[%1].parent)].height, 1);
+	if(new_height GT max_height,
+		copy(new_height, max_height);
+		mul(new_width, new_height, aspect);
+	  );
+	roundval(new_width);
+	roundval(new_height);
+	copy(layer[%1].width, new_width);
+	copy(layer[%1].height, new_height);
+   </action>
+
+   <action name="picture_resize_stage">
+	<!-- 使用屏幕宽度或高度的百分之九十 -->	
+	div(aspect, layer[%1].imagewidth, layer[%1].imageheight);
+	mul(new_width, stagewidth, 0.90);
+	div(new_height, new_width, aspect);
+	mul(max_height, stageheight, 0.90);
+	if(new_height GT max_height,
+		copy(new_height, max_height);
+		mul(new_width, new_height, aspect);
+	  );
+	roundval(new_width);
+	roundval(new_height);
+	copy(layer[%1].width, new_width);
+	copy(layer[%1].height, new_height);
+</action>
+
+
+
+   <textstyle name="DEFAULT"
+           origin="cursor"
+           edge="bottom"
+           xoffset="0"
+           yoffset="-3"
+           fadeintime="0.0"
+           showtime="0.1"
+           fadetime="0.0"
+           font="Times"
+           fontsize="12.0"
+           bold="true"
+           italic="false"
+           textcolor="0xFFFFFF"
+           textalign="none"
+           padding="1"
+           css=""
+           width=""
+           height=""
+           vcenter=""
+           background="false"
+           backgroundcolor="0xFFFFFF"
+           backgroundalpha="1.0"
+           border="fasle"
+           bordercolor="0x000000"
+           borderalpha="1.0"
+           borderwidth="1.0"
+           roundedge="0"
+           shadow="0.0"
+           shadowrange="4.0"
+           shadowangle="45"
+           shadowcolor="0x000000"
+           shadowalpha="1.0"
+           textshadow="0.0"
+           textshadowrange="4.0"
+           textshadowangle="45"
+           textshadowcolor="0x000000"
+           textshadowalpha="1.0"
+           embeddedfonts="false"
+           alpha="1.0"
+           blendmode="normal"
+           effect=""
+           noclip="true"
+           />
+	
+
+	<!-- the example layers -->
+
+     <layer name="button" url="%SWFPATH%/plugins/textfield.swf" children="false" enabled="true" align="bottom" y="50"  width="80" autoheight="true"
+		           border="false" background="true"  backgroundcolor="0x000000" backgroundalpha="0.7" roundedge="5"
+			       css="text-align:center; color:#FFFFFF; font-family:Arial; font-weight:bold; font-size:20px;"
+			       html="图文" onover="set(shadow,2);" onout="set(shadow,0);" onclick="switch(layer[textbox].visible);"
+			       />
+	
+	<layer name="textbox"  type="container" align="center" x="0" y="0" width="400" height="600"  bgroundedge="3" bgcolor="0x333333" bgalpha="0.8" bgcapture="true" bgborder="3 0xFFFFFF 1"  >
+		<layer name="title" url="%SWFPATH%/plugins/textfield.swf" children="false" enabled="false" align="top" y="5" width="100%" autoheight="true"
+		           border="false" background="false" 
+			       css="text-align:center; color:#FFFFFF; font-family:Arial; font-weight:bold; font-size:18px;"
+			       html="标题栏"
+			       />
+
+        <layer name="button_close_mask"  type="container" align="righttop" edge="center"  y="5" x="5" width="30" height="30" bgroundedge="30" bgcolor="0x000000" bgalpha="1" bgcapture="true" bgborder="3 0xFFFFFF 1"  >
+
+        	<layer name="button_close" url="close.png" children="false" enabled="true" align="center"   width="22" height="22" onclick="set(layer[textbox].visible,false);" 
+			       />
+
+		</layer>	       
+        
+        <layer name="pic_mask" type="container" align="lefttop" x="10" y="40" width="380" height="250" bgcolor="0xFFFFFF" bgalpha="0" maskchildren="true">
+
+            <layer name="pic" url="test.jpg" align="center"  onloaded="picture_resize(get(name));" onhover="showtext(点击放大)" state="small" 
+            	onclick="
+            	if(state == small,
+            	set(parent,stage);picture_resize_stage(get(name));set(onhover,showtext(点击关闭));set(state,big),
+            	set(parent,pic_mask);picture_resize(get(name));set(onhover,showtext(点击放大));set(state,small));"  />
+
+        </layer>
+
+		<layer name="textmask" type="container" align="lefttop" x="10" y="300" width="380" height="250" bgcolor="0xFFFFFF" bgalpha="0" maskchildren="true">
+			<layer name="text" url="%SWFPATH%/plugins/textfield.swf" children="false" align="lefttop" x="0" y="0" width="100%" autoheight="true"
+			       border="false" background="false"
+			       css="text-align:left; color:#FFFFFF; font-family:Arial; font-size:15px;"
+			       html="data:testtext"
+			       ondown="draglayer_text(start,260);"
+			       />
+		</layer>
+
+		<layer name="button_1" url="%SWFPATH%/plugins/textfield.swf" children="false" enabled="true" align="bottom" y="12" x="-80" width="80"  autoheight="true"
+		           border="false" background="true"  backgroundcolor="0xFFFFFF" backgroundalpha="1.0" roundedge="10"
+			       css="text-align:center; color:#666666; font-family:Arial; font-weight:bold; font-size:16px;"
+			       html="购买" onover="set(shadow,2);" onout="set(shadow,0);"
+			       />
+
+		<layer name="button_2" url="%SWFPATH%/plugins/textfield.swf" children="false" enabled="true" align="bottom" y="12" x="80" width="80" autoheight="true"
+		           border="false" background="true"  backgroundcolor="0xFFFFFF" backgroundalpha="1.0" roundedge="10"
+			       css="text-align:center; color:#666666; font-family:Arial; font-weight:bold; font-size:16px;"
+			       html="租借" onover="set(shadow,2);" onout="set(shadow,0);"
+			       />
+	</layer>
+	
+	<data name="testtext">
+        現段階で、我が国の映画産業の発展の勢いが現われて。一方、中国式の大作生産量や社会効果の両方はますます良くなって、新たに国内客の信頼を獲得します；一方、海外市場の開拓が上昇傾向に続いて、我が国の文化価値体係とその普及に積極的な役割を果たすの柔らかい実力。[br/]
+		[br/]
+		中国の広大な国際的な影響力の増強は、外国の観衆の歓迎を受けて、国際市場が新たに開拓、商業価値を高める傾向も。しかし私たちは中国の映画を見て、国際貿易の中では赤字状態で、映画の海外偏弱競争力は、中国との貿易大国と文化大国の地位は似合わない。このために私達は簡単にまとめた近年中国式の映画の成功の経験から見て創作に、中国の映画は模索して1本の主旋律の切れ、芸術片や商業映画3型互滲みの映画の美学の道路で、特に主旋律は、鑑賞性と芸術性の面で取得しました。観客から中の社会効果を初歩的に形成され、中国の映画は通俗物語では意味深長民族主流やコア価値の理念の美学伝統。[br/]
+		[br/]
+	</data>
+
+
+</krpano>
