@@ -477,79 +477,7 @@
 	<!-- thumbnail actions end -->
 	
 	
-	<contextmenu>
-		<item name="kr" caption="KRPANO"     />
-		<item name="fs" caption="FULLSCREEN" />
-		<item name="cc" caption="Change Controlmode" onclick="skin_changecontrolmode();"  separator="true" />
-		<item name="nv" caption="Normal View"        onclick="skin_view_normal();"        showif="view.vlookatrange == 180" separator="true"      />
-		<item name="fv" caption="Fisheye View"       onclick="skin_view_fisheye();"       showif="view.vlookatrange == 180" devices="flash|webgl" />
-		<item name="sv" caption="Stereographic View" onclick="skin_view_stereographic();" showif="view.vlookatrange == 180" devices="flash|webgl" />
-		<item name="av" caption="Architectural View" onclick="skin_view_architectural();" showif="view.vlookatrange == 180"                       />
-		<item name="pv" caption="Pannini View"       onclick="skin_view_pannini();"       showif="view.vlookatrange == 180" devices="flash|webgl" />
-		<item name="lp" caption="Little Planet View" onclick="skin_view_littleplanet();"  showif="view.vlookatrange == 180" devices="flash|webgl" />
-	</contextmenu>
 	
-	
-	
-	
-	<action name="skin_changecontrolmode">
-		switch(control.mousetype, moveto, drag2d);
-		switch(control.touchtype, moveto, drag2d);
-	</action>
-
-	<action name="skin_view_look_straight">
-		if(view.vlookat LT -80 OR view.vlookat GT +80,
-			tween(view.vlookat, 0.0, 1.0, easeInOutSine);
-			tween(view.fov,     100, distance(150,0.8));
-		  );
-	</action>
-
-	<action name="skin_view_normal">
-		skin_view_look_straight();
-		tween(view.architectural, 0.0, distance(1.0,0.5));
-		tween(view.pannini,       0.0, distance(1.0,0.5));
-		tween(view.fisheye,       0.0, distance(1.0,0.5));
-	</action>
-
-	<action name="skin_view_fisheye">
-		skin_view_look_straight();
-		tween(view.architectural, 0.0,  distance(1.0,0.5));
-		tween(view.pannini,       0.0,  distance(1.0,0.5));
-		tween(view.fisheye,       0.35, distance(1.0,0.5));
-	</action>
-
-	<action name="skin_view_architectural">
-		skin_view_look_straight();
-		tween(view.architectural, 1.0, distance(1.0,0.5));
-		tween(view.pannini,       0.0, distance(1.0,0.5));
-		tween(view.fisheye,       0.0, distance(1.0,0.5));
-	</action>
-
-	<action name="skin_view_stereographic">
-		skin_view_look_straight();
-		tween(view.architectural, 0.0, distance(1.0,0.5));
-		tween(view.pannini,       0.0, distance(1.0,0.5));
-		tween(view.fisheye,       1.0, distance(1.0,0.8));
-	</action>
-
-	<action name="skin_view_pannini">
-		skin_view_look_straight();
-		tween(view.architectural, 0.0, distance(1.0,0.5));
-		tween(view.pannini,       1.0, distance(1.0,0.8));
-		if(view.fisheye LT 0.1,
-			tween(view.fisheye, 1.0, distance(1.0,0.8));
-		  );
-	</action>
-
-	<action name="skin_view_littleplanet">
-		tween(view.architectural, 0.0, distance(1.0,0.5));
-		tween(view.pannini,       0.0, distance(1.0,0.5));
-		tween(view.fisheye,       1.0, distance(1.0,0.8));
-		tween(view.fov,           150, distance(150,0.8));
-		tween(view.vlookat,        90, distance(100,0.8));
-		add(new_hlookat, view.hlookat, 123.0);
-		tween(view.hlookat, get(new_hlookat), distance(100,0.8));
-	</action>
 	
 
 
