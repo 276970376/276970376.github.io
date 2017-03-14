@@ -1,0 +1,658 @@
+{
+  "packages": [
+    {
+      "name": "OCROBOT",
+      "maintainer": "OCROBOT",
+      "websiteURL": "http://www.OCROBOT.com",
+      "email": "support@ocrobot.com",
+      "help": {
+        "online": "http://www.ocrobot.com/doku.php?id=zh:learning"
+      },
+      "platforms": [
+        {
+          "name": "Ocrobot AVR Boards",
+          "architecture": "avr",
+          "version": "1.6.12",
+          "category": "Arduino",
+          "help": {
+            "online": "http://www.ocrobot.com/doku.php?id=zh:learning"
+          },
+          "url": "http://ide_dependencies.ocrobot.com/cores/avr-1.6.12.tar.bz2",
+          "archiveFileName": "avr-1.6.12.tar.bz2",
+          "checksum": "sha-256:78b3f1e5104f14755db2480bdaed7b0a3c3469f51eaf566c03eed1bf4c815699",
+          "size": "4828212",
+          "boards": [
+            {"name": "Ocrobot Alpha MEGA328"}, 
+                {"name": "Ocrobot S-100"}, 
+                {"name": "Ocrobot Mango"}, 
+                {"name": "Ocrobot Mega 2560"}, 
+                {"name": "Arduino Uno"}, 
+                {"name": "Arduino Duemilanove or Diecimila"}, 
+                {"name": "Arduino Nano" }, 
+                {"name": "Arduino Mega or Mega 2560" }, 
+                {"name": "Arduino Leonardo"}, 
+                {"name": "Arduino Micro"}, 
+                {"name": "Arduino Mini"}, 
+                {"name": "LilyPad Arduino USB"}, 
+                {"name": "LilyPad Arduino"}, 
+                {"name": "Arduino Pro or Pro Mini"}
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "OCROBOT",
+              "name": "avr-gcc",
+              "version": "4.9.2-atmel3.5.3-arduino2"
+            },
+            {
+              "packager": "OCROBOT",
+              "name": "avrdude",
+              "version": "6.0.1-arduino5"
+            }
+          ]
+        },
+		{
+          "name": "OCROBOT LGT Boards",
+          "architecture": "avrLGT",
+          "version": "0.0.1",
+          "category": "LGT",
+          "help": {
+            "online": "http://www.ocrobot.com/doku.php?id=zh:learning"
+          },
+          "url": "http://ide_dependencies.ocrobot.com/cores/LGTavr-0.0.1.tar.bz2",
+          "archiveFileName": "LGTavr-0.0.1.tar.bz2",
+          "checksum": "SHA-256:b441bfbf4c311f5befccecab1c20687c05c1a6409888a94c0bbacaca03d290b1",
+          "size": "135375",
+          "boards": [
+                {"name": "OCROBOT Alpha LGT8F328D"}, 
+                {"name": "OCROBOT Alpha LGT8F88D/SSOP20 EXT"},
+				{"name": "OCROBOT Alpha LGT8F88D/SSOP20 RC"}
+			],
+          "toolsDependencies": [
+            {
+              "packager": "OCROBOT",
+              "name": "avr-gcc",
+              "version": "4.9.2-atmel3.5.3-arduino2"
+            },
+            {
+              "packager": "OCROBOT",
+              "name": "avrdude",
+              "version": "6.0.1-arduino5"
+            }
+          ]
+        },
+		{
+			"name": "ESP8266", 
+			"architecture": "ESP8266",
+			"version": "2.3.0",
+			"category": "ESP", 
+			"help": {
+            "online": "http://esp8266.github.com/Arduino/versions/2.3.0/"
+          }, 
+			"url": "http://ide_dependencies.ocrobot.com/cores/esp8266-2.3.0.tar.bz2", 
+			"checksum": "SHA-256:1b6376d178db2b785df8d903add944e2a4788774090fe1b2ac723d9aef617efb",  
+			"archiveFileName": "esp8266-2.3.0.tar.bz2", 
+			"size": "7660920",
+          "boards": [
+            {
+              "name": "OCROBOT ESP8266"
+            }
+          ], 
+          "toolsDependencies": [
+            {
+              "packager": "OCROBOT", 
+              "version": "0.4.9", 
+              "name": "esptool"
+            }, 
+            {
+              "packager": "OCROBOT", 
+              "version": "1.20.0-26-gb404fb9-2", 
+              "name": "xtensa-lx106-elf-gcc"
+            }, 
+            {
+              "packager": "OCROBOT", 
+              "version": "0.1.2", 
+              "name": "mkspiffs"
+            }
+          ]    
+        },
+		{
+          "name": "OCROBOT STM32 Boards",
+          "architecture": "STM32",
+		  "version": "0.0.1",
+          "category": "STM32F1",
+          "help": {
+            "online": "http://www.ocrobot.com/doku.php?id=zh:learning"
+          },
+          "url": "http://ide_dependencies.ocrobot.com/cores/STM32F1-0.0.1.tar.bz2",
+          "archiveFileName": "STM32F1-0.0.1.tar.bz2",
+          "checksum": "SHA-256:448391a348e89bfa6fad43b03004b95170078cdcfb858c667edfa6e7468e1435",
+          "size": "38064103",
+          "boards": [
+                {"name": "OCROBOT Alpha STM32F103C"}
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "OCROBOT",
+              "name": "arm-none-eabi-gcc",
+              "version": "4.8.3-2014q1"
+            },
+            {
+              "packager": "OCROBOT",
+              "name": "bossac",
+              "version": "1.6.1-arduino"
+            }
+          ]
+        },
+        {
+          "name": "Arduino SAM Boards (32-bits ARM Cortex-M3)",
+          "architecture": "sam",
+          "version": "1.6.9",
+          "category": "Arduino",
+          "url": "http://ide_dependencies.ocrobot.com/cores/sam-1.6.9.tar.bz2",
+          "archiveFileName": "sam-1.6.9.tar.bz2",
+          "checksum": "SHA-256:a5eaf60b5845599c24229456d6f5cd2254a275c8b34cac9d5330e4cfab6b0aa7",
+          "size": "16473503",
+          "boards": [
+            {"name": "Arduino Due"}
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "OCROBOT",
+              "name": "arm-none-eabi-gcc",
+              "version": "4.8.3-2014q1"
+            },
+            {
+              "packager": "OCROBOT",
+              "name": "bossac",
+              "version": "1.6.1-arduino"
+            }
+          ]
+        },
+        {
+          "name": "Arduino SAMD Boards (32-bits ARM Cortex-M0+)",
+          "architecture": "samd",
+          "version": "1.6.6",
+          "category": "Arduino",
+          "url": "http://ide_dependencies.ocrobot.com/cores/samd-1.6.6.tar.bz2",
+          "archiveFileName": "samd-1.6.6.tar.bz2",
+          "checksum": "SHA-256:08e97127acf41ac28c195803be1d22a5cbf720d4cff58db9458af9255d6ee7b3",
+          "size": "997331",
+          "boards": [
+            { "name": "Arduino/Genuino Zero" },
+            { "name": "Arduino/Genuino MKR1000" }
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "OCROBOT",
+              "name": "arm-none-eabi-gcc",
+              "version": "4.8.3-2014q1"
+            },
+            {
+              "packager": "OCROBOT",
+              "name": "bossac",
+              "version": "1.6.1-arduino"
+            },
+            {
+              "packager": "OCROBOT",
+              "name": "openocd",
+              "version": "0.9.0-arduino"
+            },
+            {
+              "packager": "OCROBOT",
+              "name": "CMSIS",
+              "version": "4.0.0-atmel"
+            }
+          ]
+        }
+      ],
+      "tools": [
+        {
+          "name": "arm-none-eabi-gcc",
+          "version": "4.8.3-2014q1",
+          "systems": [
+            {
+              "host": "arm-linux-gnueabihf",
+              "url": "http://ide_dependencies.ocrobot.com/tool/gcc-arm-none-eabi-4.8.3-2014q1-arm.tar.bz2",
+              "archiveFileName": "gcc-arm-none-eabi-4.8.3-2014q1-arm.tar.bz2",
+              "checksum": "SHA-256:ebe96b34c4f434667cab0187b881ed585e7c7eb990fe6b69be3c81ec7e11e845",
+              "size": "44423906"
+            },
+            {
+              "host": "i686-mingw32",
+              "archiveFileName": "gcc-arm-none-eabi-4.8.3-2014q1-windows.tar.gz",
+              "url": "http://ide_dependencies.ocrobot.com/tool/gcc-arm-none-eabi-4.8.3-2014q1-windows.tar.gz",
+              "checksum": "SHA-256:fd8c111c861144f932728e00abd3f7d1107e186eb9cd6083a54c7236ea78b7c2",
+              "size": "84537449"
+            },
+            {
+              "host": "x86_64-apple-darwin",
+              "url": "http://ide_dependencies.ocrobot.com/tool/gcc-arm-none-eabi-4.8.3-2014q1-mac.tar.gz",
+              "archiveFileName": "gcc-arm-none-eabi-4.8.3-2014q1-mac.tar.gz",
+              "checksum": "SHA-256:3598acf21600f17a8e4a4e8e193dc422b894dc09384759b270b2ece5facb59c2",
+              "size": "52518522"
+            },
+            {
+              "host": "x86_64-pc-linux-gnu",
+              "url": "http://ide_dependencies.ocrobot.com/tool/gcc-arm-none-eabi-4.8.3-2014q1-linux64.tar.gz",
+              "archiveFileName": "gcc-arm-none-eabi-4.8.3-2014q1-linux64.tar.gz",
+              "checksum": "SHA-256:d23f6626148396d6ec42a5b4d928955a703e0757829195fa71a939e5b86eecf6",
+              "size": "51395093"
+            },
+            {
+              "host": "i686-pc-linux-gnu",
+              "url": "http://ide_dependencies.ocrobot.com/tool/gcc-arm-none-eabi-4.8.3-2014q1-linux32.tar.gz",
+              "archiveFileName": "gcc-arm-none-eabi-4.8.3-2014q1-linux32.tar.gz",
+              "checksum": "SHA-256:ba1994235f69c526c564f65343f22ddbc9822b2ea8c5ee07dd79d89f6ace2498",
+              "size": "51029223"
+            }
+          ]
+        },
+        {
+          "name": "avrdude",
+          "version": "6.0.1-arduino5",
+          "systems": [
+            {
+              "size": "267095",
+              "checksum": "SHA-256:23ea1341dbc117ec067f2eb1a498ad2bdd7d11fff0143c00b2e018c39804f6b4",
+              "host": "arm-linux-gnueabihf",
+              "archiveFileName": "avrdude-6.0.1-arduino5-armhf-pc-linux-gnu.tar.bz2",
+              "url": "http://ide_dependencies.ocrobot.com/tool/avrdude-6.0.1-arduino5-armhf-pc-linux-gnu.tar.bz2"
+            },
+            {
+              "size": "264894",
+              "checksum": "SHA-256:41af8d3b0a586853c8317b4fb5163ca0db594a1870ddf680fd988c42166fc3e5",
+              "host": "i386-apple-darwin11",
+              "archiveFileName": "avrdude-6.0.1-arduino5-i386-apple-darwin11.tar.bz2",
+              "url": "http://ide_dependencies.ocrobot.com/tool/avrdude-6.0.1-arduino5-i386-apple-darwin11.tar.bz2"
+            },
+            {
+              "size": "292629",
+              "checksum": "SHA-256:d826cca7383461f7e8adde686372cf900e9cb3afd639555cf2d6c645b283a476",
+              "host": "x86_64-linux-gnu",
+              "archiveFileName": "avrdude-6.0.1-arduino5-x86_64-pc-linux-gnu.tar.bz2",
+              "url": "http://ide_dependencies.ocrobot.com/tool/avrdude-6.0.1-arduino5-x86_64-pc-linux-gnu.tar.bz2"
+            },
+            {
+              "size": "283121",
+              "checksum": "SHA-256:5933d66927bce46ababa9b68a8b7f1d53f68c4f3ff7a5ce4b85d7cf4e6c6bfee",
+              "host": "i686-linux-gnu",
+              "archiveFileName": "avrdude-6.0.1-arduino5-i686-pc-linux-gnu.tar.bz2",
+              "url": "http://ide_dependencies.ocrobot.com/tool/avrdude-6.0.1-arduino5-i686-pc-linux-gnu.tar.bz2"
+            },
+            {
+              "size": "241634",
+              "checksum": "SHA-256:41f667f1f6a0ab8df46b4ffacd023176dcdef331d6db3b74bddd37d18cca0a44",
+              "host": "i686-mingw32",
+              "archiveFileName": "avrdude-6.0.1-arduino5-i686-mingw32.zip",
+              "url": "http://ide_dependencies.ocrobot.com/tool/avrdude-6.0.1-arduino5-i686-mingw32.zip"
+            }
+          ]
+        },
+        {
+          "name": "avr-gcc",
+          "version": "4.9.2-atmel3.5.3-arduino2",
+          "systems": [
+            {
+              "size": "27400889",
+              "checksum": "SHA-256:77f300d519bc6b9a25df17b36cb303218e9a258c059b2f6bff8f71a0d8f96821",
+              "host": "arm-linux-gnueabihf",
+              "archiveFileName": "avr-gcc-4.9.2-atmel3.5.3-arduino2-armhf-pc-linux-gnu.tar.bz2",
+              "url": "http://ide_dependencies.ocrobot.com/tool/avr-gcc-4.9.2-atmel3.5.3-arduino2-armhf-pc-linux-gnu.tar.bz2"
+            },
+            {
+              "size": "27048070",
+              "checksum": "SHA-256:311258af188defe24a4b341e4e1f4dc93ca6c80516d3e3b55a2fc07a7050248b",
+              "host": "i386-apple-darwin11",
+              "archiveFileName": "avr-gcc-4.9.2-atmel3.5.3-arduino2-i386-apple-darwin11.tar.bz2",
+              "url": "http://ide_dependencies.ocrobot.com/tool/avr-gcc-4.9.2-atmel3.5.3-arduino2-i386-apple-darwin11.tar.bz2"
+            },
+            {
+              "size": "43847945",
+              "checksum": "SHA-256:f8e6ede8746c70be01ec79a30803277cd94360cc5b2e104762da0fbcf536fcc6",
+              "host": "i686-mingw32",
+              "archiveFileName": "avr-gcc-4.9.2-atmel3.5.3-arduino2-i686-mingw32.zip",
+              "url": "http://ide_dependencies.ocrobot.com/tool/avr-gcc-4.9.2-atmel3.5.3-arduino2-i686-mingw32.zip"
+            },
+            {
+              "size": "29292729",
+              "checksum": "SHA-256:f108951e7c4dc90926d1fc76cc27549f6ea63c702a2bb7ff39647a19ae86ec68",
+              "host": "i686-linux-gnu",
+              "archiveFileName": "avr-gcc-4.9.2-atmel3.5.3-arduino2-i686-pc-linux-gnu.tar.bz2",
+              "url": "http://ide_dependencies.ocrobot.com/tool/avr-gcc-4.9.2-atmel3.5.3-arduino2-i686-pc-linux-gnu.tar.bz2"
+            },
+            {
+              "size": "29882960",
+              "checksum": "SHA-256:3903a6d1bb9fdd91727e504b5993d5501f119bcb7f99f7aee98a2101e5629188",
+              "host": "x86_64-linux-gnu",
+              "archiveFileName": "avr-gcc-4.9.2-atmel3.5.3-arduino2-x86_64-pc-linux-gnu.tar.bz2",
+              "url": "http://ide_dependencies.ocrobot.com/tool/avr-gcc-4.9.2-atmel3.5.3-arduino2-x86_64-pc-linux-gnu.tar.bz2"
+            }
+          ]
+        },
+        {
+          "name": "avrdude",
+          "version": "6.3.0-arduino2",
+          "systems": [
+            {
+              "size": "643484",
+              "checksum": "SHA-256:26af86137d8a872f64d217cb262734860b36fe26d6d34faf72e951042f187885",
+              "host": "arm-linux-gnueabihf",
+              "archiveFileName": "avrdude-6.3.0-arduino2-armhf-pc-linux-gnu.tar.bz2",
+              "url": "http://ide_dependencies.ocrobot.com/tool/avrdude-6.3.0-arduino2-armhf-pc-linux-gnu.tar.bz2"
+            },
+            {
+              "size": "653968",
+              "checksum": "SHA-256:32525ea3696c861030e1a6006a5f11971d1dad331e45bfa68dac35126476b04f",
+              "host": "i386-apple-darwin11",
+              "archiveFileName": "avrdude-6.3.0-arduino2-i386-apple-darwin11.tar.bz2",
+              "url": "http://ide_dependencies.ocrobot.com/tool/avrdude-6.3.0-arduino2-i386-apple-darwin11.tar.bz2"
+            },
+            {
+              "size": "745081",
+              "checksum": "SHA-256:9635af5a35bdca11804c07582d7beec458140fb6e3308168c3deda18dc6790fa",
+              "host": "x86_64-linux-gnu",
+              "archiveFileName": "avrdude-6.3.0-arduino2-x86_64-pc-linux-gnu.tar.bz2",
+              "url": "http://ide_dependencies.ocrobot.com/tool/avrdude-6.3.0-arduino2-x86_64-pc-linux-gnu.tar.bz2"
+            },
+            {
+              "size": "731802",
+              "checksum": "SHA-256:790b6cb610c48e73a2a0f65dcee9903d2fd7f1b0a1f75008a9a21f50a60c7251",
+              "host": "i686-linux-gnu",
+              "archiveFileName": "avrdude-6.3.0-arduino2-i686-pc-linux-gnu.tar.bz2",
+              "url": "http://ide_dependencies.ocrobot.com/tool/avrdude-6.3.0-arduino2-i686-pc-linux-gnu.tar.bz2"
+            },
+            {
+              "size": "608496",
+              "checksum": "SHA-256:8eaf98ea41fbd4450483488ef31710cbcc43c0412dbc8e1e1b582feaab6eca30",
+              "host": "i686-mingw32",
+              "archiveFileName": "avrdude-6.3.0-arduino2-i686-w64-mingw32.zip",
+              "url": "http://ide_dependencies.ocrobot.com/tool/avrdude-6.3.0-arduino2-i686-w64-mingw32.zip"
+            }
+          ]
+        },
+        {
+          "name": "bossac",
+          "version": "1.6.1-arduino",
+          "systems": [
+            {
+              "host": "arm-linux-gnueabihf",
+              "url": "http://ide_dependencies.ocrobot.com/tool/bossac-1.6.1-arduino-arm-linux-gnueabihf.tar.bz2",
+              "archiveFileName": "bossac-1.6.1-arduino-arm-linux-gnueabihf.tar.bz2",
+              "checksum": "SHA-256:8c4e63db982178919c824e7a35580dffc95c3426afa7285de3eb583982d4d391",
+              "size": "201341"
+            },
+            {
+              "host": "i686-mingw32",
+              "url": "http://ide_dependencies.ocrobot.com/tool/bossac-1.6.1-arduino-mingw32.tar.gz",
+              "archiveFileName": "bossac-1.6.1-arduino-mingw32.tar.gz",
+              "checksum": "SHA-256:d59f43e2e83a337d04c4ae88b195a4ee175b8d87fff4c43144d23412a4a9513b",
+              "size": "222918"
+            },
+            {
+              "host": "x86_64-apple-darwin",
+              "url": "http://ide_dependencies.ocrobot.com/tool/bossac-1.6.1-arduino-i386-apple-darwin14.5.0.tar.gz",
+              "archiveFileName": "bossac-1.6.1-arduino-i386-apple-darwin14.5.0.tar.gz",
+              "checksum": "SHA-256:2f80ef569a3fb19da60ab3489e49d8fe7d4699876acf30ff4938c632230a09aa",
+              "size": "64587"
+            },
+            {
+              "host": "x86_64-pc-linux-gnu",
+              "url": "http://ide_dependencies.ocrobot.com/tool/bossac-1.6.1-arduino-x86_64-linux-gnu.tar.gz",
+              "archiveFileName": "bossac-1.6.1-arduino-x86_64-linux-gnu.tar.gz",
+              "checksum": "SHA-256:b78afc66c00ccfdd69a08bd3959c260a0c64ccce78a71d5a1135ae4437ff40db",
+              "size": "30869"
+            },
+            {
+              "host": "i686-pc-linux-gnu",
+              "url": "http://ide_dependencies.ocrobot.com/tool/bossac-1.6.1-arduino-i486-linux-gnu.tar.gz",
+              "archiveFileName": "bossac-1.6.1-arduino-i486-linux-gnu.tar.gz",
+              "checksum": "SHA-256:1e211347569d75193b337296a10dd25b0ce04419e3d7dc644355178b6b514f92",
+              "size": "30320"
+            }
+          ]
+        },
+        {
+          "name": "openocd",
+          "version": "0.9.0-arduino",
+          "systems": [
+            {
+              "host": "arm-linux-gnueabihf",
+              "url": "http://ide_dependencies.ocrobot.com/tool/OpenOCD-0.9.0-arduino-arm-linux-gnueabihf.tar.bz2",
+              "archiveFileName": "OpenOCD-0.9.0-dev-arduino-arm-linux-gnueabihf.tar.bz2",
+              "checksum": "SHA-256:a84e7c4cba853f2c937d77286f8a0ca317447d3873e51cbd2a2d41424e044a18",
+              "size": "1402283"
+            },
+            {
+              "host": "i686-mingw32",
+              "url": "http://ide_dependencies.ocrobot.com/tool/OpenOCD-0.9.0-arduino-i686-pc-cygwin.tar.bz2",
+              "archiveFileName": "OpenOCD-0.9.0-arduino-i686-pc-cygwin.tar.bz2",
+              "checksum": "SHA-256:5310bdd3730168a33b09b68558e908ca8b2fec25620c488f50a5fb35d0d1effd",
+              "size": "2360705"
+            },
+            {
+              "host": "x86_64-apple-darwin",
+              "url": "http://ide_dependencies.ocrobot.com/tool/OpenOCD-0.9.0-arduino-x86_64-apple-darwin14.3.0.tar.bz2",
+              "archiveFileName": "OpenOCD-0.9.0-arduino-x86_64-apple-darwin14.3.0.tar.bz2",
+              "checksum": "SHA-256:ef90769c07b8018cec3a5054e690ac6c196e03720e102ac5038c3f9da4e44782",
+              "size": "2275101"
+            },
+            {
+              "host": "x86_64-pc-linux-gnu",
+              "url": "http://ide_dependencies.ocrobot.com/tool/OpenOCD-0.9.0-arduino-x86_64-linux-gnu.tar.bz2",
+              "archiveFileName": "OpenOCD-0.9.0-arduino-x86_64-linux-gnu.tar.bz2",
+              "checksum": "SHA-256:c350409f7badf213dfcc516ea34289461ad92d87806e8e33945508a2c6b2c0b3",
+              "size": "1210796"
+            },
+            {
+              "host": "i686-pc-linux-gnu",
+              "url": "http://ide_dependencies.ocrobot.com/tool/OpenOCD-0.9.0-arduino-i486-linux-gnu.tar.bz2",
+              "archiveFileName": "OpenOCD-0.9.0-arduino-i486-linux-gnu.tar.bz2",
+              "checksum": "SHA-256:4c9793dfd7822b0fc959d039e5ecabfa89092ee2911abfdc7b5905deb171499a",
+              "size": "1129654"
+            }
+          ]
+        },
+        {
+          "name": "CMSIS",
+          "version": "4.0.0-atmel",
+          "systems": [
+            {
+              "host": "arm-linux-gnueabihf",
+              "url": "http://ide_dependencies.ocrobot.com/tool/CMSIS-4.0.0.tar.bz2",
+              "archiveFileName": "CMSIS-4.0.0.tar.bz2",
+              "checksum": "SHA-256:7d637d2d7a0c6bacc22065848a201db2fff124268e4a56868260d0f472b4bbb7",
+              "size": "17642623"
+            },
+            {
+              "host": "i686-mingw32",
+              "url": "http://ide_dependencies.ocrobot.com/tool/CMSIS-4.0.0.tar.bz2",
+              "archiveFileName": "CMSIS-4.0.0.tar.bz2",
+              "checksum": "SHA-256:7d637d2d7a0c6bacc22065848a201db2fff124268e4a56868260d0f472b4bbb7",
+              "size": "17642623"
+            },
+            {
+              "host": "x86_64-apple-darwin",
+              "url": "http://ide_dependencies.ocrobot.com/tool/CMSIS-4.0.0.tar.bz2",
+              "archiveFileName": "CMSIS-4.0.0.tar.bz2",
+              "checksum": "SHA-256:7d637d2d7a0c6bacc22065848a201db2fff124268e4a56868260d0f472b4bbb7",
+              "size": "17642623"
+            },
+            {
+              "host": "x86_64-pc-linux-gnu",
+              "url": "http://ide_dependencies.ocrobot.com/tool/CMSIS-4.0.0.tar.bz2",
+              "archiveFileName": "CMSIS-4.0.0.tar.bz2",
+              "checksum": "SHA-256:7d637d2d7a0c6bacc22065848a201db2fff124268e4a56868260d0f472b4bbb7",
+              "size": "17642623"
+            },
+            {
+              "host": "i686-pc-linux-gnu",
+              "url": "http://ide_dependencies.ocrobot.com/tool/CMSIS-4.0.0.tar.bz2",
+              "archiveFileName": "CMSIS-4.0.0.tar.bz2",
+              "checksum": "SHA-256:7d637d2d7a0c6bacc22065848a201db2fff124268e4a56868260d0f472b4bbb7",
+              "size": "17642623"
+            }
+          ]
+        },
+        {
+          "name": "windows-drivers",
+          "version": "1.6.9",
+          "systems": [
+            {
+              "host": "i686-mingw32",
+              "url": "http://ide_dependencies.ocrobot.com/tool/drivers-arduino-windows-1.6.9.zip",
+              "archiveFileName": "drivers-arduino-windows-1.6.9.zip",
+              "checksum": "SHA-256:10d456ab18d164d42545255db8bef4ac9e1bf660cc89acb7a0980b5a486654ac",
+              "size": "7071714"
+            }
+          ]
+        },
+		{
+          "version": "1.20.0-26-gb404fb9-2", 
+          "name": "xtensa-lx106-elf-gcc", 
+          "systems": [
+            {
+              "url": "http://ide_dependencies.ocrobot.com/ESP8266/win32-xtensa-lx106-elf-gb404fb9-2.tar.gz", 
+              "checksum": "SHA-256:10476b9c11a7a90f40883413ddfb409f505b20692e316c4e597c4c175b4be09c", 
+              "host": "i686-mingw32", 
+              "archiveFileName": "win32-xtensa-lx106-elf-gb404fb9-2.tar.gz", 
+              "size": "153527527"
+            }, 
+            {
+              "url": "http://ide_dependencies.ocrobot.com/ESP8266/osx-xtensa-lx106-elf-gb404fb9-2.tar.gz", 
+              "checksum": "SHA-256:0cf150193997bd1355e0f49d3d49711730035257bc1aee1eaaad619e56b9e4e6", 
+              "host": "x86_64-apple-darwin", 
+              "archiveFileName": "osx-xtensa-lx106-elf-gb404fb9-2.tar.gz", 
+              "size": "35385382"
+            }, 
+            {
+              "url": "http://ide_dependencies.ocrobot.com/ESP8266/osx-xtensa-lx106-elf-gb404fb9-2.tar.gz", 
+              "checksum": "SHA-256:0cf150193997bd1355e0f49d3d49711730035257bc1aee1eaaad619e56b9e4e6", 
+              "host": "i386-apple-darwin", 
+              "archiveFileName": "osx-xtensa-lx106-elf-gb404fb9-2.tar.gz", 
+              "size": "35385382"
+            }, 
+            {
+              "url": "http://ide_dependencies.ocrobot.com/ESP8266/linux64-xtensa-lx106-elf-gb404fb9.tar.gz", 
+              "checksum": "SHA-256:46f057fbd8b320889a26167daf325038912096d09940b2a95489db92431473b7", 
+              "host": "x86_64-pc-linux-gnu", 
+              "archiveFileName": "linux64-xtensa-lx106-elf-gb404fb9.tar.gz", 
+              "size": "30262903"
+            }, 
+            {
+              "url": "http://ide_dependencies.ocrobot.com/ESP8266/linux32-xtensa-lx106-elf.tar.gz", 
+              "checksum": "SHA-256:b24817819f0078fb05895a640e806e0aca9aa96b47b80d2390ac8e2d9ddc955a", 
+              "host": "i686-pc-linux-gnu", 
+              "archiveFileName": "linux32-xtensa-lx106-elf.tar.gz", 
+              "size": "32734156"
+            }, 
+            {
+              "url": "http://ide_dependencies.ocrobot.com/ESP8266/linuxarm-xtensa-lx106-elf-g46f160f-2.tar.gz", 
+              "checksum": "SHA-256:f693946288f2ffa17288ef75ae16fa08573993f2b0a2a5e6bc35a68dc6087443", 
+              "host": "arm-linux-gnueabihf", 
+              "archiveFileName": "linuxarm-xtensa-lx106-elf-g46f160f-2.tar.gz", 
+              "size": "34938475"
+            }
+          ]
+        },
+        {
+          "version": "0.4.9", 
+          "name": "esptool", 
+          "systems": [
+            {
+              "url": "http://ide_dependencies.ocrobot.com/ESP8266/esptool-0.4.9-win32.zip", 
+              "checksum": "SHA-256:9c4162cedf05fcb09fd829bfb90e34ae12458365980d79525a072ff5ca44751c", 
+              "host": "i686-mingw32", 
+              "archiveFileName": "esptool-0.4.9-win32.zip", 
+              "size": "32436"
+            }, 
+            {
+              "url": "http://ide_dependencies.ocrobot.com/ESP8266/esptool-0.4.9-osx.tar.gz", 
+              "checksum": "SHA-256:57938b473765723a7e6602d55973017b7719bda69bdcff4250b24fcbf7a399f5", 
+              "host": "x86_64-apple-darwin", 
+              "archiveFileName": "esptool-0.4.9-osx.tar.gz", 
+              "size": "29310"
+            }, 
+            {
+              "url": "http://ide_dependencies.ocrobot.com/ESP8266/esptool-0.4.9-osx.tar.gz", 
+              "checksum": "SHA-256:57938b473765723a7e6602d55973017b7719bda69bdcff4250b24fcbf7a399f5", 
+              "host": "i386-apple-darwin", 
+              "archiveFileName": "esptool-0.4.9-osx.tar.gz", 
+              "size": "29310"
+            }, 
+            {
+              "url": "http://ide_dependencies.ocrobot.com/ESP8266/esptool-0.4.9-linux64.tar.gz", 
+              "checksum": "SHA-256:fab9d1be8a648bea6728ad5c9d18ce972508187700cf90baf1897ac9cdf4db15", 
+              "host": "x86_64-pc-linux-gnu", 
+              "archiveFileName": "esptool-0.4.9-linux64.tar.gz", 
+              "size": "15564"
+            }, 
+            {
+              "url": "http://ide_dependencies.ocrobot.com/ESP8266/esptool-0.4.9-linux32.tar.gz", 
+              "checksum": "SHA-256:bc4444d73d59be74608be5e1431353a0a9ae9e308e99c76a271d68a6ae145b7b", 
+              "host": "i686-pc-linux-gnu", 
+              "archiveFileName": "esptool-0.4.9-linux32.tar.gz", 
+              "size": "15984"
+            }, 
+            {
+              "url": "http://ide_dependencies.ocrobot.com/ESP8266/esptool-0.4.9-linux-armhf.tar.gz", 
+              "checksum": "SHA-256:d0364492599d90b8305125f8212de5be05397e4efde2fc7d0ed3676bb7018164", 
+              "host": "arm-linux-gnueabihf", 
+              "archiveFileName": "esptool-0.4.9-linux-armhf.tar.gz", 
+              "size": "13763"
+            }
+          ]
+        }, 
+        {
+          "version": "0.1.2", 
+          "name": "mkspiffs", 
+          "systems": [
+            {
+              "url": "http://ide_dependencies.ocrobot.com/ESP8266/mkspiffs-0.1.2-windows.zip", 
+              "checksum": "SHA-256:0a29119b8458b61a877408f7995e4944623a712e0d313a2c2f76af9ab55cc9f2", 
+              "host": "i686-mingw32", 
+              "archiveFileName": "mkspiffs-0.1.2-windows.zip", 
+              "size": "230802"
+            }, 
+            {
+              "url": "http://ide_dependencies.ocrobot.com/ESP8266/mkspiffs-0.1.2-osx.tar.gz", 
+              "checksum": "SHA-256:df656fae21a41c1269ea50cb53752dcaf6a4e1437255f3a9fb50b4025549b58e", 
+              "host": "x86_64-apple-darwin", 
+              "archiveFileName": "mkspiffs-0.1.2-osx.tar.gz", 
+              "size": "115091"
+            }, 
+            {
+              "url": "http://ide_dependencies.ocrobot.com/ESP8266/mkspiffs-0.1.2-osx.tar.gz", 
+              "checksum": "SHA-256:df656fae21a41c1269ea50cb53752dcaf6a4e1437255f3a9fb50b4025549b58e", 
+              "host": "i386-apple-darwin", 
+              "archiveFileName": "mkspiffs-0.1.2-osx.tar.gz", 
+              "size": "115091"
+            }, 
+            {
+              "url": "http://ide_dependencies.ocrobot.com/ESP8266/mkspiffs-0.1.2-linux64.tar.gz", 
+              "checksum": "SHA-256:1a1dd81b51daf74c382db71b42251757ca4136e8762107e69feaa8617bac315f", 
+              "host": "x86_64-pc-linux-gnu", 
+              "archiveFileName": "mkspiffs-0.1.2-linux64.tar.gz", 
+              "size": "46281"
+            }, 
+            {
+              "url": "http://ide_dependencies.ocrobot.com/ESP8266/mkspiffs-0.1.2-linux32.tar.gz", 
+              "checksum": "SHA-256:e990d545dfcae308aabaac5fa9e1db734cc2b08167969e7eedac88bd0839667c", 
+              "host": "i686-pc-linux-gnu", 
+              "archiveFileName": "mkspiffs-0.1.2-linux32.tar.gz", 
+              "size": "45272"
+            }, 
+            {
+              "url": "http://ide_dependencies.ocrobot.com/ESP8266/mkspiffs-0.1.2-linux-armhf.tar.gz", 
+              "checksum": "SHA-256:5a8836932cd24325d69054cebdd46359eba02919ffaa87b130c54acfecc13f46", 
+              "host": "arm-linux-gnueabihf", 
+              "archiveFileName": "mkspiffs-0.1.2-linux-armhf.tar.gz", 
+              "size": "41685"
+            }
+          ]
+        }
+      
+      
+	  ]
+    }
+   ]
+}
