@@ -257,7 +257,7 @@ tfoot : ['姓名','部别','电话']
 			.style("border-radius","5px")
 			.append("a")
 			//.attr ("href", (d,i)=> i==2? "tel://"+d : "")
-			.attr ("href", (d,i)=> "tel://"+oArray.tbody[i][2] )
+			.attr ("href", (d)=> "tel://"+oArray.tbody[i][2] )
 			.text( (d,i) =>d )
 			//.style("color","red")
 			.style("font-size","36px")
