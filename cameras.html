@@ -1,25 +1,25 @@
-<!--videoÓÃÓÚÏÔÊ¾Ã½ÌåÉè±¸µÄÊÓÆµÁ÷£¬×Ô¶¯²¥·Å-->
+ <!--videoç”¨äºæ˜¾ç¤ºåª’ä½“è®¾å¤‡çš„è§†é¢‘æµï¼Œè‡ªåŠ¨æ’­æ”¾-->
 <video id="video" autoplay style="width: 480px;height: 320px"></video>
-<!--ÅÄÕÕ°´Å¥-->
+<!--æ‹ç…§æŒ‰é’®-->
 <div>
-<button id="capture">ÅÄÕÕ</button>
+<button id="capture">æ‹ç…§</button>
 </div>
-<!--Ãè»ævideo½ØÍ¼-->
+<!--æç»˜videoæˆªå›¾-->
 <canvas id="canvas" width="480" height="320"></canvas>
 <script>
-//·ÃÎÊÓÃ»§Ã½ÌåÉè±¸µÄ¼æÈİ·½·¨
+//è®¿é—®ç”¨æˆ·åª’ä½“è®¾å¤‡çš„å…¼å®¹æ–¹æ³•
 function getUserMedia(constrains,success,error){
     if(navigator.mediaDevices.getUserMedia){
-        //×îĞÂ±ê×¼API
+        //æœ€æ–°æ ‡å‡†API
         navigator.mediaDevices.getUserMedia(constrains).then(success).catch(error);
     } else if (navigator.webkitGetUserMedia){
-        //webkitÄÚºËä¯ÀÀÆ÷
+        //webkitå†…æ ¸æµè§ˆå™¨
         navigator.webkitGetUserMedia(constrains).then(success).catch(error);
     } else if (navigator.mozGetUserMedia){
-        //Firefoxä¯ÀÀÆ÷
+        //Firefoxæµè§ˆå™¨
         navagator.mozGetUserMedia(constrains).then(success).catch(error);
     } else if (navigator.getUserMedia){
-        //¾É°æAPI
+        //æ—§ç‰ˆAPI
         navigator.getUserMedia(constrains).then(success).catch(error);
     }
 }
@@ -28,30 +28,30 @@ var video = document.getElementById("video");
 var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");
 
-//³É¹¦µÄ»Øµ÷º¯Êı
+//æˆåŠŸçš„å›è°ƒå‡½æ•°
 function success(stream){
-    //¼æÈİwebkitÄÚºËä¯ÀÀÆ÷
+    //å…¼å®¹webkitå†…æ ¸æµè§ˆå™¨
     var CompatibleURL = window.URL || window.webkitURL;
-    //½«ÊÓÆµÁ÷ÉèÖÃÎªvideoÔªËØµÄÔ´
+    //å°†è§†é¢‘æµè®¾ç½®ä¸ºvideoå…ƒç´ çš„æº
     video.src = CompatibleURL.createObjectURL(stream);
-    //²¥·ÅÊÓÆµ
+    //æ’­æ”¾è§†é¢‘
     video.play();
 }
 
-//Òì³£µÄ»Øµ÷º¯Êı
+//å¼‚å¸¸çš„å›è°ƒå‡½æ•°
 function error(error){
-    console.log("·ÃÎÊÓÃ»§Ã½ÌåÉè±¸Ê§°Ü£º",error.name,error.message);
+    console.log("è®¿é—®ç”¨æˆ·åª’ä½“è®¾å¤‡å¤±è´¥ï¼š",error.name,error.message);
 }
 if (navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia){
-    //µ÷ÓÃÓÃ»§Ã½ÌåÉè±¸£¬·ÃÎÊÉãÏñÍ·
+    //è°ƒç”¨ç”¨æˆ·åª’ä½“è®¾å¤‡ï¼Œè®¿é—®æ‘„åƒå¤´
     getUserMedia({ audio: true, video: { facingMode: { exact: "environment" } } },success,error);
 } else {
-    alert("ÄãµÄä¯ÀÀÆ÷²»Ö§³Ö·ÃÎÊÓÃ»§Ã½ÌåÉè±¸");
+    alert("ä½ çš„æµè§ˆå™¨ä¸æ”¯æŒè®¿é—®ç”¨æˆ·åª’ä½“è®¾å¤‡");
 }
 
-//×¢²áÅÄÕÕ°´Å¥µÄµ¥»÷ÊÂ¼ş
+//æ³¨å†Œæ‹ç…§æŒ‰é’®çš„å•å‡»äº‹ä»¶
 document.getElementById("capture").addEventListener("click",function(){
-    //»æÖÆ»­Ãæ
+    //ç»˜åˆ¶ç”»é¢
     context.drawImage(video,0,0,480,320);
 });
 </script>
