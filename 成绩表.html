@@ -1,0 +1,595 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0124)http://www.17sucai.com/preview/105576/2014-03-24/js%E5%8F%AF%E7%BC%96%E8%BE%91%E8%A1%A8%E6%A0%BC%E6%A0%B7%E8%A1%A8/demo.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>学生成绩表</title>
+
+<style type="text/css">
+body,div,p,ul,li,font,span,td,th,input{font-size:25pt;line-height:155%;}
+
+.EditCell_TextBox{width:100%;border:0px solid #0099CC;}
+.EditCell_DropDownList{width:100%;}
+</style>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> 
+<SCRIPT type=text/javascript>
+function sortTable(id, col, rev) {
+  // Get the table or table section to sort.
+  var tblEl = document.getElementById(id);
+  // The first time this function is called for a given table, set up an
+  // array of reverse sort flags.
+  if (tblEl.reverseSort == null) {
+    tblEl.reverseSort = new Array();
+    // Also, assume the team name column is initially sorted.
+    tblEl.lastColumn = 1;
+  }
+  // If this column has not been sorted before, set the initial sort direction.
+  if (tblEl.reverseSort[col] == null)
+    tblEl.reverseSort[col] = rev;
+  // If this column was the last one sorted, reverse its sort direction.
+  if (col == tblEl.lastColumn)
+    tblEl.reverseSort[col] = !tblEl.reverseSort[col];
+  // Remember this column as the last one sorted.
+  tblEl.lastColumn = col;
+  // Set the table display style to "none" - necessary for Netscape 6
+  // browsers.
+  var oldDsply = tblEl.style.display;
+  tblEl.style.display = "none";
+  // Sort the rows based on the content of the specified column using a
+  // selection sort.
+  var tmpEl;
+  var i, j;
+  var minVal, minIdx;
+  var testVal;
+  var cmp;
+  for (i = 0; i < tblEl.rows.length - 1; i++) {
+    // Assume the current row has the minimum value.
+    minIdx = i;
+    minVal = getTextValue(tblEl.rows[i].cells[col]);
+    // Search the rows that follow the current one for a smaller value.
+    for (j = i + 1; j < tblEl.rows.length; j++) {
+      testVal = getTextValue(tblEl.rows[j].cells[col]);
+      cmp = compareValues(minVal, testVal);
+      // Negate the comparison result if the reverse sort flag is set.
+      if (tblEl.reverseSort[col])
+        cmp = -cmp;
+      // Sort by the second column (team name) if those values are equal.
+      if (cmp == 0 && col != 1)
+        cmp = compareValues(getTextValue(tblEl.rows[minIdx].cells[1]),
+                            getTextValue(tblEl.rows[j].cells[1]));
+      // If this row has a smaller value than the current minimum, remember its
+      // position and update the current minimum value.
+      if (cmp > 0) {
+        minIdx = j;
+        minVal = testVal;
+      }
+    }
+    // By now, we have the row with the smallest value. Remove it from the
+    // table and insert it before the current row.
+    if (minIdx > i) {
+      tmpEl = tblEl.removeChild(tblEl.rows[minIdx]);
+      tblEl.insertBefore(tmpEl, tblEl.rows[i]);
+    }
+  }
+  // Make it look pretty.
+  makePretty(tblEl, col);
+  // Set team rankings.
+  setRanks(tblEl, col, rev);
+  // Restore the table's display style.
+  tblEl.style.display = oldDsply;
+  return false;
+}//欢迎来到站长特效网，我们的网址是www.zzjs.net，很好记，zz站长，js就是js特效，本站收集大量高质量js代码，还有许多广告代码下载。
+//-----------------------------------------------------------------------------
+// Functions to get and compare values during a sort.
+//-----------------------------------------------------------------------------
+// This code is necessary for browsers that don't reflect the DOM constants
+// (like IE).
+if (document.ELEMENT_NODE == null) {
+  document.ELEMENT_NODE = 1;
+  document.TEXT_NODE = 3;
+}
+function getTextValue(el) {
+  var i;
+  var s;
+  // Find and concatenate the values of all text nodes contained within the
+  // element.
+  s = "";
+  for (i = 0; i < el.childNodes.length; i++)
+    if (el.childNodes[i].nodeType == document.TEXT_NODE)
+      s += el.childNodes[i].nodeValue;
+    else if (el.childNodes[i].nodeType == document.ELEMENT_NODE &&
+             el.childNodes[i].tagName == "BR")
+      s += " ";
+    else
+      // Use recursion to get text within sub-elements.
+      s += getTextValue(el.childNodes[i]);
+  return normalizeString(s);
+}//欢迎来到站长特效网，我们的网址是www.zzjs.net，很好记，zz站长，js就是js特效，本站收集大量高质量js代码，还有许多广告代码下载。
+function compareValues(v1, v2) {
+  var f1, f2;
+  // If the values are numeric, convert them to floats.
+  f1 = parseFloat(v1);
+  f2 = parseFloat(v2);
+  if (!isNaN(f1) && !isNaN(f2)) {
+    v1 = f1;
+    v2 = f2;
+  }
+  // Compare the two values.
+  if (v1 == v2)
+    return 0;
+  if (v1 > v2)
+    return 1
+  return -1;
+}
+// Regular expressions for normalizing white space.
+var whtSpEnds = new RegExp("^\\s*|\\s*$", "g");
+var whtSpMult = new RegExp("\\s\\s+", "g");
+function normalizeString(s) {
+  s = s.replace(whtSpMult, " ");  // Collapse any multiple whites space.
+  s = s.replace(whtSpEnds, "");   // Remove leading or trailing white space.
+  return s;
+}//欢迎来到站长特效网，我们的网址是www.zzjs.net，很好记，zz站长，js就是js特效，本站收集大量高质量js代码，还有许多广告代码下载。
+//-----------------------------------------------------------------------------
+// Functions to update the table appearance after a sort.
+//-----------------------------------------------------------------------------
+// Style class names.
+var rowClsNm = "alternateRow";
+var colClsNm = "sortedColumn";
+// Regular expressions for setting class names.
+var rowTest = new RegExp(rowClsNm, "gi");
+var colTest = new RegExp(colClsNm, "gi");
+function makePretty(tblEl, col) {
+  var i, j;
+  var rowEl, cellEl;
+  // Set style classes on each row to alternate their appearance.
+  for (i = 0; i < tblEl.rows.length; i++) {
+   rowEl = tblEl.rows[i];
+   rowEl.className = rowEl.className.replace(rowTest, "");
+    if (i % 2 != 0)
+      rowEl.className += " " + rowClsNm;
+    rowEl.className = normalizeString(rowEl.className);
+    // Set style classes on each column (other than the name column) to
+    // highlight the one that was sorted.
+    for (j = 2; j < tblEl.rows[i].cells.length; j++) {
+      cellEl = rowEl.cells[j];
+      cellEl.className = cellEl.className.replace(colTest, "");
+      if (j == col)
+        cellEl.className += " " + colClsNm;
+      cellEl.className = normalizeString(cellEl.className);
+    }
+  }
+  // Find the table header and highlight the column that was sorted.
+  var el = tblEl.parentNode.tHead;
+  rowEl = el.rows[el.rows.length - 1];
+  // Set style classes for each column as above.
+  for (i = 2; i < rowEl.cells.length; i++) {
+    cellEl = rowEl.cells[i];
+    cellEl.className = cellEl.className.replace(colTest, "");
+    // Highlight the header of the sorted column.
+    if (i == col)
+      cellEl.className += " " + colClsNm;
+      cellEl.className = normalizeString(cellEl.className);
+  }
+}//欢迎来到站长特效网，我们的网址是www.zzjs.net，很好记，zz站长，js就是js特效，本站收集大量高质量js代码，还有许多广告代码下载。
+function setRanks(tblEl, col, rev) {
+  // Determine whether to start at the top row of the table and go down or
+  // at the bottom row and work up. This is based on the current sort
+  // direction of the column and its reversed flag.
+  var i    = 0;
+  var incr = 1;
+  if (tblEl.reverseSort[col])
+    rev = !rev;
+  if (rev) {
+    incr = -1;
+    i = tblEl.rows.length - 1;
+  }
+  // Now go through each row in that direction and assign it a rank by
+  // counting 1, 2, 3...
+  var count   = 1;
+  var rank    = count;
+  var curVal;
+  var lastVal = null;
+  // Note that this loop is skipped if the table was sorted on the name
+  // column.
+  while (col > 1 && i >= 0 && i < tblEl.rows.length) {
+    // Get the value of the sort column in this row.
+    curVal = getTextValue(tblEl.rows[i].cells[col]);
+    // On rows after the first, compare the sort value of this row to the
+    // previous one. If they differ, update the rank to match the current row
+    // count. (If they are the same, this row will get the same rank as the
+    // previous one.)
+    if (lastVal != null && compareValues(curVal, lastVal) != 0)
+        rank = count;
+    // Set the rank for this row.
+    tblEl.rows[i].rank = rank;
+    // Save the sort value of the current row for the next time around and bump
+    // the row counter and index.
+    lastVal = curVal;
+    count++;
+    i += incr;
+  }//欢迎来到站长特效网，我们的网址是www.zzjs.net，很好记，zz站长，js就是js特效，本站收集大量高质量js代码，还有许多广告代码下载。
+  // Now go through each row (from top to bottom) and display its rank. Note
+  // that when two or more rows are tied, the rank is shown on the first of
+  // those rows only.
+  var rowEl, cellEl;
+  var lastRank = 0;
+  // Go through the rows from top to bottom.
+  for (i = 0; i < tblEl.rows.length; i++) {
+    rowEl = tblEl.rows[i];
+    cellEl = rowEl.cells[1];
+    // Delete anything currently in the rank column.
+    while (cellEl.lastChild != null)
+      cellEl.removeChild(cellEl.lastChild);
+    // If this row's rank is different from the previous one, Insert a new text
+    // node with that rank.
+    if (col > 1 && rowEl.rank != lastRank) {
+      cellEl.appendChild(document.createTextNode(rowEl.rank));
+      lastRank = rowEl.rank;
+    }
+  }
+}//欢迎来到站长特效网，我们的网址是www.zzjs.net，很好记，zz站长，js就是js特效，本站收集大量高质量js代码，还有许多广告代码下载。
+</SCRIPT>
+</head>
+
+<body>
+
+<div style="width:100%;margin:0 auto;">
+	<form id="form1" name="form1" method="post" action="">
+		<h3>学生成绩表</h3>
+
+		<table width=100% border="1" cellpadding="1" cellspacing="1" id="tabProduct">
+		
+		  <THEAD>
+   <TR>
+   <td align="center" bgcolor="#EFEFEF" name="Num"><input type="checkbox" name="checkbox" value="checkbox"></td>
+    <TD EditType="TextBox" style="TEXT-ALIGN: left">名次</TD>
+    <TD EditType="TextBox" style="TEXT-ALIGN: left"><A title="名字"
+      onclick="this.blur(); return sortTable('offTblBdy', 2, false);"
+      href="#">名字</A></TD>
+    <TD EditType="TextBox"><A title="Games Played"
+      onclick="this.blur(); return sortTable('offTblBdy',  3, true);"
+      href="#">学号</A></TD>
+    <TD EditType="TextBox"><A title="Total Yards"
+      onclick="this.blur(); return sortTable('offTblBdy',  4, true);"
+      href="#">班级</A></TD>
+    <TD EditType="TextBox"><A title="Yards Per Game"
+      onclick="this.blur(); return sortTable('offTblBdy',  5, true);"
+      href="#">语文</A></TD>
+    <TD EditType="TextBox"><A title="Total Rushing Yards"
+      onclick="this.blur(); return sortTable('offTblBdy',  6, true);"
+      href="#">数学</A></TD>
+    <TD EditType="TextBox"><A title="Rushing Yards Per Game"
+      onclick="this.blur(); return sortTable('offTblBdy',  7, true);"
+      href="#">英语</A></TD>
+    <TD EditType="TextBox"><A title="Total Passing Yards"
+      onclick="this.blur(); return sortTable('offTblBdy',  8, true);"
+      href="#">政治</A></TD>
+    <TD EditType="TextBox"><A title="Passing Yards Per Game"
+      onclick="this.blur(); return sortTable('offTblBdy',  9, true);"
+      href="#">电脑</A></TD>
+    <TD EditType="TextBox"><A title="Total Points Scored"
+      onclick="this.blur(); return sortTable('offTblBdy',  10, true);"
+      href="#">其他</A></TD>
+    <TD  name="n11"><A title="Points Per Game"
+      onclick="this.blur(); return sortTable('offTblBdy', 11, true);"
+      href="#">总分</A></TD></TR>
+ </THEAD>
+		<tbody id=offTblBdy>
+		<TR>
+    <td align="center" bgcolor="#EFEFEF" name="Num"><input size= 30 type="checkbox" name="checkbox" value="checkbox" ></td>
+	<TD  name="rank"></TD>
+    <TD EditType="TextBox" name="name"></TD>
+    <TD EditType="TextBox" name="no"></TD>
+    <TD EditType="TextBox" name="class"></TD>
+    <TD EditType="TextBox" name="n1">0</TD>
+    <TD EditType="TextBox" name="n2">0</TD>
+    <TD EditType="TextBox" name="n3">0</TD>
+    <TD EditType="TextBox" name="n4">0</TD>
+    <TD EditType="TextBox" name="n5">0</TD>
+    <TD EditType="TextBox" name="n6">0</TD>
+    <TD name="sum">0</TD></TR>
+		</tbody>
+		</table >
+		<table width=100% border="1" cellpadding="1" cellspacing="1" id=tab>
+		</table >	
+
+		<input type="button" name="Submit" value="新增" onclick="AddRow(document.getElementById(&#39;tabProduct&#39;),1)">
+		<input type="button" name="Submit2" value="删除" onclick="DeleteRow(document.getElementById(&#39;tabProduct&#39;),1)">
+		<input type="button" name="Submit22" value="重置" onclick="window.location.reload()">
+		<input type="submit" name="Submit3" value="提交" onclick="GetTableData(document.getElementById(&#39;tabProduct&#39;));return false;">
+	</form>
+</div>
+
+<script language="javascript">
+//设置多个表格可编辑
+function EditTables(){
+	for(var i=0;i<arguments.length;i++){
+	   SetTableCanEdit(arguments[i]);
+	}
+}
+
+//设置表格是可编辑的
+function SetTableCanEdit(table){
+	for(var i=1; i<table.rows.length;i++){
+	   SetRowCanEdit(table.rows[i]);
+	}
+}
+
+function SetRowCanEdit(row){
+	for(var j=0;j<row.cells.length; j++){
+	
+		//如果当前单元格指定了编辑类型，则表示允许编辑
+		var editType = row.cells[j].getAttribute("EditType");
+		if(!editType){
+			//如果当前单元格没有指定，则查看当前列是否指定
+			editType = row.parentNode.rows[0].cells[j].getAttribute("EditType");
+		}
+		if(editType){
+			row.cells[j].onclick = function (){
+				EditCell(this);
+			}
+		}
+	}
+
+}
+
+//设置指定单元格可编辑
+function EditCell(element, editType){
+
+	var editType = element.getAttribute("EditType");
+	if(!editType){
+	   //如果当前单元格没有指定，则查看当前列是否指定
+	   editType = element.parentNode.parentNode.rows[0].cells[element.cellIndex].getAttribute("EditType");
+	}
+
+	switch(editType){
+		case "TextBox":
+		CreateTextBox(element, element.innerHTML);
+		break;
+		case "DropDownList":
+		CreateDropDownList(element);
+		break;
+		default:
+		break;
+	}
+}
+
+//为单元格创建可编辑输入框
+function CreateTextBox(element, value){
+	//检查编辑状态，如果已经是编辑状态，跳过
+	var editState = element.getAttribute("EditState");
+	if(editState != "true"){
+		//创建文本框
+		var textBox = document.createElement("INPUT");
+		textBox.type = "text";
+		textBox.className="EditCell_TextBox";
+		
+		
+		//设置文本框当前值
+		if(!value){
+			value = element.getAttribute("Value");
+		}  
+		textBox.value = value;
+		
+		//设置文本框的失去焦点事件
+		textBox.onblur = function (){
+			CancelEditCell(this.parentNode, this.value);
+		}
+		//向当前单元格添加文本框
+		ClearChild(element);
+		element.appendChild(textBox);
+		textBox.focus();
+		textBox.select();
+		
+		//改变状态变量
+		element.setAttribute("EditState", "true");
+		element.parentNode.parentNode.setAttribute("CurrentRow", element.parentNode.rowIndex);
+	}
+
+}
+
+//为单元格创建选择框
+function CreateDropDownList(element, value){
+	//检查编辑状态，如果已经是编辑状态，跳过
+	var editState = element.getAttribute("EditState");
+	if(editState != "true"){
+		//创建下接框
+		var downList = document.createElement("Select");
+		downList.className="EditCell_DropDownList";
+	
+		//添加列表项
+		var items = element.getAttribute("DataItems");
+		if(!items){
+			items = element.parentNode.parentNode.rows[0].cells[element.cellIndex].getAttribute("DataItems");
+		}
+	
+		if(items){
+			items = eval("[" + items + "]");
+			for(var i=0; i<items.length; i++){
+				var oOption = document.createElement("OPTION");
+				oOption.text = items[i].text;
+				oOption.value = items[i].value;
+				downList.options.add(oOption);
+			}
+		}
+	
+		//设置列表当前值
+		if(!value){
+			value = element.getAttribute("Value");
+		}
+		downList.value = value;
+	
+		//设置创建下接框的失去焦点事件
+		downList.onblur = function (){
+			CancelEditCell(this.parentNode, this.value, this.options[this.selectedIndex].text);
+		}
+	
+		//向当前单元格添加创建下接框
+		ClearChild(element);
+		element.appendChild(downList);
+		downList.focus();
+		
+		//记录状态的改变
+		element.setAttribute("EditState", "true");
+		element.parentNode.parentNode.setAttribute("LastEditRow", element.parentNode.rowIndex);
+	}
+
+}
+
+
+//取消单元格编辑状态
+function CancelEditCell(element, value, text){
+	element.setAttribute("Value", value);
+	if(text){
+		element.innerHTML = text;
+	}else{
+		element.innerHTML = value;
+	}
+	element.setAttribute("EditState", "false");
+GetTableData(document.getElementById("tabProduct"));
+	
+}
+
+//清空指定对象的所有字节点
+function ClearChild(element){
+	element.innerHTML = "";
+}
+
+//添加行
+function AddRow(table, index){
+	var lastRow = table.rows[table.rows.length-1];
+	var newRow = lastRow.cloneNode(true);
+	table.tBodies[0].appendChild(newRow);
+	SetRowCanEdit(newRow);
+	GetTableData(document.getElementById("tabProduct"));
+	return newRow;
+}
+
+
+//删除行
+function DeleteRow(table, index){
+	for(var i=table.rows.length - 1; i>1;i--){
+		var chkOrder = table.rows[i].cells[0].firstChild;
+		if(chkOrder){
+			if(chkOrder.type = "CHECKBOX"){
+				if(chkOrder.checked){
+					//执行删除
+					table.deleteRow(i);
+					GetTableData(document.getElementById("tabProduct"));
+				}
+			}
+		}
+	}
+}
+
+//提取表格的值,JSON格式
+function GetTableData(table)
+{
+	var tableData = new Array();
+	var cj={}; 
+	var bz={};
+	var n=["n1","n2","n3","n4","n5","n6"];
+	var part=["sum","sum60","avr60","sum80","avr80","sums","avr"] ;
+for(var j=0; j<part.length;j++)
+		{
+		cj[part[j]]=[]
+		bz[part[j]]="总人数,及格人数,及格率,优秀人数,优秀率,总分,平均分".split(",")[j];
+
+		for(var i=0; i<6;i++)
+		{
+		cj[part[j]][i]=0;
+		
+		}
+		}	
+	//alert("行数：" + table.rows.length);
+	for(var i=1; i<table.rows.length;i++)
+	{
+		tableData.push(GetRowData(tabProduct.rows[i]));
+		
+	}	
+	
+
+	for(var i=0; i<tableData.length;i++)
+	{
+	
+	for(var j=0; j<n.length;j++)
+	{
+	if(Number(tableData[i][n[j]])>=0){cj.sum[j]++;}
+	if(Number(tableData[i][n[j]])>=60){cj.sum60[j]++;}
+	cj.avr60[j]=(cj.sum60[j]/cj.sum[j]*100).toFixed(2)+"%";
+    if(Number(tableData[i][n[j]])>=80){cj.sum80[j]++;}
+	cj.avr80[j]=(cj.sum80[j]/cj.sum[j]*100).toFixed(2)+"%";
+	if(Number(tableData[i][n[j]])>=0){cj.sums[j]=cj.sums[j]+Number(tableData[i][n[j]]);}
+		cj.avr[j]=(cj.sums[j]/cj.sum[j]).toFixed(2);
+	    
+		
+	}
+	
+	}
+	
+	d3.select('#tab').selectAll("tr").remove();
+for(var x in cj){
+			d3.select('#tab').append("tr")
+			.selectAll("td")
+			.data([bz[x]].concat(cj[x]))
+			
+			.enter()
+			.append("td")
+			.text( (d,i) =>d )
+		
+			}
+	
+//alert(JSON.stringify(cj))
+	window.scrollBy(100,100);
+	return tableData;
+	
+}
+
+//提取指定行的数据，JSON格式
+function GetRowData(row)
+{	
+	var rowData = {};
+	for(var j=1;j<row.cells.length; j++)
+	{
+		name = row.parentNode.rows[0].cells[j].getAttribute("Name");
+		if(name)
+		{
+			var value = row.cells[j].getAttribute("Value");
+			if(!value)
+			{
+				value = row.cells[j].innerHTML;
+			}
+			
+			rowData[name] = value;
+		}
+	}
+	var n=["n1","n2","n3","n4","n5","n6"];
+	rowData.sum=0;
+	for(var j=0; j<n.length;j++)
+	{
+	
+	if(Number(rowData[n[j]])>-1)
+	{
+	
+	rowData.sum=Number(rowData.sum)+Number(rowData[n[j]]);
+	}
+	}
+	row.cells[row.cells.length-1].innerHTML=rowData.sum
+	//alert("ProductName:" + rowData.ProductName);
+	//或者这样：alert("ProductName:" + rowData["ProductName"]);
+	return rowData;
+}
+
+
+ 
+</script>
+
+<script type="text/javascript">
+var tabProduct = document.getElementById("tabProduct");
+
+// 设置表格可编辑
+// 可一次设置多个，例如：EditTables(tb1,tb2,tb2,......)
+EditTables(tabProduct);
+</script>
+
+
+</body></html>
