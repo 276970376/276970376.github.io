@@ -229,65 +229,71 @@ function setRanks(tblEl, col, rev) {
   }
 }//欢迎来到站长特效网，我们的网址是www.zzjs.net，很好记，zz站长，js就是js特效，本站收集大量高质量js代码，还有许多广告代码下载。
 </SCRIPT>
+<style type="text/css">
+ <!--
+a:link {  color: #FF0000; text-decoration: none}
+ a:visited {  color: #0000FF; text-decoration: none}
+ a:hover {  color: #00FF00; text-decoration: none}
+ -->
+ </style> 
 </head>
 
 <body>
 
 <div style="width:100%;margin:0 auto;">
 	<form id="form1" name="form1" method="post" action="">
-		<h3>学生成绩表</h3>
-
+		<h1 align="center" ><b><font color=#ff0000>学生成绩表</font></b></h1>
 		<table width=100% border="1" cellpadding="1" cellspacing="1" id="tabProduct">
 		
 		  <THEAD>
    <TR>
-   <td align="center" bgcolor="#EFEFEF" name="Num"><input type="checkbox" name="checkbox" value="checkbox"></td>
-    <TD EditType="TextBox" style="TEXT-ALIGN: left">名次</TD>
-    <TD EditType="TextBox" style="TEXT-ALIGN: left"><A title="名字"
+   <td align="center" bgcolor="#EFEFEF" name="Num" width=8%>选择</td>
+    <TD align="center" EditType="TextBox"  width=8%>名次</TD>
+    <TD align="center" EditType="TextBox"  width=8%><A title="名字"
       onclick="this.blur(); return sortTable('offTblBdy', 2, false);"
       href="#">名字</A></TD>
-    <TD EditType="TextBox"><A title="Games Played"
+    <TD align="center" EditType="TextBox" width=8%><A title="Games Played"
       onclick="this.blur(); return sortTable('offTblBdy',  3, true);"
       href="#">学号</A></TD>
-    <TD EditType="TextBox"><A title="Total Yards"
+    <TD align="center" EditType="TextBox" width=8%><A title="Total Yards"
       onclick="this.blur(); return sortTable('offTblBdy',  4, true);"
       href="#">班级</A></TD>
-    <TD EditType="TextBox"><A title="Yards Per Game"
+    <TD align="center" EditType="TextBox" width=8%><A title="Yards Per Game"
       onclick="this.blur(); return sortTable('offTblBdy',  5, true);"
       href="#">语文</A></TD>
-    <TD EditType="TextBox"><A title="Total Rushing Yards"
+    <TD align="center" EditType="TextBox" width=8%><A title="Total Rushing Yards"
       onclick="this.blur(); return sortTable('offTblBdy',  6, true);"
       href="#">数学</A></TD>
-    <TD EditType="TextBox"><A title="Rushing Yards Per Game"
+    <TD align="center" EditType="TextBox" width=8%><A title="Rushing Yards Per Game"
       onclick="this.blur(); return sortTable('offTblBdy',  7, true);"
       href="#">英语</A></TD>
-    <TD EditType="TextBox"><A title="Total Passing Yards"
+    <TD align="center" EditType="TextBox" width=8%><A title="Total Passing Yards"
       onclick="this.blur(); return sortTable('offTblBdy',  8, true);"
       href="#">政治</A></TD>
-    <TD EditType="TextBox"><A title="Passing Yards Per Game"
+    <TD align="center" EditType="TextBox" width=8%><A title="Passing Yards Per Game"
       onclick="this.blur(); return sortTable('offTblBdy',  9, true);"
       href="#">电脑</A></TD>
-    <TD EditType="TextBox"><A title="Total Points Scored"
+    <TD align="center" EditType="TextBox" width=8%><A title="Total Points Scored"
       onclick="this.blur(); return sortTable('offTblBdy',  10, true);"
       href="#">其他</A></TD>
-    <TD  name="n11"><A title="Points Per Game"
+    <TD  align="center" name="n11" width=8%><A title="Points Per Game"
       onclick="this.blur(); return sortTable('offTblBdy', 11, true);"
       href="#">总分</A></TD></TR>
  </THEAD>
 		<tbody id=offTblBdy>
 		<TR>
-    <td align="center" bgcolor="#EFEFEF" name="Num"><input size= 30 type="checkbox" name="checkbox" value="checkbox" ></td>
-	<TD  name="rank"></TD>
-    <TD EditType="TextBox" name="name"></TD>
-    <TD EditType="TextBox" name="no"></TD>
-    <TD EditType="TextBox" name="class"></TD>
-    <TD EditType="TextBox" name="n1">0</TD>
-    <TD EditType="TextBox" name="n2">0</TD>
-    <TD EditType="TextBox" name="n3">0</TD>
-    <TD EditType="TextBox" name="n4">0</TD>
-    <TD EditType="TextBox" name="n5">0</TD>
-    <TD EditType="TextBox" name="n6">0</TD>
-    <TD name="sum">0</TD></TR>
+    <td align="center" bgcolor="#EFEFEF" name="Num" ><input size= 30 type="checkbox" name="checkbox" value="checkbox" ></td>
+	<TD align="center"  name="rank"></TD>
+    <TD align="center" EditType="TextBox" name="name"></TD>
+    <TD align="center" EditType="TextBox" name="no"></TD>
+    <TD align="center" EditType="TextBox" name="class"></TD>
+    <TD align="center" EditType="TextBox" name="n1"></TD>
+    <TD align="center" EditType="TextBox" name="n2"></TD>
+    <TD align="center" EditType="TextBox" name="n3"></TD>
+    <TD align="center" EditType="TextBox" name="n4"></TD>
+    <TD align="center"  EditType="TextBox" name="n5"></TD>
+    <TD EditType="TextBox" name="n6"></TD>
+    <TD align="center" name="sum">0</TD></TR>
 		</tbody>
 		</table >
 		<table width=100% border="1" cellpadding="1" cellspacing="1" id=tab>
@@ -489,15 +495,15 @@ function GetTableData(table)
 	var cj={}; 
 	var bz={};
 	var n=["n1","n2","n3","n4","n5","n6"];
-	var part=["sum","sum60","avr60","sum80","avr80","sums","avr"] ;
+	var part=["class","sum","sum60","avr60","sum80","avr80","sums","avr"] ;
 for(var j=0; j<part.length;j++)
 		{
 		cj[part[j]]=[]
-		bz[part[j]]="总人数,及格人数,及格率,优秀人数,优秀率,总分,平均分".split(",")[j];
+		bz[part[j]]="类别,总人数,及格人数,及格率,优秀人数,优秀率,总分,平均分".split(",")[j];
 
-		for(var i=0; i<6;i++)
+		for(var i=0; i<n.length;i++)
 		{
-		cj[part[j]][i]=0;
+		if(j>0)cj[part[j]][i]=0;else cj[part[j]][i]="语文,数学,英语,政治,电脑,其他,平均分".split(",")[i]
 		
 		}
 		}	
@@ -536,7 +542,9 @@ for(var x in cj){
 			.enter()
 			.append("td")
 			.text( (d,i) =>d )
-		
+			.style("width", (d)=> (1/7)*100 + "%")
+			.attr("align", "center")
+			.style("align", (d)=> "center");
 			}
 	
 //alert(JSON.stringify(cj))
@@ -590,6 +598,7 @@ var tabProduct = document.getElementById("tabProduct");
 // 设置表格可编辑
 // 可一次设置多个，例如：EditTables(tb1,tb2,tb2,......)
 EditTables(tabProduct);
+GetTableData(tabProduct);
 </script>
 
 
