@@ -542,7 +542,7 @@ for(var x in cj){
 			.enter()
 			.append("td")
 			.text( (d,i) =>d )
-			.style("width", (d)=> (1/7)*100 + "%")
+			.style("width", (d)=> ("25,12.5,12.5,12.5,12.5,12.5,12.5".split(",") + "%")
 			.attr("align", "center")
 			.style("align", (d)=> "center");
 			}
