@@ -321,10 +321,10 @@ return document.getElementById(id)
 var cj={};
 function ad()
 {
-if ($('class').value<10&&$('class').value)$('class').value='0'+Number($('class').value);
-if ($('no'   ).value<10&&$('no'   ).value)$('no'   ).value='0'+Number($('no'   ).value);
 var ns=$('ns').value;
 if(ns&&ns.split("-").length>1){$('no').value=ns.split("-")[0];$('sc').value=ns.split("-")[1];}else{$('ns').value="";}
+if ($('class').value<10&&$('class').value)$('class').value='0'+Number($('class').value);
+if ($('no'   ).value<10&&$('no'   ).value)$('no'   ).value='0'+Number($('no'   ).value);
 if(localStorage.cj)cj=JSON.parse(localStorage.cj);
 if($('bm').value&&$('grade').value&&$('class').value&&$('km').value&&$('no').value&&$('sc').value)
 {
@@ -342,6 +342,8 @@ function del()
 {
 var ns=$('ns').value;
 if(ns&&ns.split("-").length>1){$('no').value=ns.split("-")[0];$('sc').value=ns.split("-")[1];}else{$('ns').value="";}
+if ($('class').value<10&&$('class').value)$('class').value='0'+Number($('class').value);
+if ($('no'   ).value<10&&$('no'   ).value)$('no'   ).value='0'+Number($('no'   ).value);
 if(localStorage.cj)cj=JSON.parse(localStorage.cj);
 if($('bm').value&&$('grade').value&&$('class').value&&$('km').value&&$('no').value)
 {
@@ -365,6 +367,8 @@ function cx()
 {
 var ns=$('ns').value;
 if(ns&&ns.split("-").length>1){$('no').value=ns.split("-")[0];$('sc').value=ns.split("-")[1];}else{$('ns').value="";}
+if ($('class').value<10&&$('class').value)$('class').value='0'+Number($('class').value);
+if ($('no'   ).value<10&&$('no'   ).value)$('no'   ).value='0'+Number($('no'   ).value);
 if(localStorage.cj)cj=JSON.parse(localStorage.cj);
 localStorage.cx=JSON.stringify(cj);
 var cx={};
