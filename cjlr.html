@@ -321,6 +321,8 @@ return document.getElementById(id)
 var cj={};
 function ad()
 {
+if ($('class').value<10&&$('class').value)$('class').value='0'+Number($('class').value);
+if ($('no'   ).value<10&&$('no'   ).value)$('no'   ).value='0'+Number($('no'   ).value);
 var ns=$('ns').value;
 if(ns&&ns.split("-").length>1){$('no').value=ns.split("-")[0];$('sc').value=ns.split("-")[1];}else{$('ns').value="";}
 if(localStorage.cj)cj=JSON.parse(localStorage.cj);
@@ -332,7 +334,8 @@ cj[p]=$('sc').value;
 localStorage.cj=JSON.stringify(cj);
 }
 cx();
-gettable();$('ns').value="";$('no').value="";$('sc').value="";
+gettable();
+$('ns').value="";$('no').value="";$('sc').value="";
 }
 
 function del()
