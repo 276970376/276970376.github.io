@@ -1,0 +1,84 @@
+﻿<head>
+<style>
+body{text-align:center;margin:0px auto;}
+div{margin:0px auto;} 
+#content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 500px;
+    width: 50%;
+}
+</style>
+<style>
+#xinxi1
+{
+border:15px solid #55ff00;
+border-radius:30px;
+}
+
+#xinxi2
+{
+border:5px solid #ff1100;
+border-radius:20px;
+}
+#no,#key,#key1,#key2,#inkey,#bt
+{
+border:3px solid #00ff00;
+border-radius:8px;
+}
+</style>
+<title>王氏动态加密算法</title>
+</head>
+<body>
+<div align="center" id=content>
+</br>
+<H1><b><font color=#ff0000>王氏动态加密算法</font></b></H1>
+序列:<input id=no value="0,1,2,3,4,5,6,7,8,9"/></br>
+字典:<input id=key1 /></br>
+字典:<input id=key2 /></br>
+密码:<input id=inkey /></br>
+<input name="cmdOK" type="submit" value=提交 id=bt>
+<input name="cmdReset" type="reset" value=重置 id=bt> 
+<input type="button" size="3" value="返回"  onclick="javascript:window.history.go(-1)" id=bt>         
+</div>
+</body>
+<script>
+shuffle = function(o){ //v1.0
+for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+  
+return o;
+};
+var key1
+var key2
+var key
+var inkey=document.getElementById('inkey')
+code()
+function code(){
+key1=shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+key2=shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+document.getElementById('key1').value=key1
+document.getElementById('key2').value=key2
+key=key1[6]+key2[7]+""+key1[6]*key2[7]
+inkey.value=""
+}
+
+inkey.onchange = function(e)
+{
+
+		if (inkey.value==key)
+					{
+						alert("密码正确")
+						code()
+						}
+					
+					else
+					{
+					alert("密码不正确")
+						code()
+					}
+}
+</script>
