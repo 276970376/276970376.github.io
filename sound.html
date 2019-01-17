@@ -1,0 +1,33 @@
+﻿<head>
+<title>
+卓越之道-语音朗读
+</title>
+</head>
+<input id=zh size="200" value="请输入中文" onclick="zhplay()">
+</input>
+<input id=en size="200" value="Please enter English" onclick="enplay()">
+</input>
+<script>
+</script>
+<script>
+var langdu="欢迎来到卓越之道！本页面是语音朗读功能,有什么建议QQ联系,联系QQ：276970376";
+new Audio("http://tts.baidu.com/text2audio?lan=zh&pid=101&ie=UTF-8&text="+langdu+"&spd=3").play();
+function zhplay()
+{ 
+
+var zh_str=document.getElementById("zh").value;
+var zh=new Audio("http://tts.baidu.com/text2audio?lan=zh&pid=101&ie=UTF-8&text="+zh_str+"&spd=3");
+zh.play()
+
+}
+
+function enplay()
+{
+var en_str=document.getElementById("en").value;
+var en=new Audio("http://tts.baidu.com/text2audio?lan=en&pid=101&ie=UTF-8&text="+en_str+"&spd=2");
+en.play();
+
+
+
+}
+</script>
