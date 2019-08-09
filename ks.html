@@ -60,7 +60,7 @@ function cx()
 if(localStorage.cj)cj=JSON.parse(localStorage.cj);
 var cx={}
 if($('no').value)   {if(cj[$('no').value])cx=cj[$('no').value];else cx={}} 
-if($('sc').value)   {if(cj[$('no').value][$('km').value])cx=cj[$('no').value][$('km').value]=$('sc').value; else cx={}}
+if($('km').value)   {if(cj[$('no').value][$('km').value]){cx=cj[$('no').value][$('km').value];$('sc').value=cx} else cx={}}
 //alert(JSON.stringify(cx))
 localStorage.cx=JSON.stringify(cx);
 }
