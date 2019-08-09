@@ -15,11 +15,44 @@ input{font-size:35px;}
 <br/>
 <input id=sc    size=30% placeholder="分数"/>
 <br/>
+<input id=str   size=30% placeholder=""/>
+<br/>
 <input id=ad type=button value="添加"   onclick="ad()"/>
 <input id=bt type=button value="查询"   onclick="cx()"/>
+<br/>
+<input  type=button value="1"   onclick="shu(this.value)"/>
+<input  type=button value="2"   onclick="shu(this.value)"/>
+<input  type=button value="3"   onclick="shu(this.value)"/>
+<br/>
+<input  type=button value="4"   onclick="shu(this.value)"/>
+<input  type=button value="5"   onclick="shu(this.value)"/>
+<input  type=button value="6"   onclick="shu(this.value)"/>
+<br/>
+<input  type=button value="7"   onclick="shu(this.value)"/>
+<input  type=button value="8"   onclick="shu(this.value)"/>
+<input  type=button value="9"   onclick="shu(this.value)"/>
+<br/>
+<input  type=button value="0"   onclick="shu(this.value)"/>
+<input  type=button value=". "   onclick="shu(this.value)"/>
+<input  type=button value="C"   onclick="shu(this.value)"/>
+<br/>
+<input  type=button value="no"   onclick="shu(this.value)"/>
+<input  type=button value="km"   onclick="shu(this.value)"/>
+<input  type=button value="sc"   onclick="shu(this.value)"/>
+<br/>
 </div>
 </body>
 <script>
+var str=""
+function shu(value)
+{ if (value!="no" && value!="km" && value!="sc"&&value!="C") {str=str+value;$('str').value=str}
+  if (value=="no") {$('no').value=str ;str="";$('str').value=str}
+  if (value=="km") {$('km').value=str ;str="";$('str').value=str}
+  if (value=="sc") {$('sc').value=str ;str="";$('str').value=str}
+	if (value=="C"){str="";$('str').value=str}
+ ad();
+ 
+}
 function setLocalStorage(key,val){
     window.localStorage.setItem(key,JSON.stringify(val));
 };
@@ -28,7 +61,6 @@ function getLocalStorage(key){
     var val = JSON.parse(window.localStorage.getItem(key));
     return val;
 };
-
   
 function getQueryVariable(variable)
 {
@@ -40,7 +72,6 @@ function getQueryVariable(variable)
        }
        return(false);
 }
-
 function $(id)
 {
 return document.getElementById(id)
@@ -53,7 +84,6 @@ function ad()
 if(localStorage.cj)cj=JSON.parse(localStorage.cj);
 if($('no').value)   {if(!cj[$('no').value])cj[$('no').value]={}; localStorage.cj=JSON.stringify(cj);} 
 if($('sc').value&&$('km').value)   {cj[$('no').value][$('km').value]=$('sc').value; localStorage.cj=JSON.stringify(cj);}
-
 }
 function cx()
 {
