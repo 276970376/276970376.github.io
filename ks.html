@@ -12,11 +12,8 @@ input{font-size:35px;}
 </head>
 <body width=100%>
 <div width=100%>
-<input id=bm    size=30% placeholder="部门"/>
-<input id=grade size=30% placeholder="年级"/>
-<input id=class size=30% placeholder="班级"/>
-<br/>
-<input id=no    size=30% placeholder="考号"/>
+
+<input id=no    size=30% placeholder="姓名"/>
 <input id=km    size=30% placeholder="科目"/>
 <input id=sc    size=30% placeholder="分数"/>
 <br/>
@@ -25,6 +22,16 @@ input{font-size:35px;}
 </div>
 </body>
 <script>
+function setLocalStorage(key,val){
+    window.localStorage.setItem(key,JSON.stringify(val));
+};
+//取
+function getLocalStorage(key){
+    let val = JSON.parse(window.localStorage.getItem(key));
+    return val;
+};
+
+  
 function getQueryVariable(variable)
 {
        var query = window.location.search.substring(1);
@@ -40,6 +47,10 @@ function $(id)
 {
 return document.getElementById(id)
 }
-if(getQueryVariable("sc"))
+       if(getQueryVariable("no"))
+$("no").value=decodeURI(getQueryVariable("no")) 
+       if(getQueryVariable("sc"))
+$("km").value=decodeURI(getQueryVariable("km")) 
+       if(getQueryVariable("sc"))
 $("sc").value=decodeURI(getQueryVariable("sc")) 
 </script>
