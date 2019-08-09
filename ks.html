@@ -48,5 +48,20 @@ return document.getElementById(id)
        if(getQueryVariable("no"))
 $("no").value=decodeURI(getQueryVariable("no")) 
 
- 
+function ad()
+{
+if(localStorage.cj)cj=JSON.parse(localStorage.cj);
+if($('no').value)   {if(!cj[$('no').value])cj[$('no').value]={}; localStorage.cj=JSON.stringify(cj);} 
+if($('sc').value&&$('km').value)   {cj[$('no').value][$('km').value]=$('sc').value; localStorage.cj=JSON.stringify(cj);}
+
+}
+function cx()
+{
+if(localStorage.cj)cj=JSON.parse(localStorage.cj);
+var cx={}
+if($('no').value)   {if(cj[$('no').value])cx=cj[$('no').value];else cx={}} 
+if($('sc').value)   {if(cj[$('no').value][$('km').value])cx=cj[$('no').value][$('km').value]=$('sc').value; else cx={}}
+//alert(JSON.stringify(cx))
+localStorage.cx=JSON.stringify(cx);
+}
 </script>
