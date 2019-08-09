@@ -1,4 +1,29 @@
-<input placeholder="A1" id=name />
+<head>
+<style>
+body{text-align:center;margin:0px auto;}
+div{margin:0px auto;} 
+input{font-size:35px;}
+</style>
+<style>
+
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>学生成绩表</title>
+</head>
+<body width=100%>
+<div width=100%>
+<input id=bm    size=30% placeholder="部门"/>
+<input id=grade size=30% placeholder="年级"/>
+<input id=class size=30% placeholder="班级"/>
+<br/>
+<input id=no    size=30% placeholder="考号"/>
+<input id=km    size=30% placeholder="科目"/>
+<input id=sc    size=30% placeholder="分数"/>
+<br/>
+<input id=ad type=button value="添加"   onclick="ad()"/>
+<input id=bt type=button value="查询"   onclick="cx()"/>
+</div>
+</body>
 <script>
 function getQueryVariable(variable)
 {
