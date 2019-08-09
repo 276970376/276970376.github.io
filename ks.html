@@ -4,10 +4,6 @@ body{text-align:center;margin:0px auto;}
 div{margin:0px auto;} 
 input{font-size:35px;}
 </style>
-<style>
-
-</style>
-
 <title>学生成绩表</title>
 </head>
 <body width=100%>
@@ -29,7 +25,7 @@ function setLocalStorage(key,val){
 };
 //取
 function getLocalStorage(key){
-    let val = JSON.parse(window.localStorage.getItem(key));
+    var val = JSON.parse(window.localStorage.getItem(key));
     return val;
 };
 
