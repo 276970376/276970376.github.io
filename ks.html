@@ -1,3 +1,4 @@
+<input placeholder="A1" id=name />
 <script>
 function getQueryVariable(variable)
 {
@@ -9,6 +10,11 @@ function getQueryVariable(variable)
        }
        return(false);
 }
-alert(decodeURI(getQueryVariable("id")) )
 
+function $(id)
+{
+return document.getElementById(id)
+}
+$(name).value=decodeURI(getQueryVariable("name")) 
 </script>
+
