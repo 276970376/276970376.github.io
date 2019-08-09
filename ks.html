@@ -1,5 +1,5 @@
 <script>
-       alert("汉字")
+       alert(decodeURI("汉字"))
 
 
 function getQueryVariable(variable)
@@ -12,6 +12,6 @@ function getQueryVariable(variable)
        }
        return(false);
 }
-alert(getQueryVariable("id")) 
+alert(decodeURI(getQueryVariable("id")) )
 
 </script>
