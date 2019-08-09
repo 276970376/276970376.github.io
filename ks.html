@@ -2,7 +2,7 @@
 <style>
 body{text-align:center;margin:0px auto;}
 div{margin:0px auto;} 
-input{font-size:80px;}
+input{font-size:60px;}
 </style>
 <title>学生成绩表</title>
 </head>
@@ -20,25 +20,25 @@ input{font-size:80px;}
 <input id=bt type=button value="查询"   onclick="cx()"/>
 <br/>
 <div>
-<input  type=button value="1"  size=30% onclick="shu(this.value)"/>
-<input  type=button value="2"  size=30% onclick="shu(this.value)"/>
-<input  type=button value="3"  size=30% onclick="shu(this.value)"/>
+<input  type=button value="1"  style="width:150px;height:100px" onclick="shu(this.value)"/>
+<input  type=button value="2"  style="width:150px;height:100px" onclick="shu(this.value)"/>
+<input  type=button value="3"  style="width:150px;height:100px" onclick="shu(this.value)"/>
 <br/>
-<input  type=button value="4"  size=30% onclick="shu(this.value)"/>
-<input  type=button value="5"  size=30% onclick="shu(this.value)"/>
-<input  type=button value="6"  size=30% onclick="shu(this.value)"/>
+<input  type=button value="4"  style="width:150px;height:100px" onclick="shu(this.value)"/>
+<input  type=button value="5"  style="width:150px;height:100px" onclick="shu(this.value)"/>
+<input  type=button value="6"  style="width:150px;height:100px" onclick="shu(this.value)"/>
 <br/>
-<input  type=button value="7"  size=30% onclick="shu(this.value)"/>
-<input  type=button value="8"  size=30% onclick="shu(this.value)"/>
-<input  type=button value="9"  size=30% onclick="shu(this.value)"/>
+<input  type=button value="7"  style="width:150px;height:100px" onclick="shu(this.value)"/>
+<input  type=button value="8"  style="width:150px;height:100px" onclick="shu(this.value)"/>
+<input  type=button value="9"  style="width:150px;height:100px" onclick="shu(this.value)"/>
 <br/>
-<input  type=button value="0"  size=30% onclick="shu(this.value)"/>
-<input  type=button value="." size=30%  onclick="shu(this.value)"/>
-<input  type=button value="c"  size=30% onclick="shu(this.value)"/>
+<input  type=button value="0"  style="width:150px;height:100px" onclick="shu(this.value)"/>
+<input  type=button value="." style="width:150px;height:100px"  onclick="shu(this.value)"/>
+<input  type=button value="c"  style="width:150px;height:100px" onclick="shu(this.value)"/>
 <br/>
-<input  type=button value="no" size=30% onclick="shu(this.value)"/>
-<input  type=button value="km" size=30%  onclick="shu(this.value)"/>
-<input  type=button value="sc" size=30%  onclick="shu(this.value)"/>
+<input  type=button value="no" style="width:150px;height:100px" onclick="shu(this.value)"/>
+<input  type=button value="km" style="width:150px;height:100px"  onclick="shu(this.value)"/>
+<input  type=button value="sc" style="width:150px;height:100px"  onclick="shu(this.value)"/>
 <br/>
 </div>
 </div>
@@ -46,11 +46,12 @@ input{font-size:80px;}
 <script>
 var str=""
 function shu(value)
-{ if (value!="no" && value!="km" && value!="sc"&&value!="C") {str=str+value;$('str').value=str}
-  if (value=="no") {$('no').value=str ;str="";$('str').value=str}
-  if (value=="km") {$('km').value=str ;str="";$('str').value=str}
-  if (value=="sc") {$('sc').value=str ;str="";$('str').value=str}
-	if (value=="c"){str="";$('str').value=str}
+{ 
+if (value!="no" && value!="km" && value!="sc"&&value!="C") {str=str+value;$('str').value=Number(str)}
+  if (value=="no") {$('no').value=Number(str) ;str="";$('str').value=Number(str)}
+  if (value=="km") {$('km').value=Number(str) ;str="";$('str').value=Number(str)}
+  if (value=="sc") {$('sc').value=Number(str) ;str="";$('str').value=Number(str)}
+	if (value=="c"){str="";$('str').value=Number(str)}
  ad();
  
 }
