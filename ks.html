@@ -1,0 +1,123 @@
+<head>
+<style>
+body{text-align:center;margin:0px auto;}
+div{margin:0px auto;font-size:60px;} 
+input{font-size:60px;}
+</style>
+<title>学生成绩表</title>
+</head>
+<body width=100%>
+<div width=100%>
+<input id=no    size=30% placeholder="姓名"/>
+<br/>
+<label> <input type="radio" style="width:80px;height:80px" name="km" value="语文" />语文</label> 
+<label><input type="radio" style="width:80px;height:80px" name="km" value="数学" />数学</label> 
+<label><input type="radio" style="width:80px;height:80px" name="km" value="英语" />英语</label> 
+<label><input type="radio" style="width:80px;height:80px" name="km" value="电脑" />电脑</label> 
+<label><input type="radio" style="width:80px;height:80px" name="km" value="政治" />政治</label> 
+<br/>
+<input id=sc    size=30% placeholder="分数"/>
+<br/>
+<input id=str   size=30% placeholder=""/>
+<br/>
+<input id=ad type=button value="添加"   onclick="ad()"/>
+<input id=bt type=button value="查询"   onclick="cx()"/>
+<br/>
+<div>
+<input  type=button value="1"  style="width:150px;height:100px" onclick="shu(this.value)"/>
+<input  type=button value="2"  style="width:150px;height:100px" onclick="shu(this.value)"/>
+<input  type=button value="3"  style="width:150px;height:100px" onclick="shu(this.value)"/>
+<br/>
+<input  type=button value="4"  style="width:150px;height:100px" onclick="shu(this.value)"/>
+<input  type=button value="5"  style="width:150px;height:100px" onclick="shu(this.value)"/>
+<input  type=button value="6"  style="width:150px;height:100px" onclick="shu(this.value)"/>
+<br/>
+<input  type=button value="7"  style="width:150px;height:100px" onclick="shu(this.value)"/>
+<input  type=button value="8"  style="width:150px;height:100px" onclick="shu(this.value)"/>
+<input  type=button value="9"  style="width:150px;height:100px" onclick="shu(this.value)"/>
+<br/>
+<input  type=button value="0"  style="width:150px;height:100px" onclick="shu(this.value)"/>
+<input  type=button value="." style="width:150px;height:100px"  onclick="shu(this.value)"/>
+<input  type=button value="L" style="width:150px;height:100px"  onclick="shu(this.value)"/>
+<br/>
+<br/>
+</div>
+</div>
+</body>
+<script>
+
+function readradio(radio) {
+ 
+            // 方法一            
+            var item = null;
+            var obj = document.getElementsByName(radio)
+            for (var i = 0; i < obj.length; i++) { //遍历Radio 
+                if (obj[i].checked) {
+                    item = obj[i].value;                   
+                }
+            }
+            return item;
+}
+function setradio(radio,val) {
+            var obj = document.getElementsByName(radio)
+            for (var i = 0; i < obj.length; i++) { //遍历Radio 
+                if (val == obj[i].value) {
+                    obj[i].checked=true;                
+                }
+            } 
+}
+
+var str=""
+var km=getLocalStorage("km")
+if(km)setradio("km",km);
+//alert(getLocalStorage("km"))
+function shu(value)
+{ 
+if ( value!="L") {str=str+value;$('str').value=str ;}
+	if (value=="L"&&$('no').value) {if(!isNaN($('str').value )){$('sc').value=str;$('str').value=str;}str="";ad();$('str').value="";}
+    km=readradio("km")
+	setLocalStorage("km",km)
+}
+
+function setLocalStorage(key,val){
+    window.localStorage.setItem(key,JSON.stringify(val));
+};
+//取
+function getLocalStorage(key){
+    var val = JSON.parse(window.localStorage.getItem(key));
+    return val;
+};
+
+function getQueryVariable(variable)
+{
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
+function $(id)
+{
+return document.getElementById(id)
+}
+       if(getQueryVariable("no"))
+$("no").value=decodeURI(getQueryVariable("no")) 
+var cj={}
+function ad()
+{
+if(localStorage.cj)cj=JSON.parse(localStorage.cj);
+if($('no').value)       {if(!cj[$('no').value])cj[$('no').value]={}; localStorage.cj=JSON.stringify(cj);} 
+if($('sc').value&&km)   {cj[$('no').value][km]=$('sc').value; localStorage.cj=JSON.stringify(cj);}
+}
+function cx()
+{
+if(localStorage.cj)cj=JSON.parse(localStorage.cj);
+var cx={}
+if($('no').value)   {if(cj[$('no').value])cx=cj[$('no').value];else cx={}} 
+if(km)   {if(cj[$('no').value][km]){cx=cj[$('no').value][km];$('sc').value=cx} else cx={}}
+//alert(JSON.stringify(cx))
+localStorage.cx=JSON.stringify(cx);
+}
+</script>
