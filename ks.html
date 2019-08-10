@@ -47,7 +47,7 @@ input{font-size:60px;}
 var str=0
 function shu(value)
 { 
-if (value!="no" && value!="km" && value!="sc"&&value!="c") {str=str+value;$('str').value=Number(str)}
+if (value!="no" && value!="km" && value!="sc"&&value!="c") {str=str+value;$('str').value=str}
   if (value=="no") {$('no').value=Number(str) ;str="";$('str').value=Number(str)}
   if (value=="km") {$('km').value=Number(str) ;str="";$('str').value=Number(str)}
   if (value=="sc") {$('sc').value=Number(str) ;str="";$('str').value=Number(str)}
