@@ -107,6 +107,8 @@ $("no").value=decodeURI(getQueryVariable("no"))
 var cj={}
 function ad()
 {
+km=readradio("km");
+setLocalStorage("km",km);
 if(localStorage.cj)cj=JSON.parse(localStorage.cj);
 if($('no').value)       {if(!cj[$('no').value])cj[$('no').value]={}; localStorage.cj=JSON.stringify(cj);} 
 if($('sc').value&&km)   {cj[$('no').value][km]=$('sc').value; localStorage.cj=JSON.stringify(cj);}
