@@ -111,7 +111,7 @@ km=readradio("km");
 setLocalStorage("km",km);
 if(localStorage.cj)cj=JSON.parse(localStorage.cj);
 if($('no').value)       {if(!cj[$('no').value])cj[$('no').value]={}; localStorage.cj=JSON.stringify(cj);} 
-if($('sc').value&&km)   {cj[$('no').value][km]=$('sc').value; localStorage.cj=JSON.stringify(cj);}
+if($('sc').value&&km)   {cj[$('no').value][km]=Number($('sc').value); localStorage.cj=JSON.stringify(cj);}
 }
 function cx()
 {
@@ -121,7 +121,7 @@ setLocalStorage("km",km);
 if(localStorage.cj)cj=JSON.parse(localStorage.cj);
 var cx={}
 if($('no').value)   {if(cj[$('no').value])cx=cj[$('no').value];else cx={}} 
-if(km)   {if(cj[$('no').value][km]){cx=cj[$('no').value][km];$('sc').value=cx} else cx={};}
+if(km&&$('no').value)   {if(cj[$('no').value][km]){cx=cj[$('no').value][km];$('sc').value=cx;} else cx={};}
 //alert(JSON.stringify(cx))
 localStorage.cx=JSON.stringify(cx);
 }
