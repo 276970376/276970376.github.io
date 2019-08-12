@@ -121,7 +121,7 @@ setLocalStorage("km",km);
 if(localStorage.cj)cj=JSON.parse(localStorage.cj);
 var cx={}
 if($('no').value)   {if(cj[$('no').value])cx=cj[$('no').value];else cx={}} 
-if(km)   {if(cj[$('no').value][km]){cx=cj[$('no').value][km];$('sc').value=cx} else cx={};alert(0)}
+if(km)   {if(cj[$('no').value][km]){cx=cj[$('no').value][km];$('sc').value=cx} else cx={};}
 //alert(JSON.stringify(cx))
 localStorage.cx=JSON.stringify(cx);
 }
