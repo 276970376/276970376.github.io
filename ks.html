@@ -126,7 +126,17 @@ if(localStorage.cj)cj=JSON.parse(localStorage.cj);
 var cx={}
 if($('no').value)   {if(cj[$('no').value])cx=cj[$('no').value];else cx={}} 
 if(km&&cj[$('no').value])   {if(cj[$('no').value][km]){cx=cj[$('no').value][km];$('sc').value=cx;} else cx={};}
-
+if (!Object.values) Object.values = function(obj) {
+    if (obj !== Object(obj))
+        throw new TypeError('Object.values called on a non-object');
+    var val=[],key;
+    for (key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj,key)) {
+            val.push(obj[key]);
+        }
+    }
+    return val;
+}
 
 //alert(JSON.stringify(cx))
 localStorage.cx=JSON.stringify(cx);
