@@ -130,9 +130,9 @@ if(km&&cj[$('no').value])   {if(cj[$('no').value][km]){cx=cj[$('no').value][km];
 
 //alert(JSON.stringify(cx))
 localStorage.cx=JSON.stringify(cx);
-alert(JSON.stringify(getpick(cj,km)));
-alert(JSON.stringify(pick(getpick(cj,km))));
-alert (Object.values(pick(getpick(cj,km))).filter(Boolean))
+//alert(JSON.stringify(getpick(cj,km)));
+//alert(JSON.stringify(pick(getpick(cj,km))));
+alert (Object.values(pick(getpick([10,20,30,,,,],km))).filter(Boolean))
 alert (JSON.stringify(count(Object.values(pick(getpick(cj,km))).filter(Boolean),96)))
 }
 </script>
