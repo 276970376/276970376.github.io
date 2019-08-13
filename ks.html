@@ -45,6 +45,9 @@ input{font-size:50px;}
 </div>
 </body>
 <script>
+var pick = (obj) =>Object.keys(obj).sort((b,a)=>obj[a]-obj[b]).reduce((acc, curr) => (curr in obj && (acc[curr] = obj[curr]), acc), {});
+var getpick = (obj,value) =>Object.keys(obj).sort().reduce((acc, curr) => (curr in obj && (acc[curr] = obj[curr][value]), acc), {});
+var count = (arr, value) => arr.reduce((a, v) =>(v >= value ? a['SumGoodCount'] ++ : a['SumCount']=0,a['SumCount'] = arr.length,a['Sum']=a['Sum']+Number(v),a['avr']=(a['Sum']/arr.length).toFixed(2),a['PassRatio']=((a['SumGoodCount']/arr.length).toFixed(2)),a), {"SumGoodCount":0,"SumCount":0,"PassRatio":0,"Sum":0,"avr":0});
 
 function readradio(radio) {
  
@@ -111,7 +114,7 @@ km=readradio("km");
 setLocalStorage("km",km);
 if(localStorage.cj)cj=JSON.parse(localStorage.cj);
 if($('no').value)       {if(!cj[$('no').value])cj[$('no').value]={}; localStorage.cj=JSON.stringify(cj);} 
-if($('sc').value&&km)   {cj[$('no').value][km]=$('sc').value; localStorage.cj=JSON.stringify(cj);}
+if($('sc').value&&km)   {cj[$('no').value][km]=Number($('sc').value); localStorage.cj=JSON.stringify(cj);}
 }
 function cx()
 {
@@ -121,8 +124,15 @@ setLocalStorage("km",km);
 if(localStorage.cj)cj=JSON.parse(localStorage.cj);
 var cx={}
 if($('no').value)   {if(cj[$('no').value])cx=cj[$('no').value];else cx={}} 
-if(km&&cj[$('no').value])   {if(cj[$('no').value][km]){cx=cj[$('no').value][km];$('sc').value=cx;} else cx={};}
+if(km&&$('no').value)   {if(cj[$('no').value][km]){cx=cj[$('no').value][km];$('sc').value=cx;} else cx={};}
 //alert(JSON.stringify(cx))
 localStorage.cx=JSON.stringify(cx);
+//alert(JSON.stringify(getpick(cj,km)));
+//alert(JSON.stringify(pick(getpick(cj,km))));
+//alert (Object.values(pick(getpick(cj,km))).filter(Boolean))
+alert (JSON.stringify(count(Object.values(pick(getpick(cj,km))).filter(Boolean),96)))
 }
+
+
+
 </script>
