@@ -80,7 +80,8 @@ function shu(value)
 if ( value!="L") {str=str+value;$('str').value=str ;}
 	if (value=="L"&&$('no').value) {if(!isNaN($('str').value )){$('sc').value=str;$('str').value=str;}str="";ad();$('str').value="";}
     km=readradio("km")
-	setLocalStorage("km",km)
+	setLocalStorage("km",km);
+	window.history.back();
 }
 
 function setLocalStorage(key,val){
