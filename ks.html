@@ -128,7 +128,7 @@ if($('no').value)   {if(cj[$('no').value])cx=cj[$('no').value];else cx={}}
 if(km&&cj[$('no').value])   {if(cj[$('no').value][km]){cx=cj[$('no').value][km];$('sc').value=cx;} else cx={};}
 
 
-alert(JSON.stringify(cx))
+//alert(JSON.stringify(cx))
 localStorage.cx=JSON.stringify(cx);
 alert(JSON.stringify(getpick(cj,km)));
 alert(JSON.stringify(pick(getpick(cj,km))));
