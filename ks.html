@@ -83,8 +83,20 @@ if(km)setradio("km",km);
 function shu(value)
 { 
 if ( value!="L") {str=str+value;$('str').value=str ;}
-	if (value=="L"&&$('no').value) {if(!isNaN($('str').value )){$('sc').value=str;$('str').value=str;}str="";ad();$('str').value=""; window.history.go(-1);}
-    km=readradio("km")
+	if (value=="L"&&$('no').value) 
+								{
+								 if(!isNaN($('str').value ))
+															{
+															$('sc').value=str;$('str').value=str;
+															}
+								 str="";
+								 ad();
+								 $('str').value=""; 
+								 window.history.go(-2);
+								}
+    
+	
+	km=readradio("km")
 	setLocalStorage("km",km);
 	
 }
