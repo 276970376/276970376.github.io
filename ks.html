@@ -11,12 +11,12 @@ input{font-size:50px;}
 <div>
 <input id=no    style="width:90%;height:%10"  placeholder="姓名"/>
 <br/>
-<div style="width:90%;height:%20;font-size:25px" >
-<label> <input type="radio" style="width:25px;height:25px;" name="km" value="语文" />语文</label> 
-<label><input type="radio" style="width:25px;height:25px" name="km" value="数学" />数学</label> 
-<label><input type="radio" style="width:25px;height:25px" name="km" value="英语" />英语</label> 
-<label><input type="radio" style="width:25px;height:25px" name="km" value="电脑" />电脑</label> 
-<label><input type="radio" style="width:25px;height:25px" name="km" value="政治" />政治</label> 
+<div style="width:90%;height:%20;font-size:30px" >
+<label> <input type="radio" style="width:30px;height:30px;" name="km" value="语文" />语文</label> 
+<label><input type="radio" style="width:30px;height:30px" name="km" value="数学" />数学</label> 
+<label><input type="radio" style="width:30px;height:30px" name="km" value="英语" />英语</label> 
+<label><input type="radio" style="width:30px;height:30px" name="km" value="电脑" />电脑</label> 
+<label><input type="radio" style="width:30px;height:30px" name="km" value="政治" />政治</label> 
 </div>
 <input id=sc    style="width:90%;height:%10"  placeholder="分数"/>
 <br/>
@@ -83,10 +83,10 @@ if(km)setradio("km",km);
 function shu(value)
 { 
 if ( value!="L") {str=str+value;$('str').value=str ;}
-	if (value=="L"&&$('no').value) {if(!isNaN($('str').value )){$('sc').value=str;$('str').value=str;}str="";ad();$('str').value="";}
+	if (value=="L"&&$('no').value) {if(!isNaN($('str').value )){$('sc').value=str;$('str').value=str;}str="";ad();$('str').value=""; window.history.go(-1);}
     km=readradio("km")
 	setLocalStorage("km",km);
-	window.history.go(-1);
+	
 }
 
 function setLocalStorage(key,val){
