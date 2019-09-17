@@ -51,7 +51,7 @@ var str=""
 var cj=[]
 shu("L")
 function shu(value)
-{       new Audio("https://tts.baidu.com/text2audio?cuid=baiduid&lan=zh&ctp=1&per=111&pdt=311&pit=1&spd=5&vol=15&aue=3&tex="+encodeURI(value).paly())
+{       new Audio("https://tts.baidu.com/text2audio?cuid=baiduid&lan=zh&ctp=1&per=111&pdt=311&pit=1&spd=5&vol=15&aue=3&tex="+encodeURI(value)).play()
         if ( value!="L") {str=str+value;$('str').value=str; }
 		if (value=="L") {
 						if(!isNaN($('str').value ))
