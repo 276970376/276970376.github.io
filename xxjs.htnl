@@ -1,0 +1,189 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{text-align:center;margin:0px auto;}
+div{margin:0px auto;} 
+input{font-size:30px;}
+label{font-size:30px;}
+</style>
+<title>考试</title>
+</head>
+<body width=100%>
+<br/>
+<h1 >计算机基础知识测试</h1>
+<h2 id=sum >得分00分</h2>
+<div id=question style="width:100%;height:%20;font-size:30px" >
+
+</div>
+<div  style="width:100%;height:%20;font-size:30px" >
+<table align=center >
+<tr><td><input type="radio" style="width:30px;height:30px;" name="km" value="A"  id="kmA"></input><label id="A" for="kmA"></label></td></tr>
+<tr><td><input type="radio" style="width:30px;height:30px;" name="km" value="B"  id="kmB"></input><label id="B" for="kmB"></label></td></tr>
+<tr><td><input type="radio" style="width:30px;height:30px;" name="km" value="C"  id="kmC"></input><label id="C" for="kmC"></label></td></tr>
+<tr><td><input type="radio" style="width:30px;height:30px;" name="km" value="D"  id="kmD"></input><label id="D" for="kmD"></label></td></tr>
+<tr><td><label ><input type="button" value="确定"  style="width:80px;height:%10"  onclick="shu()"/></label> </td></tr>
+</table>
+</div>
+<div id=answer>
+</div>
+</body>
+<script>
+function $(id)
+{
+return document.getElementById(id)
+}
+
+
+var exam=[]
+var op=["A","B","C","D"]
+var nu=0
+
+
+shuffle = function(o){ //v1.0
+for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+  
+return o;
+};
+
+cp=[
+['下列是计算机输出设备的是？','耳机','话筒','摄像头','键盘'],
+['下列是计算机输出设备的是？','音箱','话筒','摄像头','键盘'],
+['下列是计算机输出设备的是？','打印机','话筒','摄像头','键盘'],
+['下列是计算机输出设备的是？','显示器','话筒','摄像头','键盘'],
+['下列是计算机输入设备的是？','键盘','音箱','打印机','显示器'],
+['下列是计算机输入设备的是？','话筒','打印机','音箱','投影仪'],
+['下列是计算机输入设备的是？','鼠标','耳机','打印机','显示器'],
+['刷新键是那个键？','F5键','F1键','Shift键','Alt键'],
+['输入法中英文切换键是？','Shift键','Alt键','Ctrl键','Enter键'],
+['返回桌面快捷键是？','windows键+D键','Alt键+F4键','Alt键+Tab键','Shift键+Delete键'],
+['大写锁定键是？','Caps Look键','Shift键','Alt键','Enter键'],
+['切换输入法哪两个键','Shift键+Ctrl键','Alt键+F4键','Alt键+Tab键','Shift键+Delete键'],
+['关闭当前窗口哪两个键？','Alt键+F4键','Shift键+Ctrl键','Shift键+Delete键','Alt键+Tab键'],
+['彻底删除文件哪两个键？','Shift键+Delete键','Alt键+F4键','Shift键+Ctrl键','Alt键+Tab键'],
+['打开我的电脑哪两个键？','windows键+E键','windows键+D键','Alt键+F4键','Alt键+Tab键'],
+['回收站文件会恢复到哪了？','原来位置','桌面','C盘','D盘'],
+['具有破坏性程序成为什么？','病毒','游戏','文件','数据'],
+['另起一行是哪个键？','Enter键','Shift键','Alt键','Ctrl键'],
+['流行声卡都是多少位？','32位','16位','1位','8位'],
+['按下哪个辅助键可以输入按键上面字符？','Shift键','Alt键','Ctrl键','Enter键'],
+['电脑主体是什么？','主机','CPU','内存','硬盘'],
+['在WINDOWS系统里通过哪里查看文件','我的电脑','内存','硬盘','CPU'],
+['世界第一台计算机诞生哪一年？','1946年','1987年','1886年','1777年'],
+['正确关闭计算机是？','点击开始→关闭计算机','直接拔掉电源','长按主机电源键','直接关闭排插电源'],
+['指挥计算机进行操作的命令成为','程序','数据','指令','文件'],
+['计算机的核心是','CPU','内存','硬盘','主板'],
+['因特网是指','国际互联网','局域网','WIFI','5G'],
+['不能存储数据的是？','CPU','硬盘','SD卡','U盘'],
+['电脑软件安装到哪里？','非系统盘','A盘','B盘','C盘'],
+['文本文件的扩展名是?','TXT','doc','bmp','mp3'],
+['下列是音频文件扩展名的是？','wav','TXT','doc','bmp'],
+['下列是音频文件扩展名的是？','mp3','TXT','doc','bmp'],
+['下列是音频文件扩展名的是？','wma','TXT','doc','bmp'],
+['下列是视频文件扩展名的是？','MP4','TXT','doc','bmp'],
+['下列是视频文件扩展名的是？','wmv','TXT','doc','bmp'],
+['下列是视频文件扩展名的是？','MKV','TXT','doc','bmp'],
+['下列是视频文件扩展名的是？','AVI','TXT','doc','bmp'],
+['下列是视频文件扩展名的是？','MOV','TXT','doc','bmp'],
+['下列不是视频文件扩展名的是？','TXT','mov','wmv','mp4'],
+['保存文件的快捷键是？','Ctrl键+S键','windows键+D键','Alt键+F4键','Alt键+Tab键'],
+['因特网起源于哪个国家？','美国','日本','英国','中国'],
+['下列正确的是？','Ctrl键可以实现加选或减选','关机可以直接切断电源','打印机输入设备','组装机和品牌机一样'],
+['计算机之父是谁和谁？','冯诺依曼和图灵','图灵和比尔盖茨','卡马克和图灵','比尔盖茨和图灵'],
+['图灵是哪国人','英国','美国','日本','中国'],
+['下列哪个人制造过火箭','卡马克','比尔盖茨','图灵','冯诺依曼'],
+['下列哪个人建立微软公司','比尔盖茨','卡马克','图灵','冯诺依曼'],
+['OFFICE软件和哪个关系密切','比尔盖茨','卡马克','图灵','冯诺依曼'],
+['计算机出现的最主要原因是','二战爆发','科学的需要','人计算能力差','要求高精度计算'],
+['下列人物哪个少年时坐过牢','卡马克','比尔盖茨','图灵','冯诺依曼'],
+['人工智能字符缩写是','AI','VR','AR','TR']
+]
+cp=shuffle(cp);
+<!-- for(var i=0;i<100;i++) -->
+<!-- { -->
+<!-- var sn =shuffle([..."1234567890"]); -->
+ <!-- var answer=shuffle([..."1234"]); -->
+
+<!-- exam[i]=[]; -->
+<!-- exam[i][0]=sn[0]+sn[1]+"+"+sn[2]+sn[3]+"等于多少？"; -->
+<!-- exam[i][parseInt(answer[0])]=parseInt(sn[0]+sn[1])+parseInt(sn[2]+sn[3]); -->
+<!-- exam[i][parseInt(answer[1])]=parseInt(sn[0]+sn[1])+parseInt(sn[4]+sn[5]); -->
+<!-- exam[i][parseInt(answer[2])]=parseInt(sn[0]+sn[1])+parseInt(sn[6]+sn[7]); -->
+<!-- exam[i][parseInt(answer[3])]=parseInt(sn[0]+sn[1])+parseInt(sn[8]+sn[9]); -->
+<!-- exam[i][5]=op[parseInt(answer[0]-1)]; -->
+<!-- } -->
+
+for(var i=0;i<cp.length;i++)
+{
+var sn =shuffle([..."1234567890"]);
+ var answer=shuffle([..."1234"]);
+
+exam[i]=[];
+exam[i][0]=cp[i][0];
+exam[i][parseInt(answer[0])]=cp[i][1];
+exam[i][parseInt(answer[1])]=cp[i][2];
+exam[i][parseInt(answer[2])]=cp[i][3];
+exam[i][parseInt(answer[3])]=cp[i][4];
+exam[i][5]=op[parseInt(answer[0]-1)];
+}
+
+
+$("question").appendChild(document.createTextNode("第"+(nu+1)+"题："+exam[nu][0]));
+op.forEach((value, index, array) => {
+　　$(value).appendChild(document.createTextNode(value+". "+exam[nu][index+1]));
+});
+function readradio(radio) {
+ 
+            // 方法一            
+            var item = null;
+            var obj = document.getElementsByName(radio)
+            for (var i = 0; i < obj.length; i++) { //遍历Radio 
+                if (obj[i].checked) {
+                    item = obj[i].value;                   
+                }
+            }
+            return item;
+}
+
+function setradio(radio,val) {
+            var obj = document.getElementsByName(radio)
+            for (var i = 0; i < obj.length; i++) { //遍历Radio 
+                if (val == obj[i].value) {
+                    obj[i].checked=true;                
+                }
+            } 
+}
+
+function setradiochecked(radio,val) {
+            var obj = document.getElementsByName(radio)
+            for (var i = 0; i < obj.length; i++) { //遍历Radio 
+                if (val ==1) {
+                    obj[i].checked=true;                
+                } else obj[i].checked=false; 
+            } 
+}
+
+var sum =0;
+var last=0;
+function shu()
+{
+var sc=2
+if(nu==exam.length-1&&last==0){last=1;sum =sum+sc; alert("你已做完所有题目"+"总分:"+sum+"分")}
+if(readradio("km")==exam[nu][5]) {if(last==0)sum =sum+sc; $("sum").textContent="得分"+sum+"分"} else {alert("错误")}
+//alert($(readradio("km")).innerText)
+setradiochecked("km",0)
+if(nu<exam.length-1)nu++
+$("question").textContent="第"+(nu+1)+"题："+exam[nu][0];
+op.forEach((value, index, array) => {
+　　$(value).textContent=value+". "+exam[nu][index+1];
+
+});
+
+}
+
+			
+			
+			
+			
+			
+			
+</script>
