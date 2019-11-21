@@ -9,6 +9,7 @@ label{font-size:20px;}
 <title>考试</title>
 </head>
 <body width=100%>
+</br>
 <h1 >计算机基础知识测试</h1>
 <h4 id=sum >  </h4>
 <div id=question style="width:100%;height:%20;font-size:20px" >
@@ -204,7 +205,7 @@ var sc=2;
 var cj={};
 var cj_class={};
 
-$("sum").textContent="总共"+exam.length+"题"+" 每题"+sc+"分"+" 答对"+(sum/sc)+"题"+" 答错"+(nu-(sum/sc))+"题"+" 得分"+sum+"分";
+$("sum").innerHTML="总共"+exam.length+"题"+" 每题"+sc+"分"+" 答对"+(sum/sc)+"题"+" 答错"+(nu-(sum/sc))+"题"+"<br/><h3> 得分:"+sum+"分</h3>";
 var groupBy = (arr, func) =>arr.map(typeof func === 'function' ? func : val => val[func]).reduce((acc, val, i)=>( acc[val] = (acc[val] || []).concat(arr[i]) ,acc ), {});
 var countBy=(arr,fn)=>arr.map(typeof fn === 'function' ? fn:val=>val[fn]).reduce((acc,val)=>(acc[val]=(acc[val]||0)+1,acc),{});
 
@@ -241,7 +242,8 @@ cj_class[exam[nu][5]]['t']=(cj_class[exam[nu][5]]['t']||0)+1;
 else {cj_class[exam[nu][5]]['f']=(cj_class[exam[nu][5]]['f']||0)+1; }
   cj_class[exam[nu][5]]['avr']=(cj_class[exam[nu][5]]['t']/(cj_class[exam[nu][5]]['t']+cj_class[exam[nu][5]]['f'])).toFixed(2);
 
-$("sum").textContent="总共"+exam.length+"题"+" 每题"+sc+"分"+" 答对"+(sum/sc)+"题"+" 答错"+(nu+1-(sum/sc))+"题"+" 得分"+sum+"分";
+
+$("sum").innerHTML="总共"+exam.length+"题"+" 每题"+sc+"分"+" 答对"+(sum/sc)+"题"+" 答错"+(nu+1-(sum/sc))+"题"+"<br/><h3> 得分:"+sum+"分</h3>";
 $("baobiao").innerHTML=thead+"<tr><td>"+Object.keys(cj_class).map((v,i,a)=>v+":</td><td>"+pickvalue(cj_class[v],'l,t,f,avr'.split(",")).join("</td><td>")).join("</td></tr>\n<tr><td>")+"</td></tr>"
 //alert($(readradio("km")).innerText)
 setLocalStorage("exam",exam);
@@ -273,7 +275,7 @@ exam[i][7]="";
 nu=0;
 sum=0;
 last=0;
-$("sum").textContent="总共"+exam.length+"题"+" 每题"+sc+"分"+" 答对"+(sum/sc)+"题"+" 答错"+(nu-(sum/sc))+"题"+" 得分"+sum+"分";
+$("sum").innerHTML="总共"+exam.length+"题"+" 每题"+sc+"分"+" 答对"+(sum/sc)+"题"+" 答错"+(nu-(sum/sc))+"题"+"<br/><h3> 得分:"+sum+"分</h3>";
 exam.map((v,i,a)=>(
                   cj_class[v[5]]={},
 				  //Object.keys(cj_class).map((v,i,a)=>cj_class[v]['class']=v),
