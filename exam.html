@@ -164,7 +164,7 @@ op.forEach((value, index, array) => {
 var sum =0;
 var last=0;
 var sc=2;
-$("sum").textContent="总共"+exam.length+"题"+" 每题"+sc+" 答对"+(sum/sc)+"题"+" 得分"+sum+"分";
+$("sum").textContent="总共"+exam.length+"题"+" 每题"+sc+"分"+" 答对"+(sum/sc)+"题"+" 得分"+sum+"分";
 var groupBy = (arr, func) =>arr.map(typeof func === 'function' ? func : val => val[func]).reduce((acc, val, i)=>( acc[val] = (acc[val] || []).concat(arr[i]) ,acc ), {});
 var countBy=(arr,fn)=>arr.map(typeof fn === 'function' ? fn:val=>val[fn]).reduce((acc,val)=>(acc[val]=(acc[val]||0)+1,acc),{});
 var cj={}
@@ -183,7 +183,8 @@ cj=groupBy(cj,x=>x[0]);
 cj=Object.keys(cj).map((v,i,a)=>countBy(cj[v],x=>x))
 
 if(nu==exam.length-1&&last==0){last=1;if(readradio("km")==exam[nu][6])sum =sum+sc; alert("你已做完所有题目"+"总分:"+sum+"分")}
-if(readradio("km")==exam[nu][6]) {if(last==0)sum =sum+sc; $("sum").textContent="总共"+exam.length+"题"+" 每题"+sc+" 答对"+(sum/sc)+"题"+" 得分"+sum+"分";} 
+if(readradio("km")==exam[nu][6]) {if(last==0)sum =sum+sc; $("sum").textContent="总共"+exam.length+"题"+" 每题"+sc+"分"+" 答对"+(sum/sc)+"题"+" 得分"+sum+"分";
+} 
 //else {alert("错误");}
 //alert($(readradio("km")).innerText)
 setLocalStorage("exam",exam);
@@ -215,7 +216,7 @@ exam[i][7]="";
 nu=0;
 sum=0;
 last=0;
-$("sum").textContent="总共"+exam.length+"题"+" 每题"+sc+" 答对"+(sum/sc)+"题"+" 得分"+sum+"分";
+$("sum").textContent="总共"+exam.length+"题"+" 每题"+sc+"分"+" 答对"+(sum/sc)+"题"+" 得分"+sum+"分";
  $("question").textContent="第"+(nu+1)+"题："+exam[nu][0];
 op.forEach((value, index, array) => {
 　　$(value).textContent=value+". "+exam[nu][index+1];
