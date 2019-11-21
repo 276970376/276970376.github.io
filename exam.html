@@ -11,7 +11,7 @@ label{font-size:30px;}
 <body width=100%>
 <br/>
 <h1 >计算机基础知识测试</h1>
-<h2 id=sum ></h2>
+<h3 id=sum ></h3>
 <div id=question style="width:100%;height:%20;font-size:30px" >
 
 </div>
@@ -32,7 +32,6 @@ function $(id)
 {
 return document.getElementById(id)
 }
-
 function readradio(radio) {
  
             // 方法一            
@@ -45,7 +44,6 @@ function readradio(radio) {
             }
             return item;
 }
-
 function setradio(radio,val) {
             var obj = document.getElementsByName(radio)
             for (var i = 0; i < obj.length; i++) { //遍历Radio 
@@ -54,7 +52,6 @@ function setradio(radio,val) {
                 }
             } 
 }
-
 function setradiochecked(radio,val) {
             var obj = document.getElementsByName(radio)
             for (var i = 0; i < obj.length; i++) { //遍历Radio 
@@ -72,18 +69,14 @@ function getLocalStorage(key){
     var val = JSON.parse(window.localStorage.getItem(key));
     return val;
 };
-
 var exam=[]
 var op=["A","B","C","D"]
 var nu=0
-
-
 shuffle = function(o){ //v1.0
 for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
   
 return o;
 };
-
 cp=[
 ['下列是计算机输出设备的是？','耳机','话筒','摄像头','键盘','常识类'],
 ['下列是计算机输出设备的是？','音箱','话筒','摄像头','键盘','常识类'],
@@ -141,7 +134,6 @@ cp=shuffle(cp);
 <!-- { -->
 <!-- var sn =shuffle([..."1234567890"]); -->
  <!-- var answer=shuffle([..."1234"]); -->
-
 <!-- exam[i]=[]; -->
 <!-- exam[i][0]=sn[0]+sn[1]+"+"+sn[2]+sn[3]+"等于多少？"; -->
 <!-- exam[i][parseInt(answer[0])]=parseInt(sn[0]+sn[1])+parseInt(sn[2]+sn[3]); -->
@@ -150,12 +142,10 @@ cp=shuffle(cp);
 <!-- exam[i][parseInt(answer[3])]=parseInt(sn[0]+sn[1])+parseInt(sn[8]+sn[9]); -->
 <!-- exam[i][6]=op[parseInt(answer[0]-1)]; -->
 <!-- } -->
-
 for(var i=0;i<cp.length;i++)
 {
 var sn =shuffle([..."1234567890"]);
  var answer=shuffle([..."1234"]);
-
 exam[i]=[];
 exam[i][0]=cp[i][0];
 exam[i][parseInt(answer[0])]=cp[i][1];
@@ -166,16 +156,15 @@ exam[i][5]=cp[i][5];
 exam[i][6]=op[parseInt(answer[0]-1)];
 exam[i][7]="";
 }
-
-
 $("question").appendChild(document.createTextNode("第"+(nu+1)+"题："+exam[nu][0]));
 op.forEach((value, index, array) => {
 　　$(value).appendChild(document.createTextNode(value+". "+exam[nu][index+1]));
 });
-$("sum").textContent="得分0分";
 
 var sum =0;
 var last=0;
+var sc=2;
+$("sum").textContent="总共"+exam.length+"题"+" 每题"+sc+" 答对"+(sum/sc)+"题"+" 得分"+sum+"分";
 var groupBy = (arr, func) =>arr.map(typeof func === 'function' ? func : val => val[func]).reduce((acc, val, i)=>( acc[val] = (acc[val] || []).concat(arr[i]) ,acc ), {});
 var countBy=(arr,fn)=>arr.map(typeof fn === 'function' ? fn:val=>val[fn]).reduce((acc,val)=>(acc[val]=(acc[val]||0)+1,acc),{});
 var cj={}
@@ -193,10 +182,9 @@ cj=groupBy(cj,x=>x[0]);
 //cj=Object.keys(cj).map((v,i,a)=>groupBy(cj[v],x=>x))
 cj=Object.keys(cj).map((v,i,a)=>countBy(cj[v],x=>x))
 
-var sc=2
-if(nu==exam.length-1&&last==0){last=1;sum =sum+sc; alert("你已做完所有题目"+"总分:"+sum+"分")}
-if(readradio("km")==exam[nu][6]) {if(last==0)sum =sum+sc; $("sum").textContent="得分"+sum+"分";} 
-else {alert("错误");}
+if(nu==exam.length-1&&last==0){last=1;if(readradio("km")==exam[nu][6])sum =sum+sc; alert("你已做完所有题目"+"总分:"+sum+"分")}
+if(readradio("km")==exam[nu][6]) {if(last==0)sum =sum+sc; $("sum").textContent="总共"+exam.length+"题"+" 每题"+sc+" 答对"+(sum/sc)+"题"+" 得分"+sum+"分";} 
+//else {alert("错误");}
 //alert($(readradio("km")).innerText)
 setLocalStorage("exam",exam);
 setradiochecked("km",0)
@@ -204,11 +192,8 @@ if(nu<exam.length-1)nu++
 $("question").textContent="第"+(nu+1)+"题："+exam[nu][0];
 op.forEach((value, index, array) => {
 　　$(value).textContent=value+". "+exam[nu][index+1];
-
 });
-
 }
-
 function rest()
 {
 setradiochecked("km",0)
@@ -217,7 +202,6 @@ for(var i=0;i<cp.length;i++)
 {
 var sn =shuffle([..."1234567890"]);
  var answer=shuffle([..."1234"]);
-
 exam[i]=[];
 exam[i][0]=cp[i][0];
 exam[i][parseInt(answer[0])]=cp[i][1];
@@ -229,13 +213,12 @@ exam[i][6]=op[parseInt(answer[0]-1)];
 exam[i][7]="";
 }
 nu=0;
-
 sum=0;
- $("sum").textContent="得分"+sum+"分";
+last=0;
+$("sum").textContent="总共"+exam.length+"题"+" 每题"+sc+" 答对"+(sum/sc)+"题"+" 得分"+sum+"分";
  $("question").textContent="第"+(nu+1)+"题："+exam[nu][0];
 op.forEach((value, index, array) => {
 　　$(value).textContent=value+". "+exam[nu][index+1];
-
 });
 }
 var param ={tex: 'text',tok: 'baiducp',spd: 5,pit: 5,vol: 15,per: 111}
@@ -248,28 +231,18 @@ var param ={tex: 'text',tok: 'baiducp',spd: 5,pit: 5,vol: 15,per: 111}
         fd.push(k + '=' + encodeURIComponent(data[k]));
     }
 //alert(fd.join('&'));
-
 var fd=(obj)=>Object.keys(obj).map( (x,index)=>x+"="+encodeURIComponent(Object.values(obj)[index])).join("&")
-
 var pickvalue = (obj, arr) =>arr.reduce((acc, curr,index) => (curr in obj && (acc.push(encodeURIComponent(obj[curr]))), acc), []);
 //alert(pickvalue({ 'a': 1, 'b': '2', 'c': '测试'}, ['a', 'c']))
-
-
 var pickname = (obj, arr) =>arr.reduce((acc, curr,index) => (curr in obj && (acc.push(curr+"="+encodeURIComponent(obj[curr]))), acc), []);
-
 //alert(pickname({ 'a': 1, 'b': '2', 'c': '测试' }, ['a', 'c']))
-
-
 function setLocalStorage(key,val){
     window.localStorage.setItem(key,JSON.stringify(val));
 };
-
-
 function getLocalStorage(key){
     var val = JSON.parse(window.localStorage.getItem(key));
     return val;
 };
-
 function getQueryVariable(variable)
 {
        var query = window.location.search.substring(1);
@@ -280,7 +253,6 @@ function getQueryVariable(variable)
        }
        return(false);
 }
-
 if (!Object.values) Object.values = function(obj) {
     if (obj !== Object(obj))
         throw new TypeError('Object.values called on a non-object');
