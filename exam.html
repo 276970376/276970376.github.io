@@ -10,7 +10,7 @@ label{font-size:20px;}
 </head>
 <body width=100%>
 <h1 >计算机基础知识测试</h1>
-<h2 id=sum >  </h2>
+<h4 id=sum >  </h4>
 <div id=question style="width:100%;height:%20;font-size:20px" >
 
 </div>
@@ -218,7 +218,7 @@ exam.map((v,i,a)=>(
 				  //Object.keys(cj_class).map((v,i,a)=>cj_class[v]['class']=v),
 				  cj_class[v[5]]['l']=(countBy(exam,x=>x[5]))[v[5]],
 				  cj_class[v[5]]['t']=0,cj_class[v[5]]['f']=0,
-				  cj_class[v[5]]['avr']=(cj_class[v[5]]['t']/cj_class[v[5]]['l']).toFixed(2)));
+				  cj_class[v[5]]['avr']=(0).toFixed(2)));
 				  var thead="<tr><td>种类</td><td>总数</td><td>正确数</td><td>错误数</td><td>正确率</td></tr>"
 $("baobiao").innerHTML=thead+"<tr><td>"+Object.keys(cj_class).map((v,i,a)=>v+":</td><td>"+pickvalue(cj_class[v],'l,t,f,avr'.split(",")).join("</td><td>")).join("</td></tr>\n<tr><td>")+"</td></tr>"
 function shu()
@@ -239,7 +239,7 @@ if(last==0)sum =sum+sc;
 cj_class[exam[nu][5]]['t']=(cj_class[exam[nu][5]]['t']||0)+1; 
 } 
 else {cj_class[exam[nu][5]]['f']=(cj_class[exam[nu][5]]['f']||0)+1; }
-
+  cj_class[exam[nu][5]]['avr']=(cj_class[exam[nu][5]]['t']/(cj_class[exam[nu][5]]['t']+cj_class[exam[nu][5]]['f'])).toFixed(2);
 
 $("sum").textContent="总共"+exam.length+"题"+" 每题"+sc+"分"+" 答对"+(sum/sc)+"题"+" 答错"+(nu+1-(sum/sc))+"题"+" 得分"+sum+"分";
 $("baobiao").innerHTML=thead+"<tr><td>"+Object.keys(cj_class).map((v,i,a)=>v+":</td><td>"+pickvalue(cj_class[v],'l,t,f,avr'.split(",")).join("</td><td>")).join("</td></tr>\n<tr><td>")+"</td></tr>"
@@ -279,7 +279,7 @@ exam.map((v,i,a)=>(
 				  //Object.keys(cj_class).map((v,i,a)=>cj_class[v]['class']=v),
 				  cj_class[v[5]]['l']=(countBy(exam,x=>x[5]))[v[5]],
 				  cj_class[v[5]]['t']=0,cj_class[v[5]]['f']=0,
-				  cj_class[v[5]]['avr']=(cj_class[v[5]]['t']/cj_class[v[5]]['l']).toFixed(2)));
+				  cj_class[v[5]]['avr']=(0).toFixed(2)));
 $("baobiao").innerHTML=thead+"<tr><td>"+Object.keys(cj_class).map((v,i,a)=>v+":</td><td>"+pickvalue(cj_class[v],'l,t,f,avr'.split(",")).join("</td><td>")).join("</td></tr>\n<tr><td>")+"</td></tr>"
 $("question").textContent="第"+(nu+1)+"题："+exam[nu][0];
 op.forEach((value, index, array) => {
