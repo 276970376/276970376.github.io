@@ -231,15 +231,22 @@ cj=groupBy(cj,x=>x[0]);
 //cj=Object.keys(cj).map((v,i,a)=>groupBy(cj[v],x=>x))
 cj=Object.keys(cj).map((v,i,a)=>countBy(cj[v],x=>x))
 
-if(nu==exam.length-1&&last==0){last=1;if(readradio("km")==exam[nu][6])sum =sum+sc; alert("你已做完所有题目"+"总分:"+sum+"分")}
+if(nu==exam.length-1&&last==0){last=1;if(readradio("km")==exam[nu][6]){sum =sum+sc; cj_class[exam[nu][5]]['t']=(cj_class[exam[nu][5]]['t']||0)+1; }alert("你已做完所有题目"+"总分:"+sum+"分")}
 
 if(readradio("km")==exam[nu][6]) 
-{
-
-if(last==0)sum =sum+sc; 
-cj_class[exam[nu][5]]['t']=(cj_class[exam[nu][5]]['t']||0)+1; 
-} 
-else {cj_class[exam[nu][5]]['f']=(cj_class[exam[nu][5]]['f']||0)+1; }
+	{
+	 if(last==0)
+	  {
+	   sum =sum+sc; 
+	   cj_class[exam[nu][5]]['t']=(cj_class[exam[nu][5]]['t']||0)+1; 
+	  }
+	} 
+	else 
+	{if(last==0)
+	  {
+	   cj_class[exam[nu][5]]['f']=(cj_class[exam[nu][5]]['f']||0)+1; 
+	  }
+	}
   cj_class[exam[nu][5]]['avr']=(cj_class[exam[nu][5]]['t']/(cj_class[exam[nu][5]]['t']+cj_class[exam[nu][5]]['f'])).toFixed(2);
 
 
