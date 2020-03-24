@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  </head>
+  <script type="text/javascript">
+  /**
+ * 浏览器调用语音合成接口
+ * @param {Object} param 百度语音合成接口参数
+ * 请参考 https://ai.baidu.com/docs#/TTS-API/41ac79a6
+ * @param {Object} options 跨域调用api参数
+ *           timeout {number} 超时时间 默认不设置为60秒
+ *           volume {number} audio控件音量，范围 0-1
+ *           hidden {boolean} 是否隐藏audio控件
+ *           autoDestory {boolean} 播放音频完毕后是否自动删除控件
+ *           onInit {Function} 创建完audio控件后调用
+ *           onSuccess {Function} 远程语音合成完成，并且返回音频文件后调用
+ *           onError {Function}  远程语音合成完成，并且返回错误字符串后调用
+ *           onTimeout {Function} 超时后调用，默认超时时间为60秒
+ */
+function btts(param, options) {
+    var url = 'http://tts.baidu.com/text2audio';
+    var opt = options || {};
+    var p = param || {};
+
+    // 如果浏览器支持，可以设置autoplay，但是不能兼容所有浏览器
+    var audio = document.createElement('audio');
+    if (opt.autoplay) {
+        audio.setAttribute('autoplay', 'autoplay');
+    }
+
+    // 隐藏控制栏
+    if (!opt.hidden) {
+        audio.setAttribute('controls', 'controls');
+    } else {
+        audio.style.display = 'none';
+    }
+
+    // 设置音量
+    if (typeof opt.volume !== 'undefined') {
+        audio.volume = opt.volume;
+    }
+
+    // 调用onInit回调
+    isFunction(opt.onInit) && opt.onInit(audio);
+
+    // 默认超时时间60秒
+    var DEFAULT_TIMEOUT = 60000;
+    var timeout = opt.timeout || DEFAULT_TIMEOUT;
+
+    // 创建XMLHttpRequest对象
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url);
+
+    // 创建form参数
+    var data = {};
+    for (var p in param) {
+        data[p] = param[p]
+    }
+
+    // 赋值预定义参数
+    data.cuid = data.cuid || data.tok;
+    data.ctp = 1;
+    data.lan = data.lan || 'zh';
+    data.aue = data.aue || 3;
+	data.pdt=311 || data.pdt
+
+    // 序列化参数列表
+    var fd = [];
+    for(var k in data) {
+        fd.push(k + '=' + encodeURIComponent(data[k]));
+    }
+
+    // 用来处理blob数据
+    var frd = new FileReader();
+    xhr.responseType = 'blob';
+    xhr.send(fd.join('&'));
+
+    // 用timeout可以更兼容的处理兼容超时
+    var timer = setTimeout(function(){
+        xhr.abort();
+        isFunction(opt.onTimeout) && opt.onTimeout();
+    }, timeout);
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            clearTimeout(timer);
+            if (xhr.status == 200) {
+			//alert(xhr.response.type)
+                if (xhr.response.type === 'audio/mp3') {
+
+                    // 在body元素下apppend音频控件
+                    document.body.appendChild(audio);
+
+                    audio.setAttribute('src', URL.createObjectURL(xhr.response));
+                     funcDownload (xhr.response,"音频.mp3");
+                    // autoDestory设置则播放完后移除audio的dom对象
+                    if (opt.autoDestory) {
+                        audio.onended = function() {
+                            document.body.removeChild(audio);
+                        }
+                    }
+
+                    isFunction(opt.onSuccess) && opt.onSuccess(audio);
+                }
+
+                // 用来处理错误
+                if (xhr.response.type === 'application/json') {
+                    frd.onload = function(){
+                        var text = frd.result;
+                        isFunction(opt.onError) && opt.onError(text);
+                    };
+                    frd.readAsText(xhr.response);
+                }
+            }
+        }
+    }
+
+    // 判断是否是函数
+    function isFunction(obj) {
+        if (Object.prototype.toString.call(obj) === '[object Function]') {
+            return true;
+        }
+        return false;
+    }
+}
+
+  </script>
+  
+  <script>
+  			
+function funcDownload (blob, filename) {
+      // 创建隐藏的可下载链接
+      var eleLink = document.createElement('a');
+      eleLink.download = filename;
+	   eleLink.text=filename;
+      //eleLink.style.display = 'none';
+      // 字符内容转变成blob地址
+      
+        eleLink.setAttribute("href", URL.createObjectURL(blob));
+      // 触发点击
+   document.body.appendChild(eleLink);
+      //eleLink.click();
+      // 然后移除
+      //document.body.removeChild(eleLink);
+    }				
+  </script>
+  <script type="text/javascript">
+
+    // 初始化变量
+    var audio = null;
+    var playBtn = null;
+
+    // dom加载完毕回调后注册按钮对象
+    ready(function() {
+        playBtn = document.getElementById('playBtn');
+    });
+
+    // 合成按钮
+    function tts() {
+        let text = document.getElementById('text').value;
+		let per = document.getElementById('per').value;
+        playBtn.innerText = '准备中';
+
+        // 调用语音合成接口
+        // 参数含义请参考 https://ai.baidu.com/docs#/TTS-API/41ac79a6
+        audio = btts({
+            tex: text,
+            cuid: 'baiduid',
+            spd: 5,
+            pit: 5,
+            vol: 15,
+            per: per
+        }, {
+            volume: 0.3,
+            autoDestory: true,
+            timeout: 10000,
+            hidden: false,
+            onInit: function (htmlAudioElement) {
+
+            },
+            onSuccess: function(htmlAudioElement) {
+                audio = htmlAudioElement;
+                playBtn.innerText = '播放';
+            },
+            onError: function(text) {
+                alert(text)
+            },
+            onTimeout: function () {
+                alert('timeout')
+            }
+        });
+    }
+
+    // 播放按钮
+    function play() {
+        if (audio === null) {
+            alert('请先点击合成')
+        } else {
+            audio.play();
+        }
+    }
+
+    // 暂停按钮
+    function pause() {
+        if (audio === null) {
+            alert('请先点击合成')
+        } else {
+            audio.pause();
+        }
+    }
+
+    // 取消按钮
+    function cancel() {
+        if (audio === null) {
+            alert('请先点击合成')
+        } else {
+            audio.pause();
+            document.body.removeChild(audio);
+            audio = null;
+            playBtn.innerText = '准备中';
+        }
+    }
+
+    // dom加载完毕回调
+    function ready(callback){
+        var doc = document;
+        if (doc.addEventListener) {
+            doc.addEventListener('DOMContentLoaded', function() {
+                callback();
+            }, false);
+        } else if (doc.attachEvent) {
+            doc.attachEvent('onreadystatechange', function() {
+                if (doc.readyState === 'complete') {
+                    callback();
+                }
+            });
+        }
+    }
+  </script>
+
+<body>
+    <div>
+	    
+        <textarea id='text' value='百度语音合成' rows="30" cols="100"></textarea>
+		<br/>
+		
+		<select id=per>
+		<option value=0">小美</option>
+		<option value=1>小宇</option>
+		<option value=3>逍遥</option>
+		<option value=4>丫丫</option>
+		<option value=5">精品库小娇</option>
+		<option value=103>精品库米朵</option>
+		<option value=106>精品库博文</option>
+		<option value=110>精品库小童</option>
+		<option value=111>精品库小萌</option>
+		</select>
+        <button onclick='tts()'>合成</button>
+        <button onclick='play()' id='playBtn'>准备中</button>
+        <button onclick='pause()'>暂停</button>
+        <button onclick='cancel()'>取消</button>
+    </div>
+</body>
+</html>
