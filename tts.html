@@ -1,7 +1,15 @@
-<html><head>
+<!DOCTYPE html>
+<html>
+<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
+  <style>
+body{text-align:center;margin:0px auto;}
+div{margin:0px auto;font-size:50px;} 
+input{font-size:50px;}
+</style>
   <title>JS Bin</title>
+  </head>
   <script type="text/javascript">
   /**
  * 浏览器调用语音合成接口
@@ -89,14 +97,17 @@ function btts(param, options) {
                 if (xhr.response.type === 'audio/mp3') {
 
                     // 在body元素下apppend音频控件
-                    document.body.appendChild(audio);
+										  if(document.getElementById("au"))document.body.removeChild(document.getElementById("au"));
+
+                    document.body.appendChild(audio).id="au";
 
                     audio.setAttribute('src', URL.createObjectURL(xhr.response));
                      funcDownload (xhr.response,"音频.mp3");
                     // autoDestory设置则播放完后移除audio的dom对象
                     if (opt.autoDestory) {
                         audio.onended = function() {
-                            document.body.removeChild(audio);
+                            if(document.getElementById("au"))document.body.removeChild(document.getElementById("au"));
+
                         }
                     }
 
@@ -124,11 +135,15 @@ function btts(param, options) {
     }
 }
 
-  </script><script>
-  			
+  </script>
+  
+  <script>
+
 function funcDownload (blob, filename) {
       // 创建隐藏的可下载链接
+	   if(document.getElementById("a"))document.body.removeChild(document.getElementById("a"));
       var eleLink = document.createElement('a');
+	      eleLink.id="a";
       eleLink.download = filename;
 	   eleLink.text=filename;
       //eleLink.style.display = 'none';
@@ -141,7 +156,8 @@ function funcDownload (blob, filename) {
       // 然后移除
       //document.body.removeChild(eleLink);
     }				
-  </script><script type="text/javascript">
+  </script>
+  <script type="text/javascript">
 
     // 初始化变量
     var audio = null;
@@ -233,34 +249,32 @@ function funcDownload (blob, filename) {
             });
         }
     }
-  </script></head>
-  
-  
-  
-  
+  </script>
 
 <body>
     <div>
 	    
-        <textarea id="text" vaule="百度语音合成" rows="30" cols="100"></textarea>
-		<br>
+        <textarea id='text' value="百度语音合成" rows="30" cols="100"></textarea>
+		<br/>
 		
-		<select id="per">
-		<option value="0&quot;">小美</option>
-		<option value="1">小宇</option>
-		<option value="3">逍遥</option>
-		<option value="4">丫丫</option>
-		<option value="5&quot;">精品库小娇</option>
-		<option value="103">精品库米朵</option>
-		<option value="106">精品库博文</option>
-		<option value="110">精品库小童</option>
-		<option value="111">精品库小萌</option>
+		<select id=per>
+		<option value=0">小美</option>
+		<option value=1>小宇</option>
+		<option value=3>逍遥</option>
+		<option value=4>丫丫</option>
+		<option value=5">精品库小娇</option>
+		<option value=103>精品库米朵</option>
+		<option value=106>精品库博文</option>
+		<option value=110>精品库小童</option>
+		<option value=111>精品库小萌</option>
 		</select>
-        <button onclick="tts()">合成</button>
-        <button onclick="play()" id="playBtn">准备中</button>
-        <button onclick="pause()">暂停</button>
-        <button onclick="cancel()">取消</button>
+        <button onclick='tts()'>合成</button>
+        <button onclick='play()' id='playBtn'>准备中</button>
+        <button onclick='pause()'>暂停</button>
+        <button onclick='cancel()'>取消</button>
     </div>
-
-
-</body></html>
+</body>
+<script>
+  	text.value="欢迎使用百度语音合成引擎，请在这里修改文字";
+</script>
+</html>
