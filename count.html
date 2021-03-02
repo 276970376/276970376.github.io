@@ -38,10 +38,13 @@ input{font-size:50px;}
 </div>
 </div>
 <div style="color:red;width:90%;height:%10;font-size:15px" >
-温馨提示：此功能比较单一计算！<br/>"L"键为确认输入！<br/>单次输入错误时:<br/>可输入两个“点”即可删除当前数据！<br/>刷新可以重新计算（单科）成绩！<br/>如果有什么建议和问题可以提出！<br/>微信：15037116532.
+温馨提示：此功能比较单一计算！"L"键为确认输入！刷新可以重新计算！如果有什么建议和问题可以提出！微信：15037116532
 </div>
 </body>
 <script>
+var countBy=(arr,fn)=>arr.map(typeof fn === 'function' ? fn:val=>val[fn]).reduce((acc,val)=>(acc[val]=(acc[val]||0)+1,acc),{});
+var groupBy = (arr, func) =>arr.map(typeof func === 'function' ? func : val => val[func]).reduce((acc, val, i)=>( acc[val] = (acc[val] || []).concat(arr[i]) ,acc ), {});
+//alert(JSON.stringify(countBy([95,85,90,50,45,87,62,36,44,98,80,75,54,68,69],x=>x>80)));
 var count = (arr,b, g) => arr.reduce((a, v) =>( a['SumBestCount']=arr.filter(bn => bn>=b).length, a['SumGoodCount']=arr.filter(gn => gn>=g).length ,a['SumCount']=0,a['SumCount'] = arr.length,a['Sum']=a['Sum']+Number(v),a['avr']=(a['Sum']/arr.length).toFixed(2),a['PassBestRatio']=((a['SumBestCount']/arr.length*100).toFixed(2)+"%"),a['PassGoodRatio']=((a['SumGoodCount']/arr.length*100).toFixed(2)+"%"),a), {"SumBestCount":0,"SumCount":0,"PassBestRatio":0,"SumGoodCount":0,"PassGoodRatio":0,"Sum":0,"avr":0});
 function $(id)
 {
@@ -49,23 +52,30 @@ return document.getElementById(id)
 }
 var str=""
 var cj=[]
-shu("L")
+
+shu("L");
+
 function shu(value)
 {
-        if ( value!="L") { str=str+value;$('str').value=str; if(value==".") tts="点";else tts=value; new Audio("https://tts.baidu.com/text2audio?cuid=baiduid&lan=zh&ctp=1&per=111&pdt=311&pit=8&spd=5&vol=15&aue=3&tex="+encodeURI(tts)).play(); }
+        if ( value!="L") { str=str+value;$('str').value=str; if(value==".") tts="点";else tts=value; 
+		//new Audio("https://tts.baidu.com/text2audio?cuid=baiduid&lan=zh&ctp=1&per=111&pdt=311&pit=1&spd=5&vol=15&aue=3&tex="+encodeURI(tts)).play(); 
+		//window.speechSynthesis.speak(new SpeechSynthesisUtterance(tts));
+		}
 		if (value=="L") {
 						if(!isNaN($('str').value ))
 												{
-												//new Audio("https://tts.baidu.com/text2audio?cuid=baiduid&lan=zh&ctp=1&per=111&pdt=311&pit=8&spd=5&vol=15&aue=3&tex="+encodeURI($('str').value)).play();
+												window.speechSynthesis.speak(new SpeechSynthesisUtterance($('str').value));
+												//new Audio("https://tts.baidu.com/text2audio?cuid=baiduid&lan=zh&ctp=1&per=111&pdt=311&pit=1&spd=5&vol=15&aue=3&tex="+encodeURI($('str').value)).play();
 												$('sc').value=str; 
 												cj.unshift(str);
 												$('str').value=str;}str="";
 												$('str').value=""; 
 												//$('lv').innerHTML=JSON.stringify(count(cj.filter(Boolean),80,60))
-												$('count').innerHTML="优秀人数:"+count(cj.filter(Boolean),80,60).SumBestCount+"."+"及格人数:"+count(cj.filter(Boolean),80,60).SumGoodCount+"."+"总人数:"+count(cj.filter(Boolean),80,60).SumCount+"."+"总分:"+count(cj.filter(Boolean),80,60).Sum+".";
-												$('lv').innerHTML="优秀率:"+count(cj.filter(Boolean),80,60).PassBestRatio+"."+"及格率:"+count(cj.filter(Boolean),80,60).PassGoodRatio+"."+"平均分:"+count(cj.filter(Boolean),80,60).avr+".";
-												//jieguotts=$('sc').value+"."+"优秀人数:"+count(cj.filter(Boolean),80,60).SumBestCount+"."+"及格人数:"+count(cj.filter(Boolean),80,60).SumGoodCount+"."+"总人数："+count(cj.filter(Boolean),80,60).SumCount+"."+"总分："+count(cj.filter(Boolean),80,60).Sum+"."+"优秀率："+count(cj.filter(Boolean),80,60).PassBestRatio+"."+"及格率："+count(cj.filter(Boolean),80,60).PassGoodRatio+"."+"平均分："+count(cj.filter(Boolean),80,60).avr+".";
+												$('count').innerHTML="优秀人数："+count(cj.filter(Boolean),80,60).SumBestCount+"。"+"及格人数："+count(cj.filter(Boolean),80,60).SumGoodCount+"。"+"总人数："+count(cj.filter(Boolean),80,60).SumCount+"。"+"总分："+count(cj.filter(Boolean),80,60).Sum+"。";
+												$('lv').innerHTML="优秀率："+count(cj.filter(Boolean),80,60).PassBestRatio+"。"+"及格率："+count(cj.filter(Boolean),80,60).PassGoodRatio+"。"+"平均分："+count(cj.filter(Boolean),80,60).avr+"。";
+												jieguotts=$('sc').value+"。"+"优秀人数："+count(cj.filter(Boolean),80,60).SumBestCount+"。"+"及格人数："+count(cj.filter(Boolean),80,60).SumGoodCount+"。"+"总人数："+count(cj.filter(Boolean),80,60).SumCount+"。"+"总分："+count(cj.filter(Boolean),80,60).Sum+"。"+"优秀率："+count(cj.filter(Boolean),80,60).PassBestRatio+"。"+"及格率："+count(cj.filter(Boolean),80,60).PassGoodRatio+"。"+"平均分："+count(cj.filter(Boolean),80,60).avr+"。";
 												//new Audio("https://tts.baidu.com/text2audio?cuid=baiduid&lan=zh&ctp=1&per=111&pdt=311&pit=1&spd=5&vol=15&aue=3&tex="+encodeURI(jieguotts)).play();
+												//window.speechSynthesis.speak(new SpeechSynthesisUtterance(jieguotts));
 												}
 }
 </script>
