@@ -1,48 +1,33 @@
-<html><head><meta charset="UTF-8"><style>
-html, body { margin: 0; padding: 0; border: 0; width: 100%; height: 100%; }
-</style>
-</head><body>
-<form>
-请输入字符:<input  id="myText" type="text" size="180" value="4a1 8g1 4e1 4g1 4c2 8a1 8g1 2a1 4e1 8g1 8a1 4g1 4e1 8c1 8a1 8g1 8e1 2d1 3d1 8e1 4g1 8g1 8a1 4e1 4d1 2c1 8g1 8e1 8d1 8c1 5a0 8c1 1g0" />
-
-<input type="button" value="播放音乐" onclick="playmusic()"> 
-</form>
-<a id=music>目标另存为</a>
-		<canvas id="c" width="900" height="100"></canvas>
+<head>
+<title>
+卓越之道-语音朗读
+</title>
+</head>
+<input id=zh size="200" value="请输入中文" onclick="zhplay()">
+</input>
+<input id=en size="200" value="Please enter English" onclick="enplay()">
+</input>
 <script>
+</script>
+<script>
+var langdu="欢迎来到卓越之道！本页面是语音朗读功能,有什么建议QQ联系,联系QQ：276970376";
+new Audio("http://tts.baidu.com/text2audio?lan=zh&pid=101&ie=UTF-8&text="+langdu+"&spd=3").play();
+function zhplay()
+{ 
 
-var a=new Audio,
-	M=(e)=>	{
-			var m=Math,
-			U=900,
-			V=100,
-			s=36,
-			C=(n)=>String.fromCharCode(n),
-			W=(n)=>C(n&255)+C((n>>8)&255),
-			I=(n)=> W(n)+W(n>>16),
-			R=96000,
-			w="",
-			n={},
-			b='c #c d #d e f #f g #g a #a b'.split(' '),
-			i=240;
-			while(i--)n[b[i%12]+(0^i/12)]=130*m.pow(2,i/12);
-			//alert(JSON.stringify(n));
-			while(d=e.shift())
-							{
-								d=d.split(/(\d{1,2})(\.|-)?(.*)/);
-								t=R*2/(d[1]||1);
-								q=n[d[3]]||0;
-								i=0;
-								while (++i<t)
-										{
-										v=m.sin((6.28*i*q)/R)*120*(t-i)/t;w+=C((v-128)&255)
-										}
-								s+=t;
-							}
-			music.href="data:audio/wav;base64,"+btoa("RIFF"+I(s)+"WAVEfmt "+I(16)+W(1)+W(1)+I(R)+I(R)+W(1)+W(8)+"data"+I(s)+w);
-			a.src="data:audio/wav;base64,"+btoa("RIFF"+I(s)+"WAVEfmt "+I(16)+W(1)+W(1)+I(R)+I(R)+W(1)+W(8)+"data"+I(s)+w);
-			a.play()
-			return w;
-			},
- playmusic=()=>M(document.getElementById("myText").value.split(' '));
-    </script></body></html>
+var zh_str=document.getElementById("zh").value;
+var zh=new Audio("http://tts.baidu.com/text2audio?lan=zh&pid=101&ie=UTF-8&text="+zh_str+"&spd=3");
+zh.play()
+
+}
+
+function enplay()
+{
+var en_str=document.getElementById("en").value;
+var en=new Audio("http://tts.baidu.com/text2audio?lan=en&pid=101&ie=UTF-8&text="+en_str+"&spd=2");
+en.play();
+
+
+
+}
+</script> 
