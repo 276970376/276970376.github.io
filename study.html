@@ -1,0 +1,655 @@
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{text-align:center;margin:0px auto;}
+div{margin:0px auto;} 
+input{font-size:20px;}
+label{font-size:20px;}
+</style>
+<title>考试</title>
+</head>
+<body width=100%>
+<h1 >计算机基础知识测试</h1>
+<h4 id=sum >  </h4>
+<div id=question style="width:100%;height:%20;font-size:20px" >
+
+</div>
+<div  style="width:100%;height:%20;font-size:20px" >
+<table align=center >
+<tr><td><input type="radio" style="width:20px;height:20px;" name="km" value="A"  id="kmA"></input><label id="A" for="kmA"></label></td></tr>
+<tr><td><input type="radio" style="width:20px;height:20px;" name="km" value="B"  id="kmB"></input><label id="B" for="kmB"></label></td></tr>
+<tr><td><input type="radio" style="width:20px;height:20px;" name="km" value="C"  id="kmC"></input><label id="C" for="kmC"></label></td></tr>
+<tr><td><input type="radio" style="width:20px;height:20px;" name="km" value="D"  id="kmD"></input><label id="D" for="kmD"></label></td></tr>
+<tr><td align=center><input type="button" value="重置"  style="width:80px;height:%10"  onclick="rest()"/><input type="button" value="确定"  style="width:80px;height:%10"  onclick="shu()"/></td></tr>
+</table>
+</div>
+<div style="font-size:20px">测试分析报告</div>
+<div ><table border=1 align=center id=baobiao style="font-size:20px"></table></div>
+
+</body>
+<script>
+function $(id)
+{
+return document.getElementById(id)
+}
+var param ={tex: 'text',tok: 'baiducp',spd: 5,pit: 5,vol: 15,per: 111}
+   var data = {};
+    for (var p in param) {
+        data[p] = param[p]
+    }
+   var fd = [];
+    for(var k in data) {
+        fd.push(k + '=' + encodeURIComponent(data[k]));
+    }
+//alert(fd.join('&'));
+var fd=(obj)=>Object.keys(obj).map( (x,index)=>x+"="+encodeURIComponent(Object.values(obj)[index])).join("&")
+var pickvalue = (obj, arr) =>arr.reduce((acc, curr,index) => (curr in obj && (acc.push(encodeURIComponent(obj[curr]))), acc), []);
+//alert(pickvalue({ 'a': 1, 'b': '2', 'c': '测试'}, ['a', 'c']))
+var pickname = (obj, arr) =>arr.reduce((acc, curr,index) => (curr in obj && (acc.push(curr+"="+encodeURIComponent(obj[curr]))), acc), []);
+//alert(pickname({ 'a': 1, 'b': '2', 'c': '测试' }, ['a', 'c']))
+
+function getQueryVariable(variable)
+{
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
+if (!Object.values) Object.values = function(obj) {
+    if (obj !== Object(obj))
+        throw new TypeError('Object.values called on a non-object');
+    var val=[],key;
+    for (key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj,key)) {
+            val.push(obj[key]);
+        }
+    }
+    return val;
+}			
+
+function readradio(radio) {
+ 
+            // 方法一            
+            var item = null;
+            var obj = document.getElementsByName(radio)
+            for (var i = 0; i < obj.length; i++) { //遍历Radio 
+                if (obj[i].checked) {
+                    item = obj[i].value;                   
+                }
+            }
+            return item;
+}
+function setradio(radio,val) {
+            var obj = document.getElementsByName(radio)
+            for (var i = 0; i < obj.length; i++) { //遍历Radio 
+                if (val == obj[i].value) {
+                    obj[i].checked=true;                
+                }
+            } 
+}
+function setradiochecked(radio,val) {
+            var obj = document.getElementsByName(radio)
+            for (var i = 0; i < obj.length; i++) { //遍历Radio 
+                if (val ==1) {
+                    obj[i].checked=true;                
+                } else obj[i].checked=false; 
+            } 
+}
+//存
+function setLocalStorage(key,val){
+    window.localStorage.setItem(key,JSON.stringify(val));
+};
+//取
+function getLocalStorage(key){
+    var val = JSON.parse(window.localStorage.getItem(key));
+    return val;
+};
+var exam=[]
+var op=["A","B","C","D"]
+var nu=0
+shuffle = function(o){ //v1.0
+for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+  
+return o;
+};
+cp=[
+    {
+        "问题": "中国共产党是(  )诞生的。",
+        "A": "1921",
+        "B": "1919",
+        "C": "1920",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "中国早期共产主义小组有(  )个",
+        "A": "8",
+        "B": "9",
+        "C": "10",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "北伐战争时期，农民运动的中心在(  )",
+        "A": "湖南",
+        "B": "江西",
+        "C": "广东",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "中国革命的道路是(  )",
+        "A": "农村包围城市，武装夺取政权",
+        "B": "农村包围城市",
+        "C": "武装夺取政权",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "全民族抗战的起点是(  )",
+        "A": "七七事变",
+        "B": "九一八事变",
+        "C": "华北事变",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "我党提出全面抗战路线的会议是(  )",
+        "A": "洛川会议",
+        "B": "遵义会议",
+        "C": "瓦窑堡会议",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "在(  )上毛泽东思想被确立为党的指导思想。",
+        "A": "党的七大",
+        "B": "党的八大",
+        "C": "党的十五大",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "党在民主革命时期的三大法宝是(  )",
+        "A": "统一战线、武装斗争、党的建设",
+        "B": "实事求是、独立民主、群众路线",
+        "C": "解放思想、实事求是、与时俱进",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "党的七大是在(  )召开的",
+        "A": "延安",
+        "B": "北京",
+        "C": "西柏坡",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "中华人民共和国建国后头三年的主要任务是(  )",
+        "A": "恢复国民经济",
+        "B": "没收官僚资本，进行土地改革",
+        "C": "进行社会主义改造",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "中国新民主主义革命伟大开端的标志是(  )",
+        "A": "五四运动",
+        "B": "辛亥革命",
+        "C": "中国共产党的成立",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "区分新旧民主革命的主要标志是(  )",
+        "A": "革命领导权不同",
+        "B": "革命纲领不同",
+        "C": "革命路线不同",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "1931年11月27日，中华苏维埃共和国临时中央政府在(  )成立",
+        "A": "瑞金",
+        "B": "兴国",
+        "C": "于都",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "抗日战争时期，中国共产党解决农民问题的基本政策是(  )",
+        "A": "减租减息",
+        "B": "没收地主阶级的土地和富农多余的土地",
+        "C": "没收一切土地",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "毛泽东思想的精髓是(  )",
+        "A": "实事求是",
+        "B": "独立自主",
+        "C": "争取外援",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "党的工作重心由农村转移到城市的决策是(  )作出的。",
+        "A": "党的的七届二中全会",
+        "B": "党的七大",
+        "C": "新的政治协商会议",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "我国发展国民经济的第一个五年计划开始于(  )年",
+        "A": "1953年",
+        "B": "1951年",
+        "C": "1952年",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "我国最高权力机关是(  )",
+        "A": "全国人民代表大会",
+        "B": "中国人民政治协商会议",
+        "C": "国务院",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "我国是(  )进入社会主义初级阶段的",
+        "A": "1956年",
+        "B": "1949年",
+        "C": "1978年",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "中国是于(  )恢复在联合国的合法席位的。",
+        "A": "1971年10月",
+        "B": "1972年2月",
+        "C": "1972年9月",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "标志着我国进入改革开放新时期的重要会议是(  )",
+        "A": "党的的十一届三中全会",
+        "B": "党的八大",
+        "C": "党的十二大",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "“建设有中国特色的社会主义”是邓小平在(  )上最早提出来的。",
+        "A": "党的十二大",
+        "B": "党的十一届三中全会",
+        "C": "党的十三",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "中国获得奥运史上的第一块金牌运动员是(  )",
+        "A": "许海峰",
+        "B": "容国团",
+        "C": "李宁",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "《告台湾同胞书》是以(  )的名义发布的。",
+        "A": "叶剑英",
+        "B": "邓小平",
+        "C": "江泽民",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "党在社会主义初级阶段的基本路线的核心是(  )",
+        "A": "一个中心，两个基本点",
+        "B": "以经济建设为中心",
+        "C": "坚持四项基本原则，坚持改革开放",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "中华人民共和国成立时，中国共产党党员(  )",
+        "A": "450万",
+        "B": "340万",
+        "C": "500万",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "中华人民共和国成立后制定的第一部正式法律是(  )",
+        "A": "《婚姻法》",
+        "B": "《土地改革法》",
+        "C": "《宪法》",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "中华人民共和国首次以五大国之一的身份参与讨论国际问题的会议是(  )",
+        "A": "日内瓦会议",
+        "B": "万隆会议",
+        "C": "四国外长会议",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "社会主义制度在中国基本确立的时间是(  )",
+        "A": "1956年",
+        "B": "1949年",
+        "C": "1953年",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "1958年6月1日，中共中央的理论刊物正式创刊，它是(  )",
+        "A": "《红旗》",
+        "B": "《求是》",
+        "C": "《党建》",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "1989年中国青少年发展基金会倡导并组织的资助贫困地区失学儿童重返校园的公益事业是(  )",
+        "A": "希望工程",
+        "B": "爱心工程",
+        "C": "形象工程",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "“星火计划”是我国政府为促进(  )发展而制定的",
+        "A": "农村地区",
+        "B": "老少边穷地区",
+        "C": "西部地区",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "社会主义的根本任务是(  )",
+        "A": "解放和发展生产力",
+        "B": "实现共产主义",
+        "C": "建设社会主义",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "我国铁路建设史上规模最大、投资最多、一次建成里程最长的铁路是(  )",
+        "A": "京九铁路",
+        "B": "京广铁路",
+        "C": "兰新铁路",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "发展党员应坚持(  )原则",
+        "A": "个别吸收",
+        "B": "成批发展",
+        "C": "突击发展",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "中国共产党的根本组织原则是(  )",
+        "A": "民主集中制",
+        "B": "集体领导",
+        "C": "民主制",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "邓小平提出的世界主题是(  )",
+        "A": "和平与发展",
+        "B": "战争与和平",
+        "C": "战争与革命",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "发展台海两岸关系和实现和平统一的基础是(  )",
+        "A": "坚持一个中国的原则",
+        "B": "一中一台",
+        "C": "把台湾分裂出去",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "“三个代表”重要思想形成的标志是(  )",
+        "A": "2001年江泽民“七一讲话”",
+        "B": "2000年江泽民在广东茂名、高州的讲话",
+        "C": "2002年江泽民在党的十六大上的报告",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "(  )，北京赢得2008年奥运会主办权",
+        "A": "2000年7月13日",
+        "B": "1999年7月13日",
+        "C": "2001年7月13日",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "邓小平(  )年在接见美国和加拿大客人时，首次明确提出，社会主义也可以搞市场经济",
+        "A": "1979",
+        "B": "1987",
+        "C": "1992",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "(  )的崛起，是农村改革中的重大进步",
+        "A": "乡镇企业",
+        "B": "乡政府",
+        "C": "人口流动",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "1983年6月，邓小平在会见美国学者杨立宇时，阐述了解决台湾问题的(  )",
+        "A": "六点构想",
+        "B": "九条方针",
+        "C": "八项主张",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "在新时期，我国独立自主外交政策的具体表现是(  )",
+        "A": "不结盟",
+        "B": "和平统一",
+        "C": "全方位外交",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "中国共产党的宗旨是(  )",
+        "A": "全心全意为人民服务",
+        "B": "实现社会主义现代化",
+        "C": "坚持党的基本路线和基本纲领不动摇",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "(  )是90年代我国改革开放进一步深化和取得显著成就的重要标志",
+        "A": "上海浦东的开发",
+        "B": "海南洋浦的开发",
+        "C": "北京中关村高新技术开发区的建立",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "党对待犯错误的同志的基本方针是(  )",
+        "A": "惩前毖后，治病救人",
+        "B": "严肃处理",
+        "C": "耐心帮助和教育",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "全面建设小康社会的奋斗目标是在党的(  )上提出来的",
+        "A": "十六大",
+        "B": "十四大",
+        "C": "十五大",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "党执政兴国的第一要务是(  )",
+        "A": "发展",
+        "B": "依法治国",
+        "C": "经济建设",
+        "D": " ",
+        "试题分类": "党史、国史"
+    },
+    {
+        "问题": "中国共产党的最高理想和最终奋斗目标是(  )",
+        "A": "实现共产主义社会制度",
+        "B": "建设中国特色的社会主义",
+        "C": "实现共产主义",
+        "D": " ",
+        "试题分类": "党史、国史"
+    }
+]
+cp=shuffle(cp);
+<!-- for(var i=0;i<100;i++) -->
+<!-- { -->
+<!-- var sn =shuffle([..."1234567890"]); -->
+ <!-- var answer=shuffle([..."1234"]); -->
+<!-- exam[i]=[]; -->
+<!-- exam[i][0]=sn[0]+sn[1]+"+"+sn[2]+sn[3]+"等于多少？"; -->
+<!-- exam[i][parseInt(answer[0])]=parseInt(sn[0]+sn[1])+parseInt(sn[2]+sn[3]); -->
+<!-- exam[i][parseInt(answer[1])]=parseInt(sn[0]+sn[1])+parseInt(sn[4]+sn[5]); -->
+<!-- exam[i][parseInt(answer[2])]=parseInt(sn[0]+sn[1])+parseInt(sn[6]+sn[7]); -->
+<!-- exam[i][parseInt(answer[3])]=parseInt(sn[0]+sn[1])+parseInt(sn[8]+sn[9]); -->
+<!-- exam[i][6]=op[parseInt(answer[0]-1)]; -->
+<!-- } -->
+for(var i=0;i<cp.length;i++)
+{
+var sn =shuffle([..."1234567890"]);
+ var answer=shuffle([..."1234"]);
+exam[i]=[];
+exam[i][0]=cp[i]['问题'];
+exam[i][parseInt(answer[0])]=cp[i]['A'];
+exam[i][parseInt(answer[1])]=cp[i]['B'];
+exam[i][parseInt(answer[2])]=cp[i]['C'];
+exam[i][parseInt(answer[3])]=cp[i]['D'];
+exam[i][5]=cp[i]["试题分类"];
+exam[i][6]=op[parseInt(answer[0]-1)];
+exam[i][7]="";
+}
+$("question").appendChild(document.createTextNode("第"+(nu+1)+"题："+exam[nu][0]));
+op.forEach((value, index, array) => {
+　　$(value).appendChild(document.createTextNode(value+". "+exam[nu][index+1]));
+});
+
+var sum =0;
+var last=0;
+var sc=2;
+var cj={};
+var cj_class={};
+
+$("sum").innerHTML="总共"+exam.length+"题"+" 每题"+sc+"分"+" 答对"+(sum/sc)+"题"+" 答错"+(nu-(sum/sc))+"题"+"<br/><h3> 得分:"+sum+"分</h3>";
+var groupBy = (arr, func) =>arr.map(typeof func === 'function' ? func : val => val[func]).reduce((acc, val, i)=>( acc[val] = (acc[val] || []).concat(arr[i]) ,acc ), {});
+var countBy=(arr,fn)=>arr.map(typeof fn === 'function' ? fn:val=>val[fn]).reduce((acc,val)=>(acc[val]=(acc[val]||0)+1,acc),{});
+
+//cj=exam.map((val,index,arr)=>[].concat(val[5]).concat(val[6]==val[7]));
+cj=exam.map((val,index,arr)=>val.slice(-3,-2).concat(val[6]==val[7]))
+cj=groupBy(cj,x=>x[0]);
+//cj=Object.keys(cj).map((v,i,a)=>groupBy(cj[v],x=>x))
+cj=Object.keys(cj).map((v,i,a)=>countBy(cj[v],x=>x))
+exam.map((v,i,a)=>(
+                  cj_class[v[5]]={},
+				  //Object.keys(cj_class).map((v,i,a)=>cj_class[v]['class']=v),
+				  cj_class[v[5]]['l']=(countBy(exam,x=>x[5]))[v[5]],
+				  cj_class[v[5]]['t']=0,cj_class[v[5]]['f']=0,
+				  cj_class[v[5]]['avr']=(0).toFixed(2)));
+				  var thead="<tr><td>试题分类</td><td>总数</td><td>正确数</td><td>错误数</td><td>正确率</td></tr>"
+$("baobiao").innerHTML=thead+"<tr><td>"+Object.keys(cj_class).map((v,i,a)=>v+":</td><td>"+pickvalue(cj_class[v],'l,t,f,avr'.split(",")).join("</td><td>")).join("</td></tr>\n<tr><td>")+"</td></tr>"
+function shu()
+{
+exam[nu][7]=readradio("km");
+//cj=exam.map((val,index,arr)=>[].concat(val[5]).concat(val[6]==val[7]));
+cj=exam.map((val,index,arr)=>val.slice(-3,-2).concat(val[6]==val[7]))
+cj=groupBy(cj,x=>x[0]);
+//cj=Object.keys(cj).map((v,i,a)=>groupBy(cj[v],x=>x))
+cj=Object.keys(cj).map((v,i,a)=>countBy(cj[v],x=>x))
+
+if(nu==exam.length-1&&last==0){last=1;if(readradio("km")==exam[nu][6]){sum =sum+sc; cj_class[exam[nu][5]]['t']=(cj_class[exam[nu][5]]['t']||0)+1; }alert("你已做完所有题目"+"总分:"+sum+"分")}
+
+if(readradio("km")==exam[nu][6]) 
+	{
+	 if(last==0)
+	  {
+	   sum =sum+sc; 
+	   cj_class[exam[nu][5]]['t']=(cj_class[exam[nu][5]]['t']||0)+1; 
+	  }
+	} 
+	else 
+	{if(last==0)
+	  {
+	   cj_class[exam[nu][5]]['f']=(cj_class[exam[nu][5]]['f']||0)+1; 
+	  }
+	}
+  cj_class[exam[nu][5]]['avr']=(cj_class[exam[nu][5]]['t']/(cj_class[exam[nu][5]]['t']+cj_class[exam[nu][5]]['f'])).toFixed(2);
+
+
+$("sum").innerHTML="总共"+exam.length+"题"+" 每题"+sc+"分"+" 答对"+(sum/sc)+"题"+" 答错"+(nu+1-(sum/sc))+"题"+"<br/><h3> 得分:"+sum+"分</h3>";
+$("baobiao").innerHTML=thead+"<tr><td>"+Object.keys(cj_class).map((v,i,a)=>v+":</td><td>"+pickvalue(cj_class[v],'l,t,f,avr'.split(",")).join("</td><td>")).join("</td></tr>\n<tr><td>")+"</td></tr>"
+//alert($(readradio("km")).innerText)
+setLocalStorage("exam",exam);
+setradiochecked("km",0)
+if(nu<exam.length-1)nu++
+$("question").textContent="第"+(nu+1)+"题："+exam[nu][0];
+op.forEach((value, index, array) => {
+　　$(value).textContent=value+". "+exam[nu][index+1];
+});
+}
+function rest()
+{
+setradiochecked("km",0)
+cp=shuffle(cp);
+for(var i=0;i<cp.length;i++)
+{
+var sn =shuffle([..."1234567890"]);
+ var answer=shuffle([..."1234"]);
+exam[i]=[];
+exam[i][0]=cp[i]['问题'];
+exam[i][parseInt(answer[0])]=cp[i]['A'];
+exam[i][parseInt(answer[1])]=cp[i]['B'];
+exam[i][parseInt(answer[2])]=cp[i]['C'];
+exam[i][parseInt(answer[3])]=cp[i]['D'];
+exam[i][5]=cp[i]["试题分类"];
+exam[i][6]=op[parseInt(answer[0]-1)];
+exam[i][7]="";
+}
+nu=0;
+sum=0;
+last=0;
+$("sum").innerHTML="总共"+exam.length+"题"+" 每题"+sc+"分"+" 答对"+(sum/sc)+"题"+" 答错"+(nu-(sum/sc))+"题"+"<br/><h3> 得分:"+sum+"分</h3>";
+exam.map((v,i,a)=>(
+                  cj_class[v[5]]={},
+				  //Object.keys(cj_class).map((v,i,a)=>cj_class[v]['class']=v),
+				  cj_class[v[5]]['l']=(countBy(exam,x=>x[5]))[v[5]],
+				  cj_class[v[5]]['t']=0,cj_class[v[5]]['f']=0,
+				  cj_class[v[5]]['avr']=(0).toFixed(2)));
+$("baobiao").innerHTML=thead+"<tr><td>"+Object.keys(cj_class).map((v,i,a)=>v+":</td><td>"+pickvalue(cj_class[v],'l,t,f,avr'.split(",")).join("</td><td>")).join("</td></tr>\n<tr><td>")+"</td></tr>"
+$("question").textContent="第"+(nu+1)+"题："+exam[nu][0];
+op.forEach((value, index, array) => {
+　　$(value).textContent=value+". "+exam[nu][index+1];
+});
+}
+
+			
+			
+			
+			
+			
+</script>
