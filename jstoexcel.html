@@ -66,9 +66,9 @@ if(ua.DS&&e==ua.DS)return"dialog";if(ua.MS&&e==ua.MS)return"macro";return e&&e.l
 			 var pick = (obj, arr) =>arr.reduce((acc, curr) => (curr in obj && (acc[curr] = obj[curr]), acc), {});;
             var excelJson = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
 			   excelJson=excelJson.filter((x)=>x["是否填写"]=="是" )
-			   excelJson=excelJson.map((x)=>pick(x,"提交人,打卡人手机号,学生姓名,班级,学生健康状况,是否被隔离,是否与确诊（疑似）病例有过密切接触史,过去14天是否去过国外和国内中高风险地区（包含转机转车路过）或接触过来自中高风险地区人员".split(",")))
+			   excelJson=excelJson.map((x)=>pick(x,"提交人,打卡人手机号,学生姓名,班级,学生健康状况,是否被隔离,是否与确诊病例、疑似病例、无症状感染者有过密切接触？,过去14天是否去过国外或国内中高风险地区？".split(",")))
 			  
-			   excelJson=excelJson.filter((x)=>x["学生健康状况"]!="健康" ||x["是否被隔离"]!="否"||x["是否与确诊（疑似）病例有过密切接触史"]!="否"|| x["过去14天是否去过国外和国内中高风险地区（包含转机转车路过）或接触过来自中高风险地区人员"]!="否");
+			   excelJson=excelJson.filter((x)=>x["学生健康状况"]!="健康" ||x["是否被隔离"]!="否"||x["是否与确诊病例、疑似病例、无症状感染者有过密切接触？"]!="否"|| x["过去14天是否去过国外或国内中高风险地区？"]!="否");
 			   //excelJson=excelJson.filter((x)=>x["是否被隔离"]!="否")
 			    // excelJson=excelJson.filter((x)=>x["是否与确诊（疑似）病例有过密切接触史"]!="否");
 			   //excelJson=excelJson.filter((x)=>x["过去14天是否去过国外和国内中高风险地区（包含转机转车路过）或接触过来自中高风险地区人员"]!="否");
