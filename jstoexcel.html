@@ -64,8 +64,9 @@ var pick = (obj, arr) =>arr.reduce((acc, curr) => (curr in obj && (acc[curr] = o
 var wb;//读取
 var rABS = 1; 
 var excelJson;
-var zhigong ="提交人,打卡人手机号,打卡人类型,部门,健康状况,是否被隔离,是否与确诊病例、疑似病例、无症状感染者有过密切接触？,过去14天是否去过国外或国内中高风险地区？".split(",");
-var xuesheng="提交人,打卡人手机号,学生姓名,班级,学生健康状况,是否被隔离,是否与确诊病例、疑似病例、无症状感染者有过密切接触？,过去14天是否去过国外或国内中高风险地区？".split(",");
+var zhigong =[];
+var xuesheng=[];
+ var xuanze=[];
     //开始导入
     function importf(obj) {
         if(!obj.files) {
@@ -81,8 +82,9 @@ var xuesheng="提交人,打卡人手机号,学生姓名,班级,学生健康状�
              * wb.SheetNames[0]是获取Sheets中第一个Sheet的名字
              * wb.Sheets[Sheet名]获取第一个Sheet的数据
              */
-			 var xuanze;
-			 XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])[0]["学生姓名"]?xuanze=xuesheng:xuanze=zhigong;
+			
+XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])[0]["学生姓名"]?xuanze=[0,10,2,3,14,15,16,17].map((x)=>Object.keys(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])[0])[x]):xuanze=[0,9,8,3,12,13,14,15].map((x)=>Object.keys(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])[0])[x]);
+
 excelJson = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
 excelJson=excelJson.filter((x)=>x["是否填写"]=="是" )
 excelJson=excelJson.map((x)=>pick(x,xuanze));
@@ -97,10 +99,8 @@ var tr=document.createElement("tr");
 thead.appendChild(tr);
 //json数组中第1个人的每个属性
 json=excelJson;
-xuanze[4]="发烧异常";
-xuanze[5]="隔离异常";
-xuanze[6]="密切接触异常";
-xuanze[7]="高风险异常";
+
+"发烧异常,隔离异常,密切接触异常,高风险异常".split(",").map((x,i)=>xuanze[i+4]=x)
 xuanze.map((x)=>{
 //创建th
 var th=document.createElement("th");
@@ -109,6 +109,9 @@ th.innerHTML=x;
 //将th追加到tr中
 tr.appendChild(th);
 });
+
+XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])[0]["学生姓名"]?xuanze=[0,10,2,3,14,15,16,17].map((x)=>Object.keys(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])[0])[x]):xuanze=[0,9,8,3,12,13,14,15].map((x)=>Object.keys(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])[0])[x]);
+
 //创建tbody元素
 var tbody=document.createElement("tbody");
 //将tbody追加到table中
@@ -118,9 +121,6 @@ for(var i=0;i<json.length;i++){
 //创建tr
 var tr=document.createElement("tr");
 //遍历当前员工的每个属性
-zhigong ="提交人,打卡人手机号,打卡人类型,部门,健康状况,是否被隔离,是否与确诊病例、疑似病例、无症状感染者有过密切接触？,过去14天是否去过国外或国内中高风险地区？".split(",");
-xuesheng="提交人,打卡人手机号,学生姓名,班级,学生健康状况,是否被隔离,是否与确诊病例、疑似病例、无症状感染者有过密切接触？,过去14天是否去过国外或国内中高风险地区？".split(",");
-XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])[0]["学生姓名"]?xuanze=xuesheng:xuanze=zhigong;
 for(var key in json[i]){
 //创建td
 var td=document.createElement("td");
