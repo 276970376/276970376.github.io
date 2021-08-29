@@ -20,10 +20,11 @@ input,td,th{border:1px solid #ccc}
 
 <body>
 
-<div id="data1">
+
 <br>
 请导入教职工或学生打卡数据：
 <input type="file"onchange="importf(this)" />
+<div id="data1">
 </div>
 <script>
 /*! xlsx.js (C) 2013-present SheetJS -- http://sheetjs.com */
@@ -61,6 +62,7 @@ var reducedFilter = (data, keys, fn) =>
 var groupBy = (arr, func) =>arr.map(typeof func === 'function' ? func : val => val[func]).reduce((acc, val, i)=>( acc[val] = (acc[val] || []).concat(arr[i]) ,acc ), {});
 var countBy=(arr,fn)=>arr.map(typeof fn === 'function' ? fn:val=>val[fn]).reduce((acc,val)=>(acc[val]=(acc[val]||0)+1,acc),{});
 var pick = (obj, arr) =>arr.reduce((acc, curr) => (curr in obj && (acc[curr] = obj[curr]), acc), {});
+var pickarr = (obj, arr) =>arr.reduce((p, v,i) => ((p[i]=obj[v]), p), []);
 var wb;//读取
 var rABS = 1; 
 var excelJson;
@@ -72,24 +74,20 @@ var xuesheng=[];
         if(!obj.files) {
             return;
         }
+		document.getElementById("data1").innerHTML="";
         var f = obj.files[0];
         var reader = new FileReader();
 		rABS?reader.readAsArrayBuffer(f):reader.readAsBinaryString(f);
         reader.onload = function(e) {
             var data = e.target.result;
             rABS?wb = XLSX.read(data, {type: 'array'}):wb = XLSX.read(data, {type: 'binary'});
-            /**
-             * wb.SheetNames[0]是获取Sheets中第一个Sheet的名字
-             * wb.Sheets[Sheet名]获取第一个Sheet的数据
-             */
-			
-XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])[0]["学生姓名"]?xuanze=[0,10,2,3,14,15,16,17].map((x)=>Object.keys(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])[0])[x]):xuanze=[0,9,8,3,12,13,14,15].map((x)=>Object.keys(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])[0])[x]);
-
+            var _obj=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])[0];
+            var _objkeys=Object.keys(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])[0]);					
+_obj["学生姓名"]?xuanze=pickarr(_objkeys,[0,10,2,3,14,15,16,17]):xuanze=pickarr(_objkeys,[0,9,8,3,12,13,14,15]);
 excelJson = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
 excelJson=excelJson.filter((x)=>x["是否填写"]=="是" )
 excelJson=excelJson.map((x)=>pick(x,xuanze));
 excelJson=excelJson.filter((x)=>x[xuanze[4]]!="健康" ||x[xuanze[5]]!="否"||x[xuanze[6]]!="否"|| x[xuanze[7]]!="否");
-
 var table=document.createElement("table");
 //创建thead，并追加到table中
 var thead=document.createElement("thead");
@@ -99,8 +97,9 @@ var tr=document.createElement("tr");
 thead.appendChild(tr);
 //json数组中第1个人的每个属性
 json=excelJson;
-
-"发烧异常,隔离异常,密切接触异常,高风险异常".split(",").map((x,i)=>xuanze[i+4]=x)
+//"发烧异常,隔离异常,密切接触异常,高风险异常".split(",").map((x,i)=>xuanze[i+4]=x)
+var th_="发烧异常,隔离异常,密切接触异常,高风险异常".split(",")
+xuanze.splice(4,th_.length,...th_)
 xuanze.map((x)=>{
 //创建th
 var th=document.createElement("th");
@@ -110,7 +109,7 @@ th.innerHTML=x;
 tr.appendChild(th);
 });
 
-XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])[0]["学生姓名"]?xuanze=[0,10,2,3,14,15,16,17].map((x)=>Object.keys(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])[0])[x]):xuanze=[0,9,8,3,12,13,14,15].map((x)=>Object.keys(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])[0])[x]);
+_obj["学生姓名"]?xuanze=pickarr(_objkeys,[0,10,2,3,14,15,16,17]):xuanze=pickarr(_objkeys,[0,9,8,3,12,13,14,15]);
 
 //创建tbody元素
 var tbody=document.createElement("tbody");
