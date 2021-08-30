@@ -77,7 +77,7 @@ var xuesheng=[];
 		document.getElementById("data1").innerHTML="";
         var f = obj.files[0];
         var reader = new FileReader();
-		rABS?reader.readAsArrayBuffer(f):reader.readAsBinaryString(f);
+		if(f)rABS?reader.readAsArrayBuffer(f):reader.readAsBinaryString(f);
         reader.onload = function(e) {
             var data = e.target.result;
             rABS?wb = XLSX.read(data, {type: 'array'}):wb = XLSX.read(data, {type: 'binary'});
