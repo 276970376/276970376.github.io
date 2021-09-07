@@ -13,6 +13,7 @@
                 width:520px;padding:50px;
                 border-radius:50%;
 				font-size:55px;
+                font-weight:bold;
                 box-shadow:0 2px 12px #666666;
             }
             textarea {
@@ -21,6 +22,7 @@
 			height: 20%;
 			overflow: hidden;
 			border-radius: 4px;
+			
 			padding: 8px;
 			font-family: "Lucida Console", Monaco, monospace;
 		}
@@ -61,7 +63,7 @@
             <div id="main">随机点名器
 			
                 <div id="box">
-				<textarea id="st">小明、小王、校长、老师、大家</textarea>
+				<textarea id="st">小明、小王、小张、老师、大家</textarea>
 				<div id="box1">(中文顿号隔开）</div>
 				</div>
 				
@@ -71,32 +73,38 @@
 
 
         <script>
-		let $=(id)=>document.getElementById(id);
+		var $=(id)=>document.getElementById(id);
             //准备数据 用数组保存学生姓名
-          var namelist=$("st").value.split("、");
-          var btNode = document.getElementById('bt')
-          var boxNode = document.getElementById('box')
-          var timer
-          var flag =1
+          var namelist;
+          var btNode = document.getElementById('bt');
+          var boxNode = document.getElementById('box');
+          var timer;
+          var flag =1;
             //点击开始按钮
           function doit(){
+		  
             if(flag){
-              start()
-              btNode.style.backgroundColor= "red"
-              btNode.innerText="暂停"
-              flag = 0
+			  
+              start();
+			 
+              btNode.style.backgroundColor= "red";
+              btNode.innerText="暂停";
+              flag = 0;
             }else{
-              stop()
-              btNode.style.backgroundColor = "green"
-              btNode.innerText="开始"
+              stop();
+			  
+              btNode.style.backgroundColor = "green";
+              btNode.innerText="开始";
 
-              flag = 1
+              flag = 1;
             }
+			namelist=$("st").value.split("、");
           }
 
           //点击开始后开始做的事 设置定时任务随机抽取学生
           function start(){
             timer = setInterval(function(){
+			
               var num = random(0,namelist.length)
               // console.log(num)
               //显示到页面
