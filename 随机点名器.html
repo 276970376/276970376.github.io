@@ -63,7 +63,7 @@
             <div id="main">随机点名器
 			
                 <div id="box">
-				<textarea id="st">小明、小王、小张、老师、大家</textarea>
+				<textarea id="st">小明 小王 小张 老师 大家</textarea>
 				<div id="box1">(中文顿号隔开）</div>
 				</div>
 				
@@ -98,7 +98,7 @@
 
               flag = 1;
             }
-			namelist=$("st").value.split("、");
+			namelist=$("st").value.split(" ");
           }
 
           //点击开始后开始做的事 设置定时任务随机抽取学生
