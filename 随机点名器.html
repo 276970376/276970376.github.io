@@ -12,14 +12,32 @@
                 background:#abcdef;
                 width:520px;padding:50px;
                 border-radius:50%;
+				font-size:55px;
                 box-shadow:0 2px 12px #666666;
             }
-
+            textarea {
+			width: 100%;
+			font-size: 18px;
+			height: 20%;
+			overflow: hidden;
+			border-radius: 4px;
+			padding: 8px;
+			font-family: "Lucida Console", Monaco, monospace;
+		}
             #box{
                 background:#ff5511;
                 margin:50px;
                 padding:20px;
                 font-size:55px;
+                font-weight:bold;
+                border-radius:15px 15px 15px 15px;
+                box-shadow:0 2px 12px #666666;
+            }
+			#box1{
+                background:#ff5511;
+      
+                padding:10px;
+                font-size:22px;
                 font-weight:bold;
                 border-radius:15px 15px 15px 15px;
                 box-shadow:0 2px 12px #666666;
@@ -40,16 +58,22 @@
     </head>
     <body>
         <center>
-            <div id="main">
-                <div id="box">随机点名器</div>
+            <div id="main">随机点名器
+			
+                <div id="box">
+				<textarea id="st">小明、小王、校长、老师、大家</textarea>
+				<div id="box1">(中文顿号隔开）</div>
+				</div>
+				
                 <button id="bt" onclick="doit()">开 始</button>
             </div>
         </center>
 
 
         <script>
+		let $=(id)=>document.getElementById(id);
             //准备数据 用数组保存学生姓名
-          var namelist=["Linda","Leo","Alfred","Mike","Vivian","Abby","John","Tim","Zyaire","Chirs"];
+          var namelist=$("st").value.split("、");
           var btNode = document.getElementById('bt')
           var boxNode = document.getElementById('box')
           var timer
