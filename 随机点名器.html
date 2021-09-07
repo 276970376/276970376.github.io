@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>随机点名器</title>
+        <style>
+            *{
+                margin:0;
+                padding:0;
+            }
+            #main{
+                margin:100px;
+                background:#abcdef;
+                width:520px;padding:50px;
+                border-radius:50%;
+                box-shadow:0 2px 12px #666666;
+            }
+
+            #box{
+                background:#ff5511;
+                margin:50px;
+                padding:20px;
+                font-size:55px;
+                font-weight:bold;
+                border-radius:15px 15px 15px 15px;
+                box-shadow:0 2px 12px #666666;
+            }
+
+            #bt{
+                width:100px;
+                font-size:20px;
+                font-weight:bold;
+                background-color:green;
+                border-radius:8px 8px 8px 8px;
+                box-shadow:0 2px 12px #666666;
+                cursor:pointer;
+                padding:5px;
+            }
+        </style>
+
+    </head>
+    <body>
+        <center>
+            <div id="main">
+                <div id="box">随机点名器</div>
+                <button id="bt" onclick="doit()">开 始</button>
+            </div>
+        </center>
+
+
+        <script>
+            //准备数据 用数组保存学生姓名
+          var namelist=["Linda","Leo","Alfred","Mike","Vivian","Abby","John","Tim","Zyaire","Chirs"];
+          var btNode = document.getElementById('bt')
+          var boxNode = document.getElementById('box')
+          var timer
+          var flag =1
+            //点击开始按钮
+          function doit(){
+            if(flag){
+              start()
+              btNode.style.backgroundColor= "red"
+              btNode.innerText="暂停"
+              flag = 0
+            }else{
+              stop()
+              btNode.style.backgroundColor = "green"
+              btNode.innerText="开始"
+
+              flag = 1
+            }
+          }
+
+          //点击开始后开始做的事 设置定时任务随机抽取学生
+          function start(){
+            timer = setInterval(function(){
+              var num = random(0,namelist.length)
+              // console.log(num)
+              //显示到页面
+              boxNode.innerText = namelist[num]
+
+            },85)
+          }
+            //点击暂停 清除定时器
+          function stop (){
+            clearInterval(timer)
+
+          }
+            // 产生随机数 用于数据数组的下标使用
+          function random(a,b){
+            return parseInt(Math.random() * (b - a) + a)
+          }
+
+        </script>
+</body>
+</html>
