@@ -22281,7 +22281,7 @@ a:link {  color: #FF0000; text-decoration: none}
 			.attr ("title", (d)=> "意思"+Object.values(oArray[i])[2] )
 			.text( (d,i) =>d )
 			.text ((d,i)=> i==1? "["+d +"]": d)
-//.on("click", (d,i)=> i==0||i==2? new Audio ("https://fanyi.baidu.com/gettts?lan=zh&text="+d+"&spd=5&source=web").play():d=d)
+//.on("click", (d,i)=> i==0||i==2? new Audio ("https://fanyi.baidu.com/gettts?lan=en&text="+d+"&spd=5&source=web").play():d=d)
 .on("click", (d,i)=> i==0||i==2? new Audio ("https://tts.youdao.com/fanyivoice?word="+d+"&le=zh&keyfrom=speaker-target").play():d=d)
 //.on("click", (d,i)=> i==0||i==2? new Audio ("https://fanyi.sogou.com/reventondc/synthesis?text="+d+"&speed=1&lang=zh-CHS&from=translateweb&speaker=6").play():d=d)
 
