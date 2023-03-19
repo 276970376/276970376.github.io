@@ -74,12 +74,15 @@ inkey.onchange = function(e)
 
 		if (inkey.value==key)
 					{
+						new Audio("http://tts.youdao.com/fanyivoice?word=密码正确&le=zh&keyfrom=speaker-target").play();
 						alert("密码正确")
 						code()
 						}
 					
 					else
 					{
+						
+						new Audio("http://tts.youdao.com/fanyivoice?word=密码不正确&le=zh&keyfrom=speaker-target").play();
 					alert("密码不正确")
 						code()
 					}
