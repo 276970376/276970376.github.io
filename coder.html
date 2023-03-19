@@ -46,7 +46,7 @@ border-radius:8px;
 密码:<input id=inkey /></br>
 <input name="cmdOK" type="submit" value=提交 id=bt>
 <input name="cmdReset" type="reset" value=重置 id=bt> 
-<input type="button" size="3" value="说明"  onclick="play()" id=bt>         
+<input type="button" size="3" value="说明"  onclick="py()" id=bt>         
 </div>
 </body>
 <script>
@@ -68,7 +68,7 @@ document.getElementById('key2').value=key2
 key=key1[6]+key2[7]+""+key1[6]*key2[7]
 inkey.value=""
 }
-play=play()=>new Audio("http://tts.youdao.com/fanyivoice?word=请根据序列对应的字典输入自己的密码&le=zh&keyfrom=speaker-target").play();
+var py=function(){new Audio("http://tts.youdao.com/fanyivoice?word=请根据序列对应的字典输入自己的密码&le=zh&keyfrom=speaker-target").play();}
 inkey.onchange = function(e)
 {
 
