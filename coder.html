@@ -63,7 +63,7 @@ document.getElementById('key2').value=key2
 key=key1[6]+key2[7]+""+key1[6]*key2[7]
 inkey.value=""
 }
-var py=function(){new Audio("http://tts.youdao.com/fanyivoice?word=请根据序列对应的字典输入自己的密码&le=zh&keyfrom=speaker-target").play();}
+var py=function(){inkey.focus();new Audio("http://tts.youdao.com/fanyivoice?word=请根据序列对应的字典输入自己的密码&le=zh&keyfrom=speaker-target").play();}
 inkey.onchange = function(e)
 {
 
