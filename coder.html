@@ -68,14 +68,14 @@ document.getElementById('key2').value=key2
 key=key1[6]+key2[7]+""+key1[6]*key2[7]
 inkey.value=""
 }
-
+new Audio("http://tts.youdao.com/fanyivoice?word=请根据序列对应的字典输入自己的密码&le=zh&keyfrom=speaker-target").play();
 inkey.onchange = function(e)
 {
 
 		if (inkey.value==key)
 					{
 						new Audio("http://tts.youdao.com/fanyivoice?word=密码正确&le=zh&keyfrom=speaker-target").play();
-						alert("密码正确")
+						//alert("密码正确")
 						code()
 						}
 					
@@ -83,7 +83,7 @@ inkey.onchange = function(e)
 					{
 						
 						new Audio("http://tts.youdao.com/fanyivoice?word=密码不正确&le=zh&keyfrom=speaker-target").play();
-					alert("密码不正确")
+					//alert("密码不正确")
 						code()
 					}
 }
