@@ -2,8 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-body{text-align:center;margin:0px auto; font-size:35px;}
-div{margin:0px auto;font-size:35px;} 
+body,div,tr,td,input{text-align:center;margin:0px auto; font-size:35px;}
 	
 #content {
     position: absolute;
@@ -18,20 +17,7 @@ div{margin:0px auto;font-size:35px;}
 </style>
 
 <style>
-input{font-size:35px;margin:0px auto;}
-</style>
-<style>
-#xinxi1
-{
-border:15px solid #55ff00;
-border-radius:30px;
-}
 
-#xinxi2
-{
-border:5px solid #ff1100;
-border-radius:20px;
-}
 #no,#key,#key1,#key2,#inkey,#bt
 {
 border:3px solid #00ff00;
@@ -44,6 +30,7 @@ border-radius:8px;
 <div align="center" id=content>
 </br>
 <H1  align="center"><b><font color=#ff0000>王氏动态加密算法</font></b></H1>
+<table align="center">
 <tr><td>序列:<input id=no value="0,1,2,3,4,5,6,7,8,9"/></td></tr>
 <tr><td>字典:<input id=key1 /></td></tr>
 <tr><td>字典:<input id=key2 /></td></tr>
@@ -52,6 +39,7 @@ border-radius:8px;
 <input name="cmdReset" type="reset" value=重置 id=bt> 
 <input type="button"  value="说明"  onclick="py()" id=bt>
 </td></tr>
+</table>
 </div>
 </body>
 <script>
